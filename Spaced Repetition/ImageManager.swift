@@ -60,6 +60,15 @@ class ImageManager: NSObject {
         )
     }
     
+    class func containsAnyCards() -> Bool {
+        for i in 1...8 {
+            if fileURLs(forLevel: i).count > 0 {
+                return true
+            }
+        }
+        return false
+    }
+    
     class func numberOfCards(atLevel level: Int) -> Int {
         return deckOfImages(forLevel: level).count
     }

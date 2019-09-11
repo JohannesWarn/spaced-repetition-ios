@@ -75,7 +75,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else {
             testDetailLabel.text = "Level \(lastLevelString)"
         }
-        if completionStateForToday == .completed {
+        if completionStateForToday == .completed || !ImageManager.containsAnyCards() {
             testButton.superview?.isHidden = true
             tableView.contentInset.bottom = 0
         } else {
