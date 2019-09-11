@@ -14,6 +14,26 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
 
     var addTextTapGesture: UITapGestureRecognizer!
     
+    var hasEditedFront: Bool {
+        get {
+            let hasDrawn = frontDrawingView.canUndo
+            let hasAddedTextOrImage = cardView.frontViewContentView.subviews.count > 1
+            return hasDrawn || hasAddedTextOrImage
+        }
+    }
+    var hasEditedBack: Bool {
+        get {
+            let hasDrawn = backDrawingView.canUndo
+            let hasAddedTextOrImage = cardView.backViewContentView.subviews.count > 1
+            return hasDrawn || hasAddedTextOrImage
+        }
+    }
+    var canSaveCard: Bool {
+        get {
+            return (hasEditedFront && hasEditedBack) || isEditingExistingCard
+        }
+    }
+    
     var frontDrawingView: SwiftyDrawView!
     var backDrawingView: SwiftyDrawView!
     
@@ -40,6 +60,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         super.viewDidLoad()
         
         setupCardView()
+        topRightButton.isEnabled = canSaveCard
     }
     
     func setupCardView() {
@@ -267,6 +288,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         UIView.setAnimationsEnabled(false)
         topLeftButton.isHidden = true
         topRightButton.setTitle("Done", for: .normal)
+        topRightButton.isEnabled = true
         topRightButton.layoutIfNeeded()
         UIView.setAnimationsEnabled(true)
         
@@ -282,6 +304,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         UIView.setAnimationsEnabled(false)
         topLeftButton.isHidden = false
         topRightButton.setTitle("Save Card", for: .normal)
+        topRightButton.isEnabled = canSaveCard
         topRightButton.layoutIfNeeded()
         UIView.setAnimationsEnabled(true)
         
@@ -456,6 +479,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         topLeftButton.layoutIfNeeded()
         
         topRightButton.setTitle("Done", for: .normal)
+        topRightButton.isEnabled = true
         topRightButton.layoutIfNeeded()
         UIView.setAnimationsEnabled(true)
 
@@ -481,6 +505,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         topLeftButton.layoutIfNeeded()
         
         topRightButton.setTitle("Save Card", for: .normal)
+        topRightButton.isEnabled = canSaveCard
         topRightButton.layoutIfNeeded()
         UIView.setAnimationsEnabled(true)
         
