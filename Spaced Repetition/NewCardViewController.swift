@@ -46,6 +46,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
     @IBOutlet weak var topLeftButton: UIButton!
     @IBOutlet weak var topRightButton: UIButton!
     @IBOutlet weak var textColorSlider: ColorSlider!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var isDrawing: Bool = false
     var isWriting: Bool = false
@@ -87,6 +88,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         
         addTextTapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedCard))
         cardView.addGestureRecognizer(addTextTapGesture)
+        
+        titleLabel.text = "Front"
     }
 
     override func viewDidLayoutSubviews() {
@@ -108,6 +111,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         cardView.flip(animated: true) { (finished) in
             // flip animation finished
         }
+        
+        titleLabel.text = cardView.isShowingFront ? "Front" : "Back"
     }
     
     @IBAction func topLeftAction(_ sender: Any) {
@@ -300,6 +305,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         textColorSlider.isHidden = false
         textColorSlider.updateColorIndicator()
         
+        titleLabel.isHidden = true
+        
         UIView.setAnimationsEnabled(false)
         topLeftButton.isHidden = true
         topRightButton.setTitle("Done", for: .normal)
@@ -315,6 +322,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         currentTextView = nil
         
         textColorSlider.isHidden = true
+        titleLabel.isHidden = false
         
         UIView.setAnimationsEnabled(false)
         topLeftButton.isHidden = false
@@ -488,6 +496,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
             view.isUserInteractionEnabled = false
         }
         
+        titleLabel.isHidden = false
+        
         UIView.setAnimationsEnabled(false)
         topLeftButton.setTitle("Undo", for: .normal)
         topLeftButton.setImage(nil, for: .normal)
@@ -513,6 +523,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         for view in dragableViews {
             view.isUserInteractionEnabled = true
         }
+        
+        titleLabel.isHidden = false
         
         UIView.setAnimationsEnabled(false)
         topLeftButton.setTitle(preferredLeftButtonTitle, for: .normal)
