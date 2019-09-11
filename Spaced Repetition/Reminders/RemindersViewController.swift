@@ -1,0 +1,265 @@
+//
+//  RemindersViewController.swift
+//  Spaced Repetition
+//
+//  Created by Johannes Warn on 2019-08-11.
+//  Copyright © 2019 Johannes Wärn. All rights reserved.
+//
+
+import UIKit
+
+class RemindersViewController: UITableViewController {
+
+    var reminders: [Reminder]!
+    let defaultReminders = [
+        Reminder(hour: 7, minute: 30, badge: true, sound: false, isOn: false),
+        Reminder(hour: 13, minute: 0, badge: false, sound: false, isOn: false),
+        Reminder(hour: 21, minute: 0, badge: false, sound: false, isOn: false)
+    ]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        tableView.contentInset.top = 0.0
+        navigationItem.rightBarButtonItem = editButtonItem
+        
+        if let reminderDictionaries = UserDefaults.standard.array(forKey: "reminders") as? [[String: Any]] {
+            reminders = reminderDictionaries.map { (reminderDictionary) -> Reminder in
+                return Reminder(dictionary: reminderDictionary)
+            }
+        } else {
+            reminders = defaultReminders
+        }
+        
+        scheduleNotifications()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        isEditing = false
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        let swipeActionView = tableView.subviews.first { subview in
+            return !(subview.isKind(of: UITableViewCell.self) || subview.isKind(of: UIImageView.self) || subview.bounds.width > 100)
+        }
+        let isShowingSwipeAction = swipeActionView != nil
+        
+        for cell in tableView.visibleCells {
+            if let reminderCell = cell as? ReminderCell {
+                reminderCell.showsDisclosureIndicatorContainer = editing && !isShowingSwipeAction
+            }
+        }
+    }
+    
+    func sortReminders() {
+        reminders = reminders.sorted(by: { (reminderA, reminderB) -> Bool in
+            if reminderA.hour == reminderB.hour {
+                return reminderA.minute < reminderB.minute
+            }
+            return reminderA.hour < reminderB.hour
+        })
+    }
+    
+    @objc func toggleReminder(_ sender: UISwitch) {
+        if let cell = sender.superview as? ReminderCell {
+            cell.timeLabel.textColor = sender.isOn ? .black : UIColor(white: 0.5, alpha: 1.0)
+            cell.periodLabel.textColor = cell.timeLabel.textColor
+            cell.typeLabel.textColor = cell.timeLabel.textColor
+            
+            var cellIndex: Int? = nil
+            for i in 0...tableView.numberOfRows(inSection: 0) {
+                if cell == tableView.cellForRow(at: IndexPath(row: i, section: 0)) {
+                    cellIndex = i
+                    break
+                }
+            }
+            
+            if let cellIndex = cellIndex {
+                reminders[cellIndex].isOn = sender.isOn
+                scheduleNotifications()
+            }
+        }
+    }
+    
+    func scheduleNotifications() {
+        let reminderDictionaries = reminders.map { (reminder) -> [String: Any] in
+            return reminder.asDictionary()
+        }
+        UserDefaults.standard.set(reminderDictionaries, forKey: "reminders")
+        NotificationsManager.scheduleNotifications()
+    }
+    
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return reminders.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath) as! ReminderCell
+        let reminder = reminders[indexPath.row]
+        
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        dateComponents.hour = reminder.hour
+        dateComponents.minute = reminder.minute
+        
+        cell.switchView.removeTarget(self, action: #selector(toggleReminder(_:)), for: .valueChanged)
+        cell.switchView.addTarget(self, action: #selector(toggleReminder(_:)), for: .valueChanged)
+        
+        if let date = Calendar.current.date(from: dateComponents) {
+            let timeString = DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)
+            let timeStringComponents = timeString.split(separator: " ", maxSplits: 1)
+            cell.timeLabel.text = String(timeStringComponents.first!)
+            cell.periodLabel.text = timeStringComponents.count == 2 ? String(timeStringComponents.last!) : nil
+        } else {
+            cell.timeLabel.text = "Error"
+        }
+        
+        var typeStrings = ["Banner"]
+        if reminder.badge { typeStrings.append("Badge") }
+        if reminder.sound { typeStrings.append("Sound") }
+        cell.typeLabel.text = typeStrings.joined(separator: ", ")
+        
+        cell.switchView.isOn = reminder.isOn
+        cell.timeLabel.textColor = reminder.isOn ? .black : UIColor(white: 0.5, alpha: 1.0)
+        cell.periodLabel.textColor = cell.timeLabel.textColor
+        cell.typeLabel.textColor = cell.timeLabel.textColor
+        
+        cell.showsDisclosureIndicatorContainer = isEditing
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            reminders.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            scheduleNotifications()
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+    
+    /*
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? ReminderCell else { return }
+        
+        cell.switchView.setOn(!cell.switchView.isOn, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        var reminder = reminders[indexPath.row]
+        reminder.isOn = cell.switchView.isOn
+        reminders[indexPath.row] = reminder
+        
+        cell.timeLabel.textColor = reminder.isOn ? .black : UIColor(white: 0.5, alpha: 1.0)
+        cell.periodLabel.textColor = cell.timeLabel.textColor
+        cell.typeLabel.textColor = cell.timeLabel.textColor
+        
+        scheduleNotifications()
+    }
+     */
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return isEditing
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 97.0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.leastNonzeroMagnitude
+    }
+    
+    // MARK: - Navigation
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "addReminder" {
+            return true
+        }
+        if isEditing {
+            return true
+        }
+        return false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let navigationController = segue.destination as? UINavigationController,
+            let editReminderViewController = navigationController.viewControllers.first as? EditReminderViewController {
+            if let selectedRow = tableView.indexPathForSelectedRow {
+                editReminderViewController.reminder = reminders[selectedRow.row]
+                editReminderViewController.saveCallback = {
+                    self.reminders[selectedRow.row] = editReminderViewController.reminder
+                    self.sortReminders()
+                    self.tableView.reloadSections([0], with: .none)
+                    self.scheduleNotifications()
+                }
+                editReminderViewController.deleteCallback = {
+                    self.reminders.remove(at: selectedRow.row)
+                    self.tableView.reloadSections([0], with: .automatic)
+                    self.scheduleNotifications()
+                }
+            } else {
+                let now = Date()
+                let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: now)
+                editReminderViewController.reminder = Reminder(hour: dateComponents.hour! + 1, minute: 0, badge: false, sound: false, isOn: true)
+                editReminderViewController.saveCallback = {
+                    self.reminders.append(editReminderViewController.reminder)
+                    self.sortReminders()
+                    self.tableView.reloadSections([0], with: .automatic)
+                    self.scheduleNotifications()
+                }
+            }
+        }
+    }
+
+}
+
+class ReminderCell: UITableViewCell {
+    
+    @IBOutlet weak var labelContainer: UIView!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var periodLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    let switchView = UISwitch()
+    
+    @IBOutlet weak var disclosureIndicatorContainer: UIView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        accessoryView = switchView
+        
+        let disclosureCell = UITableViewCell()
+        disclosureCell.frame = disclosureIndicatorContainer.bounds
+        disclosureCell.accessoryType = .disclosureIndicator
+        disclosureCell.isUserInteractionEnabled = false
+        disclosureIndicatorContainer.addSubview(disclosureCell)
+        disclosureIndicatorContainer.backgroundColor = .clear
+        
+        disclosureIndicatorContainer.alpha = showsDisclosureIndicatorContainer ? 1.0 : 0.0
+    }
+    
+    var showsDisclosureIndicatorContainer: Bool = false {
+        didSet {
+            UIView.animate(withDuration: 0.2, delay: (self.showsDisclosureIndicatorContainer ? 0.1 : 0.0), options: [(self.showsDisclosureIndicatorContainer ? .curveEaseOut : .curveEaseIn), .beginFromCurrentState], animations: {
+                self.disclosureIndicatorContainer.alpha = self.showsDisclosureIndicatorContainer ? 1.0 : 0.0
+            }, completion: nil)
+        }
+    }
+    
+}

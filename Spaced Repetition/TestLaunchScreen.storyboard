@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d7D-7W-dA1">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Compact-Rounded-Medium.otf">
+            <string>SFCompactRounded-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="6r2-6E-KLY">
+            <objects>
+                <viewController storyboardIdentifier="TestViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d7D-7W-dA1" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wzf-rr-pPM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="all done" translatesAutoresizingMaskIntoConstraints="NO" id="Whz-eB-m9b">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dfm-90-Eh9">
+                                <rect key="frame" x="0.0" y="709.5" width="414" height="152.5"/>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axL-pZ-5tY">
+                                <rect key="frame" x="29" y="174.5" width="356" height="527"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="axL-pZ-5tY" secondAttribute="height" multiplier="27:40" id="CGs-8D-5EF"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" alpha="0.10000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6A5-Wh-5p8">
+                                <rect key="frame" x="0.0" y="44" width="56" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="Jwh-dt-h9E"/>
+                                    <constraint firstAttribute="width" constant="56" id="ejs-RM-nrA"/>
+                                </constraints>
+                                <state key="normal" image="close button"/>
+                                <connections>
+                                    <action selector="close:" destination="d7D-7W-dA1" eventType="touchUpInside" id="VDe-B5-FlV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="tap card to reveal answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSS-tU-yZW">
+                                <rect key="frame" x="113" y="775" width="188" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="SFCompactRounded-Medium" family="SF Compact Rounded" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Dfm-90-Eh9" firstAttribute="top" secondItem="axL-pZ-5tY" secondAttribute="bottom" constant="8" symbolic="YES" id="0Mw-6U-TGn"/>
+                            <constraint firstItem="axL-pZ-5tY" firstAttribute="centerY" secondItem="Wzf-rr-pPM" secondAttribute="centerY" constant="-10" id="2ee-z8-dfx"/>
+                            <constraint firstItem="6A5-Wh-5p8" firstAttribute="leading" secondItem="ZEa-Fv-5KA" secondAttribute="leading" id="CY2-fe-96Z"/>
+                            <constraint firstItem="Whz-eB-m9b" firstAttribute="leading" secondItem="ZEa-Fv-5KA" secondAttribute="leading" id="Gq7-0N-i09"/>
+                            <constraint firstItem="Whz-eB-m9b" firstAttribute="top" secondItem="Wzf-rr-pPM" secondAttribute="top" id="HB8-8P-ucU"/>
+                            <constraint firstItem="Dfm-90-Eh9" firstAttribute="bottom" secondItem="ZEa-Fv-5KA" secondAttribute="bottom" id="Mxh-OY-wPt"/>
+                            <constraint firstItem="6A5-Wh-5p8" firstAttribute="top" secondItem="ZEa-Fv-5KA" secondAttribute="top" id="WAt-zm-3td"/>
+                            <constraint firstAttribute="bottom" secondItem="Whz-eB-m9b" secondAttribute="bottom" id="a4C-J7-bGw"/>
+                            <constraint firstItem="axL-pZ-5tY" firstAttribute="height" relation="lessThanOrEqual" secondItem="Wzf-rr-pPM" secondAttribute="height" multiplier="0.75" id="iMN-59-E7e"/>
+                            <constraint firstItem="axL-pZ-5tY" firstAttribute="centerX" secondItem="Wzf-rr-pPM" secondAttribute="centerX" id="nIE-gD-8GO"/>
+                            <constraint firstItem="Dfm-90-Eh9" firstAttribute="trailing" secondItem="ZEa-Fv-5KA" secondAttribute="trailing" id="oOM-Va-nUi"/>
+                            <constraint firstItem="axL-pZ-5tY" firstAttribute="width" secondItem="Wzf-rr-pPM" secondAttribute="width" multiplier="0.86" priority="750" id="oUo-8p-SSD"/>
+                            <constraint firstAttribute="trailing" secondItem="Whz-eB-m9b" secondAttribute="trailing" id="rd4-Ze-xad"/>
+                            <constraint firstItem="Dfm-90-Eh9" firstAttribute="leading" secondItem="ZEa-Fv-5KA" secondAttribute="leading" id="zTH-od-wP4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZEa-Fv-5KA"/>
+                    </view>
+                    <connections>
+                        <outlet property="allDoneImageView" destination="Whz-eB-m9b" id="f9l-7Z-n1C"/>
+                        <outlet property="cardViewPlaceholder" destination="axL-pZ-5tY" id="oVo-LH-qz1"/>
+                        <outlet property="closeButton" destination="6A5-Wh-5p8" id="M7O-gY-MGC"/>
+                        <outlet property="infoContainerView" destination="Dfm-90-Eh9" id="oZo-Ut-52k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dWg-ph-pSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="859" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="all done" width="568" height="568"/>
+        <image name="close button" width="30" height="30"/>
+    </resources>
+</document>

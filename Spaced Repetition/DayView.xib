@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DayView" customModule="Spaced_Repetition" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="30" height="123"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="w" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpx-TM-4lt">
+                    <rect key="frame" x="0.0" y="0.0" width="30" height="16"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                    <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty circle" translatesAutoresizingMaskIntoConstraints="NO" id="IBX-h2-hrZ">
+                    <rect key="frame" x="0.0" y="24" width="30" height="30"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="IBX-h2-hrZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="HJB-70-5Qh"/>
+                <constraint firstItem="bpx-TM-4lt" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="PLC-aU-SYw"/>
+                <constraint firstItem="IBX-h2-hrZ" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="RaZ-Ey-D7f"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bpx-TM-4lt" secondAttribute="trailing" id="bYq-P4-YQV"/>
+                <constraint firstItem="bpx-TM-4lt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="h5H-AN-0Qr"/>
+                <constraint firstItem="IBX-h2-hrZ" firstAttribute="top" secondItem="bpx-TM-4lt" secondAttribute="bottom" constant="8" id="pef-AO-5vc"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="circleImageView" destination="IBX-h2-hrZ" id="UkE-eD-Ofm"/>
+                <outlet property="dayLabel" destination="bpx-TM-4lt" id="qTX-ug-AxZ"/>
+            </connections>
+            <point key="canvasLocation" x="208.125" y="127.28873239436619"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="empty circle" width="30" height="30"/>
+    </resources>
+</document>
