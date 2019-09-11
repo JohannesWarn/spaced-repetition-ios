@@ -27,6 +27,7 @@ class LevelCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = editButtonItem
+        navigationItem.rightBarButtonItem?.title = isEditing ? "Done" : "Select"
         
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.minimumLineSpacing = 16.0
@@ -50,6 +51,7 @@ class LevelCollectionViewController: UICollectionViewController {
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        navigationItem.rightBarButtonItem?.title = editing ? "Done" : "Select"
         navigationController?.setToolbarHidden(!editing, animated: true)
         collectionView.allowsSelection = false
         collectionView.allowsSelection = true
