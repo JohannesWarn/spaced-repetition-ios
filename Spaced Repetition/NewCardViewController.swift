@@ -42,6 +42,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
     
     var dragableViews: [UIView] = []
     
+    var preferredLeftButtonTitle = "Cancel"
     @IBOutlet weak var topLeftButton: UIButton!
     @IBOutlet weak var topRightButton: UIButton!
     @IBOutlet weak var textColorSlider: ColorSlider!
@@ -125,13 +126,21 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         } else if isWriting {
             stopWriting()
         } else {
-            saveCard(cardView)
-            if isEditingExistingCard {
-                dismiss(animated: true, completion: nil)
-            } else {
-                animateOutCard(cardView, direction: 1)
-                setupCardView()
-                animateInNewCard(cardView)
+            if canSaveCard {
+                saveCard(cardView)
+                if isEditingExistingCard {
+                    dismiss(animated: true, completion: nil)
+                } else {
+                    UIView.setAnimationsEnabled(false)
+                    preferredLeftButtonTitle = "Done"
+                    topLeftButton.setTitle(preferredLeftButtonTitle, for: .normal)
+                    topLeftButton.layoutIfNeeded()
+                    UIView.setAnimationsEnabled(true)
+
+                    animateOutCard(cardView, direction: 1)
+                    setupCardView()
+                    animateInNewCard(cardView)
+                }
             }
         }
     }
@@ -506,8 +515,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         }
         
         UIView.setAnimationsEnabled(false)
-        topLeftButton.setTitle(nil, for: .normal)
-        topLeftButton.setImage(UIImage(named: "close button"), for: .normal)
+        topLeftButton.setTitle(preferredLeftButtonTitle, for: .normal)
+//        topLeftButton.setImage(UIImage(named: "close button"), for: .normal)
         topLeftButton.layoutIfNeeded()
         
         topRightButton.setTitle("Save Card", for: .normal)
