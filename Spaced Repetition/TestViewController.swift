@@ -74,6 +74,12 @@ class TestViewController: ModalCardViewController {
         }
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return [.portrait, .portraitUpsideDown]
+        }
+    }
+    
     @objc func flipCard() {
         flipCardGestureRecognizer.isEnabled = false
         swipeCardGestureRecognizer.isEnabled = false

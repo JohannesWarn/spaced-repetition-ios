@@ -97,6 +97,12 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         existingBackView?.frame = cardView.backViewContentView.bounds
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return [.portrait, .portraitUpsideDown]
+        }
+    }
+    
     @objc func flipCard() {
         cardView.flip(animated: true) { (finished) in
             // flip animation finished
