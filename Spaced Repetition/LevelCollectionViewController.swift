@@ -114,6 +114,7 @@ class LevelCollectionViewController: UICollectionViewController {
         }
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.popoverPresentationController?.barButtonItem = sender
         for level in 1...7 {
             alertController.addAction(UIAlertAction(title: "Move to Level \(level)", style: .default, handler: { (_) in
                 moveSelectedCards(toLevel: level)
@@ -123,10 +124,11 @@ class LevelCollectionViewController: UICollectionViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func deleteSelectedCards(_ sender: Any) {
+    @IBAction func deleteSelectedCards(_ sender: UIBarButtonItem) {
         let currentlySelectedCards = selectedCards()
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.popoverPresentationController?.barButtonItem = sender
         let title = currentlySelectedCards.count == 1 ? "Delete Card" : "Delete \(currentlySelectedCards.count) Cards"
         alertController.addAction(UIAlertAction(title: title, style: .destructive, handler: { (_) in
             for card in currentlySelectedCards {

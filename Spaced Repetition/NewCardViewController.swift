@@ -10,6 +10,8 @@ import UIKit
 
 class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
 
+    var toolsViewController: ToolsViewController!
+
     var addTextTapGesture: UITapGestureRecognizer!
     
     var frontDrawingView: SwiftyDrawView!
@@ -347,6 +349,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         
         if pasteAction != nil || cameraAction != nil {
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            alertController.popoverPresentationController?.sourceView = toolsViewController.imageButton
+            alertController.popoverPresentationController?.sourceRect = toolsViewController.imageButton.bounds
             if let pasteAction = pasteAction { alertController.addAction(pasteAction) }
             if let cameraAction = cameraAction { alertController.addAction(cameraAction) }
             alertController.addAction(UIAlertAction(title: "Library", style: .default, handler: { (_) in
@@ -522,6 +526,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
             toolsViewController.textButton.addTarget(self, action: #selector(addText), for: .touchUpInside)
             toolsViewController.imageButton.addTarget(self, action: #selector(showImagePicker), for: .touchUpInside)
             toolsViewController.flipButton.addTarget(self, action: #selector(flipCard), for: .touchUpInside)
+            self.toolsViewController = toolsViewController
         }
     }
 
