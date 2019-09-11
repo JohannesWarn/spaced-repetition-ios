@@ -57,7 +57,9 @@ class NotificationsManager: Any {
     }
     
     class func scheduleNotifications() {
-        if reminders.count > 0 {
+        let activeReminders = reminders.filter { $0.isOn }
+        
+        if activeReminders.count > 0 {
             if #available(iOS 12.0, *) {
                 UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound, .providesAppNotificationSettings]) { (success, error) in
                     print("request authorization: \(success ? "success" : "failure"), error: \(error?.localizedDescription ?? "none")")
@@ -70,7 +72,7 @@ class NotificationsManager: Any {
         
         UIApplication.shared.cancelAllLocalNotifications()
         var badgeNumber = 0
-        for reminder in reminders {
+        for reminder in activeReminders {
             if reminder.isOn {
                 badgeNumber += reminder.badge ? 1 : 0
                 scheduleNotification(forReminder: reminder, badgeNumber: badgeNumber)
