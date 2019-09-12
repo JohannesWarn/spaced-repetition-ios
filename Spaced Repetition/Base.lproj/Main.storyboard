@@ -50,7 +50,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Oy1-0x-gD0">
-                                            <rect key="frame" x="16" y="14" width="343" height="130"/>
+                                            <rect key="frame" x="16" y="14" width="288" height="130"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oCJ-qB-OFa">
                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="130"/>
@@ -60,42 +60,42 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ocH-8E-27D">
-                                                    <rect key="frame" x="52" y="0.0" width="30" height="130"/>
+                                                    <rect key="frame" x="43" y="0.0" width="30" height="130"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="Ign-4W-CEN"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1V-Pz-c8l">
-                                                    <rect key="frame" x="104.5" y="0.0" width="30" height="130"/>
+                                                    <rect key="frame" x="86" y="0.0" width="30" height="130"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="R6a-tZ-36g"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LnV-0H-20T">
-                                                    <rect key="frame" x="156.5" y="0.0" width="30" height="130"/>
+                                                    <rect key="frame" x="129" y="0.0" width="30" height="130"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="zfM-WY-OEg"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ShD-3a-dw7">
-                                                    <rect key="frame" x="208.5" y="0.0" width="30" height="130"/>
+                                                    <rect key="frame" x="172" y="0.0" width="30" height="130"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="I8Y-ki-Cpu"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGv-n7-2fz">
-                                                    <rect key="frame" x="261" y="0.0" width="30" height="130"/>
+                                                    <rect key="frame" x="215" y="0.0" width="30" height="130"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="VvR-Nt-tF4"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cok-tP-yUK">
-                                                    <rect key="frame" x="313" y="0.0" width="30" height="130"/>
+                                                    <rect key="frame" x="258" y="0.0" width="30" height="130"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="O9U-Iw-gk0"/>
@@ -114,7 +114,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6O-Wb-ucE">
-                                            <rect key="frame" x="263" y="177.5" width="112" height="42"/>
+                                            <rect key="frame" x="208" y="177.5" width="112" height="42"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="42" id="yky-mG-n69"/>
                                             </constraints>
@@ -272,8 +272,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="cv8-gJ-NZJ">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9P-jM-0D9">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
+                                    <color key="backgroundColor" red="0.68013685941696167" green="0.19528824090957642" blue="0.86294203996658325" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="42" id="6Tm-uB-ihS"/>
+                                    </constraints>
+                                    <state key="normal" title="You have disabled notifications in Settings">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="openNotificationsSettings:" destination="uI7-b3-wk8" eventType="touchUpInside" id="Ifj-86-rdo"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="i9P-jM-0D9" firstAttribute="top" secondItem="cv8-gJ-NZJ" secondAttribute="top" id="HU5-Dg-aWT"/>
+                                <constraint firstAttribute="trailing" secondItem="i9P-jM-0D9" secondAttribute="trailing" id="Naz-Y7-Pew"/>
+                                <constraint firstItem="i9P-jM-0D9" firstAttribute="leading" secondItem="cv8-gJ-NZJ" secondAttribute="leading" id="rMa-EV-E6H"/>
+                            </constraints>
+                        </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="a89-G9-8PI">
-                            <rect key="frame" x="0.0" y="170.5" width="320" height="76"/>
+                            <rect key="frame" x="0.0" y="228.5" width="320" height="76"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOj-TS-ZJD">
@@ -294,7 +319,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reminderCell" rowHeight="97" id="qR9-wy-M7f" customClass="ReminderCell" customModule="Spaced_Repetition" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="320" height="97"/>
+                                <rect key="frame" x="0.0" y="113.5" width="320" height="97"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qR9-wy-M7f" id="KpD-5Z-gen">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="96.5"/>
@@ -370,10 +395,14 @@
                             <outlet property="delegate" destination="uI7-b3-wk8" id="6P2-TS-mPF"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="warningButton" destination="i9P-jM-0D9" id="b7l-wO-j8Y"/>
+                        <outlet property="warningHeader" destination="cv8-gJ-NZJ" id="edv-tC-fZ0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FGu-Gv-5Ly" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1876" y="58.020989505247378"/>
+            <point key="canvasLocation" x="1875" y="57.04225352112676"/>
         </scene>
         <!--New Reminder-->
         <scene sceneID="5d8-w4-UHh">

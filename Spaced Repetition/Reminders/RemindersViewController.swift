@@ -17,6 +17,9 @@ class RemindersViewController: UITableViewController {
         Reminder(hour: 21, minute: 0, badge: false, sound: false, isOn: false)
     ]
     
+    @IBOutlet var warningHeader: UIView!
+    @IBOutlet var warningButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +35,16 @@ class RemindersViewController: UITableViewController {
         }
         
         scheduleNotifications()
+        
+        showWarningHeaderIfNeeded()
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(applicationWillEnterForeground),
+            name: UIApplication.willEnterForegroundNotification, object: nil
+        )
+    }
+    
+    @objc func applicationWillEnterForeground() {
+        showWarningHeaderIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +66,55 @@ class RemindersViewController: UITableViewController {
                 reminderCell.showsDisclosureIndicatorContainer = editing && !isShowingSwipeAction
             }
         }
+    }
+    
+    func showWarningHeaderIfNeeded() {
+        guard let currentUserNotificationSettings = UIApplication.shared.currentUserNotificationSettings else {
+            tableView.tableHeaderView = nil
+            return
+        }
+        
+        let activeReminders = reminders.filter { $0.isOn }
+        let hasActiveReminders = activeReminders.count > 0
+        let hasActiveReminderWithSound = activeReminders.reduce(false) { $0 || $1.sound }
+        let hasActiveReminderWithBadge = activeReminders.reduce(false) { $0 || $1.badge }
+        
+        let bannersDisabled = !currentUserNotificationSettings.types.contains(.alert)
+        let soundsDisabled = !currentUserNotificationSettings.types.contains(.sound)
+        let badgesDisabled = !currentUserNotificationSettings.types.contains(.badge)
+        let notificationsDisabled = bannersDisabled && soundsDisabled && badgesDisabled
+        
+        if hasActiveReminders && notificationsDisabled {
+            UIView.performWithoutAnimation {
+                warningButton.setTitle("You have disabled notifications in Settings", for: .normal)
+                warningButton.layoutSubviews()
+            }
+            tableView.tableHeaderView = warningHeader
+        } else if hasActiveReminders && bannersDisabled {
+            UIView.performWithoutAnimation {
+                warningButton.setTitle("You have disabled banners in Settings", for: .normal)
+                warningButton.layoutSubviews()
+            }
+            tableView.tableHeaderView = warningHeader
+        } else if hasActiveReminderWithSound && soundsDisabled {
+            UIView.performWithoutAnimation {
+                warningButton.setTitle("You have disabled sounds in Settings", for: .normal)
+                warningButton.layoutSubviews()
+            }
+            tableView.tableHeaderView = warningHeader
+        } else if hasActiveReminderWithBadge && badgesDisabled {
+            UIView.performWithoutAnimation {
+                warningButton.setTitle("You have disabled badges in Settings", for: .normal)
+                warningButton.layoutSubviews()
+            }
+            tableView.tableHeaderView = warningHeader
+        } else {
+            tableView.tableHeaderView = nil
+        }
+    }
+    
+    @IBAction func openNotificationsSettings(_ sender: Any) {
+        UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
     }
     
     func sortReminders() {
@@ -83,6 +145,8 @@ class RemindersViewController: UITableViewController {
                 scheduleNotifications()
             }
         }
+        
+        showWarningHeaderIfNeeded()
     }
     
     func scheduleNotifications() {
@@ -222,6 +286,7 @@ class RemindersViewController: UITableViewController {
                     self.sortReminders()
                     self.tableView.reloadSections([0], with: .automatic)
                     self.scheduleNotifications()
+                    self.showWarningHeaderIfNeeded()
                 }
             }
         }
