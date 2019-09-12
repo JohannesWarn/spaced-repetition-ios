@@ -14,7 +14,11 @@ class LevelCollectionViewController: UICollectionViewController {
     var level: Int? {
         didSet {
             if let level = self.level {
-                title = "Level \(level)"
+                if level <= 7 {
+                    title = "Level \(level)"
+                } else {
+                    title = "Finished Cards"
+                }
                 cards = ImageManager.deckOfImages(forLevel: level).sortedByCardName()
             } else {
                 title = nil
