@@ -52,21 +52,19 @@ import UIKit
     }
     
     override func draw(_ rect: CGRect) {
+        let onePixel = 1.0 / UIScreen.main.scale
         let context = UIGraphicsGetCurrentContext()
         
         context!.setFillColor(UIColor.white.cgColor)
         context!.fill(CGRect(x: 0.0, y: 0.0, width: rect.size.width, height: rect.size.height))
         
         context!.setFillColor(UIColor.black.cgColor)
-        for x: CGFloat in stride(from: 0.0, to: rect.width - 32.0, by: 1) {
-            let progress = x / (rect.width - 32.0)
+        for x: CGFloat in stride(from: 0.0, to: rect.width, by: onePixel) {
+            let progress = x / rect.width
             let size = CGFloat((progress + progress * progress) / 2)
-            context!.fill(CGRect(x: x + 16.0, y: 3 + ((1 - size) * (rect.size.height - 6)), width: 1.0, height: rect.size.height * size))
+            let relativeSize = 0.5 + (rect.size.height - 6.0) * size
+            context!.fill(CGRect(x: x, y: rect.size.height * 0.5 - relativeSize * 0.5, width: onePixel, height: relativeSize))
         }
-        context!.setFillColor(UIColor.black.cgColor)
-        context!.fill(CGRect(x: rect.width - 16.0, y: 0.0, width: 16.0, height: rect.size.height))
-        context!.setFillColor(UIColor(white: 0.0, alpha: 0.2).cgColor)
-        context!.fill(CGRect(x: 0.0, y: rect.size.height-0.5, width: rect.size.width, height: 0.5))
     }
 
 }
