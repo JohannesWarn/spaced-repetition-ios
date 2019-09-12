@@ -129,12 +129,13 @@ import UIKit
     }
     
     override func draw(_ rect: CGRect) {
+        let onePixel = 1.0 / UIScreen.main.scale
         let context = UIGraphicsGetCurrentContext()
-        for x: CGFloat in stride(from: 0.0, to: rect.width - edgeWidth * 2.0, by: 0.5) {
+        for x: CGFloat in stride(from: 0.0, to: rect.width - edgeWidth * 2.0, by: onePixel) {
             let hue = x / (rect.width - edgeWidth * 2.0)
             let color = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0)
             context!.setFillColor(color.cgColor)
-            context!.fill(CGRect(x: x + edgeWidth, y: 0.0, width: 1.0, height: rect.size.height))
+            context!.fill(CGRect(x: x + edgeWidth, y: 0.0, width: onePixel, height: rect.size.height))
         }
         
         context!.setFillColor(UIColor.white.cgColor)
