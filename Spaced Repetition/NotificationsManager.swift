@@ -85,7 +85,9 @@ class NotificationsManager: Any {
         notification.alertTitle = "Reminder"
         notification.alertBody = "Do today’s test"
         notification.applicationIconBadgeNumber = badgeNumber
-        notification.soundName = UILocalNotificationDefaultSoundName
+        if reminder.sound {
+            notification.soundName = UILocalNotificationDefaultSoundName
+        }
         //        notification.alertLaunchImage = "TestLaunchScreen"
         
         let now = Date()
