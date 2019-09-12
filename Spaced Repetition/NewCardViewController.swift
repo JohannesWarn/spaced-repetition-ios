@@ -33,6 +33,11 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
             return (hasEditedFront && hasEditedBack) || isEditingExistingCard
         }
     }
+    var canSaveDraft: Bool {
+        get {
+            return (hasEditedFront || hasEditedBack)
+        }
+    }
     
     var frontDrawingView: SwiftyDrawView!
     var backDrawingView: SwiftyDrawView!
@@ -43,6 +48,15 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
     var dragableViews: [UIView] = []
     
     var preferredLeftButtonTitle = "Cancel"
+    var preferredRightButtonTitle: String {
+        get {
+            if canSaveCard {
+                return "Save Card"
+            } else {
+                return "Save Draft"
+            }
+        }
+    }
     @IBOutlet weak var topLeftButton: UIButton!
     @IBOutlet weak var topRightButton: UIButton!
     @IBOutlet weak var textColorSlider: ColorSlider!
@@ -62,7 +76,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         super.viewDidLoad()
         
         setupCardView()
-        topRightButton.isEnabled = canSaveCard
+        topRightButton.isEnabled = canSaveDraft || canSaveCard
     }
     
     func setupCardView() {
@@ -326,8 +340,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         
         UIView.setAnimationsEnabled(false)
         topLeftButton.isHidden = false
-        topRightButton.setTitle("Save Card", for: .normal)
-        topRightButton.isEnabled = canSaveCard
+        topRightButton.setTitle(preferredRightButtonTitle, for: .normal)
+        topRightButton.isEnabled = canSaveDraft || canSaveCard
         topRightButton.layoutIfNeeded()
         UIView.setAnimationsEnabled(true)
         
@@ -346,6 +360,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         if (range.location == 0 && range.length == 0 && text == "" && textView.text == "") {
             textView.removeFromSuperview()
             stopWriting()
+            // manually cann didEndEditing since it isn't triggered when the textview has been removed, but we want to trigger a UI update
+            textViewDidEndEditing(textView)
         }
         return true
     }
@@ -465,6 +481,15 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         rotateGesture.delegate = self
         imageView.addGestureRecognizer(rotateGesture)
         dragableViews.append(imageView)
+        
+        UIView.setAnimationsEnabled(false)
+        topLeftButton.setTitle(preferredLeftButtonTitle, for: .normal)
+        topLeftButton.layoutIfNeeded()
+        
+        topRightButton.setTitle(preferredRightButtonTitle, for: .normal)
+        topRightButton.isEnabled = canSaveDraft || canSaveCard
+        topRightButton.layoutIfNeeded()
+        UIView.setAnimationsEnabled(true)
     }
     
     // MARK: - Drawing
@@ -531,8 +556,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
 //        topLeftButton.setImage(UIImage(named: "close button"), for: .normal)
         topLeftButton.layoutIfNeeded()
         
-        topRightButton.setTitle("Save Card", for: .normal)
-        topRightButton.isEnabled = canSaveCard
+        topRightButton.setTitle(preferredRightButtonTitle, for: .normal)
+        topRightButton.isEnabled = canSaveDraft || canSaveCard
         topRightButton.layoutIfNeeded()
         UIView.setAnimationsEnabled(true)
         
