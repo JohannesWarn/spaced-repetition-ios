@@ -124,6 +124,9 @@ class LevelCollectionViewController: UICollectionViewController {
                 moveSelectedCards(toLevel: level)
             }))
         }
+        alertController.addAction(UIAlertAction(title: "Move to Finished Cards", style: .default, handler: { (_) in
+            moveSelectedCards(toLevel: 8)
+        }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
