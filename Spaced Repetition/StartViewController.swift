@@ -164,6 +164,10 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }))
         }
         
+        alertController.addAction(UIAlertAction(title: "Share App Store Link…", style: .default, handler: { (_) in
+            self.shareAppStoreLink()
+        }))
+        
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alertController, animated: true)
@@ -185,6 +189,14 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let activityViewController = UIActivityViewController(activityItems: images, applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = barButtonItem
         activityViewController.addSaveToCameraRollErrorCompletion()
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func shareAppStoreLink(barButtonItem: UIBarButtonItem? = nil) {
+        let appStoreURL = URL(string: "https://apps.apple.com/app/spaced-repetition/id1476169025")!
+        
+        let activityViewController = UIActivityViewController(activityItems: [appStoreURL], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.barButtonItem = barButtonItem
         present(activityViewController, animated: true, completion: nil)
     }
     
