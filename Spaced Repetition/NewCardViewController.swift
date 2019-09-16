@@ -47,7 +47,22 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
     
     var dragableViews: [UIView] = []
     
-    var preferredLeftButtonTitle = "Cancel"
+    var hasSavedCard = false
+    var preferredLeftButtonTitle: String {
+        get {
+            if isEditingExistingCard {
+                return "Cancel"
+            } else {
+                if hasEditedFront || hasEditedBack {
+                    return "Cancel"
+                } else if hasSavedCard {
+                    return "Done"
+                } else {
+                    return "Cancel"
+                }
+            }
+        }
+    }
     var preferredRightButtonTitle: String {
         get {
             if canSaveCard {
@@ -184,15 +199,15 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
                 if isEditingExistingCard {
                     dismiss(animated: true, completion: nil)
                 } else {
-                    UIView.setAnimationsEnabled(false)
-                    preferredLeftButtonTitle = "Done"
-                    topLeftButton.setTitle(preferredLeftButtonTitle, for: .normal)
-                    topLeftButton.layoutIfNeeded()
-                    UIView.setAnimationsEnabled(true)
-
                     animateOutCard(cardView, direction: 1)
                     setupCardView()
                     animateInNewCard(cardView)
+                    
+                    UIView.setAnimationsEnabled(false)
+                    hasSavedCard = true
+                    topLeftButton.setTitle(preferredLeftButtonTitle, for: .normal)
+                    topLeftButton.layoutIfNeeded()
+                    UIView.setAnimationsEnabled(true)
                 }
             }
         }
@@ -373,6 +388,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         titleLabel.isHidden = false
         
         UIView.setAnimationsEnabled(false)
+        topLeftButton.setTitle(preferredLeftButtonTitle, for: .normal)
+        topLeftButton.layoutIfNeeded()
         topLeftButton.isHidden = false
         topRightButton.setTitle(preferredRightButtonTitle, for: .normal)
         topRightButton.isEnabled = canSaveDraft || canSaveCard
