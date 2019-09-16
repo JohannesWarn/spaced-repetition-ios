@@ -162,6 +162,10 @@ class ImageManager: NSObject {
         return cards
     }
     
+    class func deckOfAllImages() -> [CardSides] {
+        return deckOfImages(forLevels: [0, 1, 2, 3, 4, 5, 6, 7, 8])
+    }
+    
 }
 
 extension Array where Element == CardSides {

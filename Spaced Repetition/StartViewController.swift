@@ -154,6 +154,40 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    @IBAction func shareButtonAction(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.popoverPresentationController?.barButtonItem = sender
+        
+        if ImageManager.containsAnyCards() || ImageManager.containsDrafts() {
+            alertController.addAction(UIAlertAction(title: "Share All Cards…", style: .default, handler: { (_) in
+                self.shareAllImages(barButtonItem: sender)
+            }))
+        }
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alertController, animated: true)
+    }
+    
+    func shareAllImages(barButtonItem: UIBarButtonItem? = nil) {
+        let currentlySelectedCards = ImageManager.deckOfAllImages()
+        
+        var images: [UIImage] = []
+        for card in currentlySelectedCards {
+            if let frontImage = card.frontImage {
+                images.append(frontImage)
+            }
+            if let backImage = card.backImage {
+                images.append(backImage)
+            }
+        }
+        
+        let activityViewController = UIActivityViewController(activityItems: images, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.barButtonItem = barButtonItem
+        activityViewController.addSaveToCameraRollErrorCompletion()
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
     func level(forIndexPath indexPath: IndexPath) -> Int {
         if ImageManager.containsDrafts() {
             return indexPath.row

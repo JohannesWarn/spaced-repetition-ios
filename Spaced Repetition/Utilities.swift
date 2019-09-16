@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
@@ -48,5 +49,26 @@ extension UIImage {
         circleLayer.bounds = CGRect(origin: .zero, size: CGSize(width: radius * 2.0, height: radius * 2.0))
         circleLayer.path = UIBezierPath.init(ovalIn: CGRect(origin: .zero, size: CGSize(width: radius * 2.0, height: radius * 2.0))).cgPath
         return imageWithLayer(layer: circleLayer)
+    }
+}
+
+extension UIActivityViewController {
+    func addSaveToCameraRollErrorCompletion() {
+        self.completionWithItemsHandler = { activity, _, _, _ in
+            if activity == UIActivity.ActivityType.saveToCameraRoll {
+                if PHPhotoLibrary.authorizationStatus() == .authorized {
+                    self.isEditing = false
+                } else {
+                    let alertController = UIAlertController(title: "Unable to Save Photos", message: "You need to allow Spaced Repetion acces to your photos to use Save Images.", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { (_) in
+                        UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
+                    }))
+                    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    self.present(alertController, animated: true)
+                }
+            } else {
+                self.isEditing = false
+            }
+        }
     }
 }

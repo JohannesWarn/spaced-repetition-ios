@@ -251,6 +251,11 @@
                                 <segue destination="uI7-b3-wk8" kind="show" identifier="showNotificationSettings" id="cdg-7R-P6k"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="share" id="7Nj-Rr-QBn">
+                            <connections>
+                                <action selector="shareButtonAction:" destination="ZYE-KK-L3t" id="bWq-rq-e1q"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="daysStackView" destination="Oy1-0x-gD0" id="qhj-vD-9vV"/>
@@ -1032,10 +1037,11 @@
         <image name="flip tool" width="38" height="62"/>
         <image name="image tool" width="44" height="62"/>
         <image name="notifications" width="20" height="26"/>
+        <image name="share" width="20" height="26"/>
         <image name="text tool" width="38" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gfR-Oi-7CB"/>
+        <segue reference="GGc-Pu-sB1"/>
         <segue reference="M9S-Py-QzZ"/>
         <segue reference="JK5-Rh-RAJ"/>
     </inferredMetricsTieBreakers>
