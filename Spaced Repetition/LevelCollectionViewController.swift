@@ -108,6 +108,27 @@ class LevelCollectionViewController: UICollectionViewController {
         })
     }
     
+    @IBAction func shareSelectedCards(_ sender: UIBarButtonItem) {
+        let currentlySelectedCards = selectedCards()
+        
+        var images: [UIImage] = []
+        for card in currentlySelectedCards {
+            if let frontImage = card.frontImage {
+                images.append(frontImage)
+            }
+            if let backImage = card.backImage {
+                images.append(backImage)
+            }
+        }
+        
+        let activityViewController = UIActivityViewController(activityItems: images, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.barButtonItem = sender
+        activityViewController.completionWithItemsHandler = { _, _, _, _ in
+            self.isEditing = false
+        }
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
     @IBAction func moveSelectedCards(_ sender: UIBarButtonItem) {
         let currentlySelectedCards = selectedCards()
         

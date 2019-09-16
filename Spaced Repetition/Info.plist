@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Take photos and add them to your cards.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save cards to your photos.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Add your photos to your cards.</string>
 	<key>UIAppFonts</key>

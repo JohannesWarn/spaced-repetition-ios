@@ -576,14 +576,21 @@
                         </connections>
                     </collectionView>
                     <toolbarItems>
-                        <barButtonItem title="Move" id="f1z-iB-yJa">
+                        <barButtonItem systemItem="action" id="wsy-Jt-1mf">
+                            <color key="tintColor" red="0.60784313729999995" green="0.0" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="shareSelectedCards:" destination="Msc-Xr-9ya" id="dbm-He-9qF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="VAo-En-ULA"/>
+                        <barButtonItem title="Move To" id="f1z-iB-yJa">
                             <color key="tintColor" red="0.60784313729999995" green="0.0" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="moveSelectedCards:" destination="Msc-Xr-9ya" id="ujY-Uv-fSO"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="TbG-4x-Rwg"/>
-                        <barButtonItem title="Delete" id="2cS-xO-8me">
+                        <barButtonItem systemItem="trash" id="2cS-xO-8me">
                             <color key="tintColor" red="0.60784313729999995" green="0.0" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="deleteSelectedCards:" destination="Msc-Xr-9ya" id="KLp-NM-l6F"/>
