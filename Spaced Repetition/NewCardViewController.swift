@@ -143,7 +143,29 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         } else if isWriting {
             
         } else {
-            close(sender)
+            if hasEditedBack || hasEditedFront {
+                let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                alertController.popoverPresentationController?.sourceView = topLeftButton
+                alertController.popoverPresentationController?.sourceRect = topLeftButton.bounds
+                
+                if !isEditingExistingCard {
+                    alertController.addAction(UIAlertAction(title: "Save as Draft", style: .default, handler: { (_) in
+                        self.saveCard(self.cardView, toDrafts: true)
+                        self.close(sender)
+                    }))
+                    alertController.addAction(UIAlertAction(title: "Don’t Save", style: .destructive, handler: { (_) in
+                        self.close(sender)
+                    }))
+                } else {
+                    alertController.addAction(UIAlertAction(title: "Don’t Save Changes", style: .default, handler: { (_) in
+                        self.close(sender)
+                    }))
+                }
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                present(alertController, animated: true, completion: nil)
+            } else {
+                close(sender)
+            }
         }
     }
     
