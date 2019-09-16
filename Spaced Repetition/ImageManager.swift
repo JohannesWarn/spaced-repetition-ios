@@ -34,9 +34,9 @@ class ImageManager: NSObject {
         return documentDirectory.appendingPathComponent("level-\(level)")
     }
     
-    class func imagesURLsForNewCard() -> CardSides {
+    class func imagesURLsForNewCard(isDraft: Bool = true) -> CardSides {
         var files: [URL] = []
-        for i in 1...8 {
+        for i in 0...8 {
             files.append(contentsOf: fileURLs(forLevel: i))
         }
         let largestFileNameInt = files.reduce(0) { (result, file) -> Int in
@@ -50,14 +50,22 @@ class ImageManager: NSObject {
         }
         let name = String(largestFileNameInt + 1)
         
+        let level = isDraft ? 0 : 1
         return CardSides(
             name: name,
-            level: 1,
+            level: level,
             frontImage: nil,
             backImage: nil,
-            frontImageURL: imageURL(name: name, level: 1, suffix: "front"),
-            backImageURL: imageURL(name: name, level: 1, suffix: "back")
+            frontImageURL: imageURL(name: name, level: level, suffix: "front"),
+            backImageURL: imageURL(name: name, level: level, suffix: "back")
         )
+    }
+    
+    class func containsDrafts() -> Bool {
+        if fileURLs(forLevel: 0).count > 0 {
+            return true
+        }
+        return false
     }
     
     class func containsAnyCards() -> Bool {

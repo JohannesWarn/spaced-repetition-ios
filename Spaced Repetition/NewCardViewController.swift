@@ -71,6 +71,14 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
             return existingCard != nil
         }
     }
+    var isEditingDraft: Bool {
+        get {
+            if let level = existingCard?.level {
+                return level == 0
+            }
+            return false
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,8 +153,12 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         } else if isWriting {
             stopWriting()
         } else {
-            if canSaveCard {
-                saveCard(cardView)
+            if canSaveDraft || canSaveCard {
+                if canSaveCard {
+                    saveCard(cardView)
+                } else {
+                    saveCard(cardView, toDrafts: true)
+                }
                 if isEditingExistingCard {
                     dismiss(animated: true, completion: nil)
                 } else {
@@ -238,7 +250,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         return false
     }
     
-    func saveCard(_ cardView: CardView) {
+    func saveCard(_ cardView: CardView, toDrafts isDraft: Bool = false) {
         var size = cardView.frontViewContentView.bounds.size
         size.width *= UIScreen.main.scale
         size.height *= UIScreen.main.scale
@@ -254,7 +266,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         UIGraphicsEndImageContext()
         
         do {
-            let imageURLs = existingCard ?? ImageManager.imagesURLsForNewCard()
+            let imageURLs = existingCard ?? ImageManager.imagesURLsForNewCard(isDraft: isDraft)
             if let frontImageURL = imageURLs.frontImageURL, let backImageURL = imageURLs.backImageURL {
                 try frontImage?.pngData()?.write(to: frontImageURL)
                 try backImage?.pngData()?.write(to: backImageURL)

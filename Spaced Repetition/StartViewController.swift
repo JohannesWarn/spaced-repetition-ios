@@ -48,7 +48,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: animated)
         }
-        tableView.reloadSections([0], with: .none)
+        tableView.reloadData()
         
         updateCalendarView()
     }
@@ -154,26 +154,40 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    func level(forIndexPath indexPath: IndexPath) -> Int {
+        if ImageManager.containsDrafts() {
+            return indexPath.row
+        }
+        return indexPath.row + 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if ImageManager.containsDrafts() {
+            return 9
+        }
         return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "level cell", for: indexPath)
+        let level = self.level(forIndexPath: indexPath)
         
-        if indexPath.row < 7 {
-            cell.imageView?.image = UIImage.imageWithCircle(radius: 4.0, color: dayColors[indexPath.row])
-            cell.textLabel?.text = "Level \(indexPath.row + 1)"
+        if level == 0 {
+            cell.imageView?.image = nil
+            cell.textLabel?.text = "Drafts"
+        } else if level <= 7 {
+            cell.imageView?.image = UIImage.imageWithCircle(radius: 4.0, color: dayColors[level - 1])
+            cell.textLabel?.text = "Level \(level)"
         } else {
             cell.imageView?.image = nil
             cell.textLabel?.text = "Finished Cards"
         }
         
-        let numberOfCardsAtLevel = ImageManager.numberOfCards(atLevel: indexPath.row + 1)
+        let numberOfCardsAtLevel = ImageManager.numberOfCards(atLevel: level)
         if numberOfCardsAtLevel == 1 {
-            cell.detailTextLabel?.text = "\(ImageManager.numberOfCards(atLevel: indexPath.row + 1)) card"
+            cell.detailTextLabel?.text = "\(numberOfCardsAtLevel) card"
         } else {
-            cell.detailTextLabel?.text = "\(ImageManager.numberOfCards(atLevel: indexPath.row + 1)) cards"
+            cell.detailTextLabel?.text = "\(numberOfCardsAtLevel) cards"
         }
         
         return cell
@@ -218,8 +232,8 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let levelCollectionViewController = segue.destination as? LevelCollectionViewController {
-            if let selectedRow = tableView.indexPathForSelectedRow?.row {
-                levelCollectionViewController.level = selectedRow + 1
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                levelCollectionViewController.level = level(forIndexPath: selectedIndexPath)
             }
         } else if let testViewController = segue.destination as? TestViewController {
             testViewController.levels = DaysCompletedManager.levelsForToday()

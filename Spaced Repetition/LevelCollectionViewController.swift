@@ -14,7 +14,9 @@ class LevelCollectionViewController: UICollectionViewController {
     var level: Int? {
         didSet {
             if let level = self.level {
-                if level <= 7 {
+                if level == 0 {
+                    title = "Drafts"
+                } else if level <= 7 {
                     title = "Level \(level)"
                 } else {
                     title = "Finished Cards"
@@ -119,14 +121,23 @@ class LevelCollectionViewController: UICollectionViewController {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.popoverPresentationController?.barButtonItem = sender
-        for level in 1...7 {
-            alertController.addAction(UIAlertAction(title: "Move to Level \(level)", style: .default, handler: { (_) in
-                moveSelectedCards(toLevel: level)
+        if self.level != 0 {
+            alertController.addAction(UIAlertAction(title: "Move to Drafts", style: .default, handler: { (_) in
+                moveSelectedCards(toLevel: 0)
             }))
         }
-        alertController.addAction(UIAlertAction(title: "Move to Finished Cards", style: .default, handler: { (_) in
-            moveSelectedCards(toLevel: 8)
-        }))
+        for level in 1...7 {
+            if self.level != level {
+                alertController.addAction(UIAlertAction(title: "Move to Level \(level)", style: .default, handler: { (_) in
+                    moveSelectedCards(toLevel: level)
+                }))
+            }
+        }
+        if self.level != 8 {
+            alertController.addAction(UIAlertAction(title: "Move to Finished Cards", style: .default, handler: { (_) in
+                moveSelectedCards(toLevel: 8)
+            }))
+        }
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
