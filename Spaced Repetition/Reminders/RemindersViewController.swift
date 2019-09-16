@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class RemindersViewController: UITableViewController {
 
@@ -36,14 +37,23 @@ class RemindersViewController: UITableViewController {
         
         scheduleNotifications()
         
+        tableView.tableHeaderView = nil
         showWarningHeaderIfNeeded()
         NotificationCenter.default.addObserver(
             self, selector: #selector(applicationWillEnterForeground),
             name: UIApplication.willEnterForegroundNotification, object: nil
         )
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(applicationDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification, object: nil
+        )
     }
     
     @objc func applicationWillEnterForeground() {
+        showWarningHeaderIfNeeded()
+    }
+    
+    @objc func applicationDidBecomeActive() {
         showWarningHeaderIfNeeded()
     }
     
@@ -69,47 +79,71 @@ class RemindersViewController: UITableViewController {
     }
     
     func showWarningHeaderIfNeeded() {
-        guard let currentUserNotificationSettings = UIApplication.shared.currentUserNotificationSettings else {
-            tableView.tableHeaderView = nil
-            return
+        func showWarningHeaderFor(_ bannersDisabled: Bool, _ soundsDisabled: Bool, _ badgesDisabled: Bool) {
+            let notificationsDisabled = bannersDisabled && soundsDisabled && badgesDisabled
+            
+            let activeReminders = reminders.filter { $0.isOn }
+            let hasActiveReminders = activeReminders.count > 0
+            let hasActiveReminderWithSound = activeReminders.reduce(false) { $0 || $1.sound }
+            let hasActiveReminderWithBadge = activeReminders.reduce(false) { $0 || $1.badge }
+            
+            if hasActiveReminders && notificationsDisabled {
+                UIView.performWithoutAnimation {
+                    warningButton.setTitle("You have disabled notifications in Settings", for: .normal)
+                    warningButton.layoutSubviews()
+                }
+                tableView.tableHeaderView = warningHeader
+            } else if hasActiveReminders && bannersDisabled {
+                UIView.performWithoutAnimation {
+                    warningButton.setTitle("You have disabled banners in Settings", for: .normal)
+                    warningButton.layoutSubviews()
+                }
+                tableView.tableHeaderView = warningHeader
+            } else if hasActiveReminderWithSound && soundsDisabled {
+                UIView.performWithoutAnimation {
+                    warningButton.setTitle("You have disabled sounds in Settings", for: .normal)
+                    warningButton.layoutSubviews()
+                }
+                tableView.tableHeaderView = warningHeader
+            } else if hasActiveReminderWithBadge && badgesDisabled {
+                UIView.performWithoutAnimation {
+                    warningButton.setTitle("You have disabled badges in Settings", for: .normal)
+                    warningButton.layoutSubviews()
+                }
+                tableView.tableHeaderView = warningHeader
+            } else {
+                tableView.tableHeaderView = nil
+            }
         }
         
-        let activeReminders = reminders.filter { $0.isOn }
-        let hasActiveReminders = activeReminders.count > 0
-        let hasActiveReminderWithSound = activeReminders.reduce(false) { $0 || $1.sound }
-        let hasActiveReminderWithBadge = activeReminders.reduce(false) { $0 || $1.badge }
-        
-        let bannersDisabled = !currentUserNotificationSettings.types.contains(.alert)
-        let soundsDisabled = !currentUserNotificationSettings.types.contains(.sound)
-        let badgesDisabled = !currentUserNotificationSettings.types.contains(.badge)
-        let notificationsDisabled = bannersDisabled && soundsDisabled && badgesDisabled
-        
-        if hasActiveReminders && notificationsDisabled {
-            UIView.performWithoutAnimation {
-                warningButton.setTitle("You have disabled notifications in Settings", for: .normal)
-                warningButton.layoutSubviews()
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+                if settings.authorizationStatus == .notDetermined {
+                    DispatchQueue.main.async {
+                        self.tableView.tableHeaderView = nil
+                    }
+                    return
+                }
+                
+                let bannersDisabled = (settings.alertSetting == .disabled)
+                let soundsDisabled = (settings.soundSetting == .disabled)
+                let badgesDisabled = (settings.badgeSetting == .disabled)
+                
+                DispatchQueue.main.async {
+                    showWarningHeaderFor(bannersDisabled, soundsDisabled, badgesDisabled)
+                }
             }
-            tableView.tableHeaderView = warningHeader
-        } else if hasActiveReminders && bannersDisabled {
-            UIView.performWithoutAnimation {
-                warningButton.setTitle("You have disabled banners in Settings", for: .normal)
-                warningButton.layoutSubviews()
-            }
-            tableView.tableHeaderView = warningHeader
-        } else if hasActiveReminderWithSound && soundsDisabled {
-            UIView.performWithoutAnimation {
-                warningButton.setTitle("You have disabled sounds in Settings", for: .normal)
-                warningButton.layoutSubviews()
-            }
-            tableView.tableHeaderView = warningHeader
-        } else if hasActiveReminderWithBadge && badgesDisabled {
-            UIView.performWithoutAnimation {
-                warningButton.setTitle("You have disabled badges in Settings", for: .normal)
-                warningButton.layoutSubviews()
-            }
-            tableView.tableHeaderView = warningHeader
         } else {
-            tableView.tableHeaderView = nil
+            guard let currentUserNotificationSettings = UIApplication.shared.currentUserNotificationSettings else {
+                tableView.tableHeaderView = nil
+                return
+            }
+            
+            let bannersDisabled = !currentUserNotificationSettings.types.contains(.alert)
+            let soundsDisabled = !currentUserNotificationSettings.types.contains(.sound)
+            let badgesDisabled = !currentUserNotificationSettings.types.contains(.badge)
+            
+            showWarningHeaderFor(bannersDisabled, soundsDisabled, badgesDisabled)
         }
     }
     
@@ -146,7 +180,7 @@ class RemindersViewController: UITableViewController {
             }
         }
         
-        showWarningHeaderIfNeeded()
+        self.showWarningHeaderIfNeeded()
     }
     
     func scheduleNotifications() {
