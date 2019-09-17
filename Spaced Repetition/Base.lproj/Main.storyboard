@@ -471,6 +471,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addNewCardButton" destination="R6O-Wb-ucE" id="5Ju-5g-Jeu"/>
+                        <outlet property="cardsHeaderLeadingLayoutConstraint" destination="h8N-1P-2d3" id="b40-NO-3Rb"/>
                         <outlet property="creditsHeightStopBlock" destination="8T5-16-p5w" id="n1P-dO-NMs"/>
                         <outlet property="creditsTopLayoutConstraint" destination="S9M-Hx-CH6" id="fnN-fU-wdY"/>
                         <outlet property="daysStackView" destination="Oy1-0x-gD0" id="qhj-vD-9vV"/>

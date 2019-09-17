@@ -14,6 +14,10 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var dayViews: [DayView]! = []
     @IBOutlet weak var tableView: UITableView!
     
+    var oldTableViewSeparatorInset: UIEdgeInsets? = nil
+    @IBOutlet var cardsHeaderLeadingLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet var addNewCardButton: UIButton!
+    
     @IBOutlet weak var testButton: FancyButton!
     @IBOutlet weak var testDetailLabel: UILabel!
     
@@ -59,6 +63,14 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewDidLayoutSubviews() {
+        if oldTableViewSeparatorInset != tableView.separatorInset {
+            cardsHeaderLeadingLayoutConstraint.constant = tableView.separatorInset.left - 3.0 // subtract three for optical aligmnent
+            addNewCardButton.contentEdgeInsets.left = tableView.separatorInset.left
+            addNewCardButton.contentEdgeInsets.right = tableView.separatorInset.left
+            
+            oldTableViewSeparatorInset = tableView.separatorInset
+        }
+        
         let cellHeight: CGFloat = 44.0
         let headerAndContentHeight = (tableView.tableHeaderView?.bounds.height ?? 0) + cellHeight * CGFloat(tableView.numberOfRows(inSection: 0))
         let viewportHeight = tableView.frame.height - tableView.contentInset.top
