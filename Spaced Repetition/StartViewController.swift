@@ -17,6 +17,9 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var testButton: FancyButton!
     @IBOutlet weak var testDetailLabel: UILabel!
     
+    @IBOutlet var creditsTopLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet var creditsHeightStopBlock: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +30,8 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             dayViews.append(dayView)
         }
+        
+        creditsHeightStopBlock.isHidden = true
         
         updateCalendarView()
         
@@ -51,6 +56,29 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.reloadData()
         
         updateCalendarView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let cellHeight: CGFloat = 44.0
+        let headerAndContentHeight = (tableView.tableHeaderView?.bounds.height ?? 0) + cellHeight * CGFloat(tableView.numberOfRows(inSection: 0))
+        let viewportHeight = tableView.frame.height - tableView.contentInset.top
+        let extraHeight = max(viewportHeight - headerAndContentHeight, 0)
+        let creditsOffset = extraHeight + 100
+        if creditsTopLayoutConstraint.constant != creditsOffset {
+            creditsTopLayoutConstraint.constant = creditsOffset
+        }
+        
+        guard let tableFooterView = tableView.tableFooterView else { return }
+        
+        let creditsHeight = creditsHeightStopBlock.frame.origin.y
+        if tableFooterView.frame.size.height != creditsHeight {
+            var frame = tableFooterView.frame
+            frame.size.height = creditsHeight
+            tableFooterView.frame = frame
+            
+            // setting the tableFooterView updates the height
+            tableView.tableFooterView = tableFooterView
+        }
     }
     
     func updateCalendarView() {
@@ -272,7 +300,43 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.testDetailLabel.alpha = alpha
         }, completion: nil)
     }
-
+    
+    @IBAction func openNickyCaseIntro(_ sender: Any) {
+        let url = URL(string: "https://ncase.me/remember/")!
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+    @IBAction func contactDeveloper(_ sender: Any) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Open Mail", style: .default, handler: { (_) in
+            let url = URL(string: "mailto:carlolof@johanneswarn.com?subject=Spaced%20Repetition")!
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }))
+        alertController.addAction(UIAlertAction(title: "Copy Mail Address", style: .default, handler: { (_) in
+            let mail = "carlolof@johanneswarn.com"
+            UIPasteboard.general.string = mail
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func openCrabNebula(_ sender: Any) {
+        let url = URL(string: "https://images.nasa.gov/details-PIA17563.html")!
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
