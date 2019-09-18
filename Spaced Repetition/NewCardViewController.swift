@@ -331,11 +331,13 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
             center.y += 16
         }
         
+        let fontSize = ceil(cardView.frame.width / 10.0)
+        
         let textView = UITextView()
         textView.backgroundColor = .clear
         textView.textColor = .black
         textView.isScrollEnabled = false
-        textView.font = UIFont(name: "SFCompactRounded-Bold", size: 28)
+        textView.font = UIFont(name: "SFCompactRounded-Bold", size: fontSize)
         textView.delegate = self
         textView.textAlignment = .center
         textView.sizeToFit()
@@ -418,9 +420,10 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        let margin = ceil(cardView.frame.width / 8.5)
         var cardSizeMinusMargin = textView.superview?.bounds.size ?? CGSize.zero
-        cardSizeMinusMargin.width -= 32
-        cardSizeMinusMargin.height -= 32
+        cardSizeMinusMargin.width -= margin
+        cardSizeMinusMargin.height -= margin
         
         let oldCenter = textView.center
         textView.frame.size = textView.sizeThatFits(cardSizeMinusMargin)
