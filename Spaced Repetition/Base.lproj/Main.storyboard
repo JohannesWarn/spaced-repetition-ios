@@ -337,7 +337,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="18"/>
-                                                    <state key="normal" title="Read Nicky Case’s introduction"/>
+                                                    <state key="normal" title="Read Nicky Case’s Introduction"/>
                                                     <connections>
                                                         <action selector="openNickyCaseIntro:" destination="ZYE-KK-L3t" eventType="touchUpInside" id="hcT-ez-Jxu"/>
                                                     </connections>
