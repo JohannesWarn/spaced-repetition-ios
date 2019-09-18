@@ -66,6 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+        // the test vc cannot be state restored
+        // if state restoration for the test vc is added in the future it should still be disabled when the test is done
+        if window?.rootViewController?.presentedViewController?.isKind(of: TestViewController.self) ?? false {
+            return false
+        }
         return true
     }
     

@@ -10,7 +10,7 @@ import UIKit
 
 class TestViewController: ModalCardViewController {
 
-    var levels: [Int]!
+    var levels: [Int]?
     
     var flipCardGestureRecognizer: UITapGestureRecognizer!
     var swipeCardGestureRecognizer: UIPanGestureRecognizer!
@@ -23,6 +23,13 @@ class TestViewController: ModalCardViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let levels = levels else {
+            DispatchQueue.main.async {
+                self.dismiss(animated: false, completion: nil)
+            }
+            return
+        }
         
         cardDeck = ImageManager.deckOfImages(forLevels: levels)
         cardDeck.shuffle()
@@ -39,6 +46,17 @@ class TestViewController: ModalCardViewController {
         }
         
         setupCardView()
+        
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(applicationDidEnterBackground(notification:)),
+            name: UIApplication.didEnterBackgroundNotification, object: nil
+        )
+    }
+    
+    @objc func applicationDidEnterBackground(notification: NSNotification) {
+        if cardDeck.count == 0 {
+            dismiss(animated: false, completion: nil)
+        }
     }
     
     func setupCardView() {
