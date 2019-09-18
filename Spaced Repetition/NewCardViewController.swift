@@ -309,6 +309,10 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
             if let frontImageURL = imageURLs.frontImageURL, let backImageURL = imageURLs.backImageURL {
                 try frontImage?.pngData()?.write(to: frontImageURL)
                 try backImage?.pngData()?.write(to: backImageURL)
+                
+                if let existingCard = existingCard, existingCard.level == 0 {
+                    ImageManager.move(card: existingCard, toLevel: 1)
+                }
             }
         }
         catch {
