@@ -197,6 +197,42 @@ class LevelCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    let levelFooterTexts = [
+        // drafts
+        "Cards with only one side are saved as drafts. You can also move cards from any level to drafts if you are not ready to review them.",
+        // level 1
+        "New cards are added to level 1. When you review a card, and get it right, it moves up one level. When you review a card, and get it wrong, it is moved back to level 1.",
+        // level 2-7
+        "When you review a card, and get it right, it moves up one level. When you review a card, and get it wrong, it is moved back to level 1.",
+        // completed cards
+        "When you have moved a card through all 7 levels they are marked as finished. Finished cards are not shown in the test. If you want to review them again you can move them to another level."
+    ]
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footer", for: indexPath)
+        
+        let label = view.subviews.first { $0.isKind(of: UILabel.self) } as? UILabel
+        let levelText: String
+        if level == 0 {
+            levelText = levelFooterTexts[0]
+        } else if level == 1 {
+            levelText = levelFooterTexts[1]
+        } else if level == 2 {
+            if cards?.count ?? 0 > 0 {
+                levelText = levelFooterTexts[2] + "\nIt might seem as if cards you got wrong stayed at level 2. That is only because the test repeats all level 1 card until you get them right."
+            } else {
+                levelText = levelFooterTexts[2]
+            }
+        } else if level == 8 {
+            levelText = levelFooterTexts[3]
+        } else {
+            levelText = levelFooterTexts[2]
+        }
+        
+        label?.attributedText = NSAttributedString(string: levelText, attributes: label?.attributedText?.attributes(at: 0, effectiveRange: nil))
+        
+        return view
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let cell = cell as? CardCollectionViewCell {
             cell.shouldShowCheckMark = isEditing
