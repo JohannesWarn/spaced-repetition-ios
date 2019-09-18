@@ -165,8 +165,12 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
                 
                 if !isEditingExistingCard {
                     alertController.addAction(UIAlertAction(title: "Save as Draft", style: .default, handler: { (_) in
-                        self.saveCard(self.cardView, toDrafts: true)
-                        self.close(sender)
+                        let (success, error) = self.saveCard(self.cardView, toDrafts: true)
+                        if success {
+                            self.close(sender)
+                        } else {
+                            self.pressentError(error, title: "Error Saving Card")
+                        }
                     }))
                     alertController.addAction(UIAlertAction(title: "Don’t Save", style: .destructive, handler: { (_) in
                         self.close(sender)
@@ -191,23 +195,30 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
             stopWriting()
         } else {
             if canSaveDraft || canSaveCard {
+                let savedCard: Bool
+                let error: Error?
                 if canSaveCard {
-                    saveCard(cardView)
+                    (savedCard, error) = self.saveCard(self.cardView, toDrafts: false)
                 } else {
-                    saveCard(cardView, toDrafts: true)
+                    (savedCard, error) = self.saveCard(self.cardView, toDrafts: true)
                 }
-                if isEditingExistingCard {
-                    dismiss(animated: true, completion: nil)
+                
+                if savedCard {
+                    if isEditingExistingCard {
+                        dismiss(animated: true, completion: nil)
+                    } else {
+                        animateOutCard(cardView, direction: 1)
+                        setupCardView()
+                        animateInNewCard(cardView)
+                        
+                        UIView.setAnimationsEnabled(false)
+                        hasSavedCard = true
+                        topLeftButton.setTitle(preferredLeftButtonTitle, for: .normal)
+                        topLeftButton.layoutIfNeeded()
+                        UIView.setAnimationsEnabled(true)
+                    }
                 } else {
-                    animateOutCard(cardView, direction: 1)
-                    setupCardView()
-                    animateInNewCard(cardView)
-                    
-                    UIView.setAnimationsEnabled(false)
-                    hasSavedCard = true
-                    topLeftButton.setTitle(preferredLeftButtonTitle, for: .normal)
-                    topLeftButton.layoutIfNeeded()
-                    UIView.setAnimationsEnabled(true)
+                    self.pressentError(error, title: "Error Saving Card")
                 }
             }
         }
@@ -289,7 +300,13 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         return false
     }
     
-    func saveCard(_ cardView: CardView, toDrafts isDraft: Bool = false) {
+    func pressentError(_ error: Error?, title: String?) {
+        let alert = UIAlertController(title: title, message: error?.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func saveCard(_ cardView: CardView, toDrafts isDraft: Bool = false) -> (success: Bool, error: Error?) {
         var size = cardView.frontViewContentView.bounds.size
         size.width *= UIScreen.main.scale
         size.height *= UIScreen.main.scale
@@ -315,9 +332,10 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
                 }
             }
         }
-        catch {
-            print("failed to write image :(")
+        catch let error {
+            return (false, error)
         }
+        return (true, nil)
     }
     
     // MARK: - Text
