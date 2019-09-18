@@ -34,6 +34,144 @@
             </objects>
             <point key="canvasLocation" x="-545" y="513"/>
         </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="VII-ri-8t3">
+            <objects>
+                <viewController id="w63-Nx-S6n" customClass="OnboardingViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Zn-3w-IQw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" alpha="0.96999999999999997" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sia-gg-WDe">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8nK-PT-ljP">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4R-Ot-X0I">
+                                <rect key="frame" x="21.5" y="80" width="277.5" height="468"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXR-bD-2q7" customClass="FancyButton" customModule="Spaced_Repetition" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="281.5" width="277.5" height="64"/>
+                                        <color key="backgroundColor" red="0.60784313729999995" green="0.0" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="aeq-AA-HpQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="27"/>
+                                        <state key="normal" title="Read Introduction">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                                <color key="value" red="0.74509803919999995" green="0.0" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                                <color key="value" red="0.47058823529999999" green="0.0" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="openIntroduction:" destination="w63-Nx-S6n" eventType="touchUpInside" id="idF-X9-TqV"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Opens in Safari" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3HN-ql-OeV">
+                                        <rect key="frame" x="0.0" y="353.5" width="277.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mS-Ju-9Sz" customClass="FancyButton" customModule="Spaced_Repetition" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="404" width="277.5" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="7ys-BW-8ha"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="27"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Skip Introduction">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="close:" destination="w63-Nx-S6n" eventType="touchUpInside" id="zqf-Av-bDa"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVg-AF-ppz">
+                                        <rect key="frame" x="43.5" y="0.0" width="190" height="53"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="44"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLq-Xb-WpB">
+                                        <rect key="frame" x="0.0" y="83" width="277.5" height="168.5"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">Spaced repetition is a system for training longterm memory that uses testing and time.
+If you are new to spaced repetition I recommend reading Nicky Case’s introduction. It will take around 20 minutes.</string>
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="system" size="17"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" paragraphSpacing="14" hyphenationFactor="1" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2mS-Ju-9Sz" secondAttribute="trailing" id="2ZN-Mo-nGs"/>
+                                    <constraint firstItem="xLq-Xb-WpB" firstAttribute="leading" secondItem="D4R-Ot-X0I" secondAttribute="leading" id="8Ac-wg-Jhh"/>
+                                    <constraint firstAttribute="height" priority="751" constant="600" id="DtM-yt-gzX"/>
+                                    <constraint firstItem="RVg-AF-ppz" firstAttribute="top" secondItem="D4R-Ot-X0I" secondAttribute="top" id="GZd-Hu-Tpx"/>
+                                    <constraint firstItem="dXR-bD-2q7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xLq-Xb-WpB" secondAttribute="bottom" priority="999" constant="40" id="I1b-EA-8dQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="dXR-bD-2q7" secondAttribute="trailing" id="PUZ-gX-yWa"/>
+                                    <constraint firstAttribute="trailing" secondItem="xLq-Xb-WpB" secondAttribute="trailing" id="RP0-R6-STz"/>
+                                    <constraint firstItem="3HN-ql-OeV" firstAttribute="top" secondItem="dXR-bD-2q7" secondAttribute="bottom" constant="8" symbolic="YES" id="ZuJ-Ka-Gi6"/>
+                                    <constraint firstAttribute="trailing" secondItem="3HN-ql-OeV" secondAttribute="trailing" id="aTW-5Y-meq"/>
+                                    <constraint firstItem="2mS-Ju-9Sz" firstAttribute="leading" secondItem="D4R-Ot-X0I" secondAttribute="leading" id="dJi-9m-uVh"/>
+                                    <constraint firstItem="2mS-Ju-9Sz" firstAttribute="top" secondItem="3HN-ql-OeV" secondAttribute="bottom" constant="30" id="dbZ-Vf-8fc"/>
+                                    <constraint firstItem="RVg-AF-ppz" firstAttribute="centerX" secondItem="D4R-Ot-X0I" secondAttribute="centerX" id="jYF-Zl-BFS"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="pLl-nA-JNo"/>
+                                    <constraint firstItem="3HN-ql-OeV" firstAttribute="leading" secondItem="D4R-Ot-X0I" secondAttribute="leading" id="shI-mM-hRW"/>
+                                    <constraint firstItem="xLq-Xb-WpB" firstAttribute="top" secondItem="RVg-AF-ppz" secondAttribute="bottom" constant="30" id="tyN-E2-bFd"/>
+                                    <constraint firstItem="dXR-bD-2q7" firstAttribute="leading" secondItem="D4R-Ot-X0I" secondAttribute="leading" id="ykq-Ze-J2k"/>
+                                    <constraint firstAttribute="bottom" secondItem="2mS-Ju-9Sz" secondAttribute="bottom" id="zXd-5D-CSy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iYN-7m-1Eb" firstAttribute="trailing" secondItem="Sia-gg-WDe" secondAttribute="trailing" id="042-SC-PTy"/>
+                            <constraint firstItem="iYN-7m-1Eb" firstAttribute="bottom" secondItem="Sia-gg-WDe" secondAttribute="bottom" id="GK7-A0-bbo"/>
+                            <constraint firstItem="Sia-gg-WDe" firstAttribute="top" secondItem="7Zn-3w-IQw" secondAttribute="top" id="Yx5-fM-eNU"/>
+                            <constraint firstItem="D4R-Ot-X0I" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iYN-7m-1Eb" secondAttribute="top" constant="60" id="bCG-Ra-o8m"/>
+                            <constraint firstItem="D4R-Ot-X0I" firstAttribute="centerX" secondItem="7Zn-3w-IQw" secondAttribute="centerX" id="bs6-hB-fUg"/>
+                            <constraint firstItem="iYN-7m-1Eb" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="D4R-Ot-X0I" secondAttribute="bottom" constant="20" id="nhH-Pg-ewD"/>
+                            <constraint firstItem="Sia-gg-WDe" firstAttribute="leading" secondItem="iYN-7m-1Eb" secondAttribute="leading" id="nyI-Ow-aCk"/>
+                            <constraint firstItem="iYN-7m-1Eb" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D4R-Ot-X0I" secondAttribute="trailing" constant="20" id="q77-Ga-U9S"/>
+                            <constraint firstItem="D4R-Ot-X0I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iYN-7m-1Eb" secondAttribute="leading" constant="20" id="uhy-CH-PFi"/>
+                            <constraint firstItem="D4R-Ot-X0I" firstAttribute="centerY" secondItem="7Zn-3w-IQw" secondAttribute="centerY" multiplier="0.9" priority="750" id="vvc-og-TUZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iYN-7m-1Eb"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="duT-HR-lRr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1312.5" y="1427.1126760563379"/>
+        </scene>
         <!--Spaced Repetition-->
         <scene sceneID="UgI-8E-8IR">
             <objects>
@@ -480,6 +618,7 @@
                         <outlet property="testButton" destination="ZkI-YB-k1e" id="Gsa-fO-g4f"/>
                         <outlet property="testDetailLabel" destination="TCV-jM-4WQ" id="C1d-C8-QVT"/>
                         <segue destination="FYK-If-QwJ" kind="presentation" identifier="testNowWithoutAnimation" animates="NO" modalPresentationStyle="fullScreen" id="M9S-Py-QzZ"/>
+                        <segue destination="w63-Nx-S6n" kind="presentation" identifier="showOnboarding" animates="NO" modalPresentationStyle="overFullScreen" id="7cF-ad-bgG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2BI-oY-TFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1083,7 +1222,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Front" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZt-vX-6N0">
-                                <rect key="frame" x="132.5" y="28.5" width="52.5" height="26"/>
+                                <rect key="frame" x="132" y="28.5" width="53" height="26"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1135,10 +1274,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="yDI-SZ-1Dn">
-                                <rect key="frame" x="249" y="56" width="270" height="18"/>
+                                <rect key="frame" x="25" y="10" width="270" height="62"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFB-oa-GCQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="51" height="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="51" height="62"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="draw tool"/>
                                         <connections>
@@ -1146,17 +1285,17 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qf5-DM-Ts4">
-                                        <rect key="frame" x="73" y="0.0" width="51" height="18"/>
+                                        <rect key="frame" x="73" y="0.0" width="51" height="62"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="text tool"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohw-9F-vyW">
-                                        <rect key="frame" x="146" y="0.0" width="51" height="18"/>
+                                        <rect key="frame" x="146" y="0.0" width="51" height="62"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="image tool"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wab-cR-swG">
-                                        <rect key="frame" x="219" y="0.0" width="51" height="18"/>
+                                        <rect key="frame" x="219" y="0.0" width="51" height="62"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="flip tool"/>
                                     </button>

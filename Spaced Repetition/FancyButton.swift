@@ -31,6 +31,18 @@ import UIKit
         }
     }
     
+    @IBInspectable var borderColor: UIColor? = nil {
+        didSet {
+            updateBorder()
+        }
+    }
+    
+    @IBInspectable var borderWidth: CGFloat = 0 {
+        didSet {
+            updateBorder()
+        }
+    }
+    
     func updateGradient() {
         if let bottomColor = bottomColor, let topColor = topColor {
             if gradientLayer == nil {
@@ -43,6 +55,11 @@ import UIKit
             gradientLayer?.removeFromSuperlayer()
             gradientLayer = nil
         }
+    }
+    
+    func updateBorder() {
+        layer.borderColor = borderColor?.cgColor
+        layer.borderWidth = borderWidth
     }
     
     override func layoutSubviews() {

@@ -38,6 +38,7 @@
 		8FDA8A5C23005A8D00F59F7D /* EditReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDA8A5B23005A8D00F59F7D /* EditReminderViewController.swift */; };
 		8FDA8A602301F18700F59F7D /* TestLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FDA8A5F2301F18700F59F7D /* TestLaunchScreen.storyboard */; };
 		8FDA8A622302196000F59F7D /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDA8A612302196000F59F7D /* NotificationsManager.swift */; };
+		8FF64E3823327FF700F21768 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF64E3723327FF700F21768 /* OnboardingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		8FDA8A5B23005A8D00F59F7D /* EditReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReminderViewController.swift; sourceTree = "<group>"; };
 		8FDA8A5F2301F18700F59F7D /* TestLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestLaunchScreen.storyboard; sourceTree = "<group>"; };
 		8FDA8A612302196000F59F7D /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		8FF64E3723327FF700F21768 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			children = (
 				8F3CC1CE22F9F69400040A22 /* AppDelegate.swift */,
 				8F3CC1E422FA07E200040A22 /* StartViewController.swift */,
+				8FF64E3723327FF700F21768 /* OnboardingViewController.swift */,
 				8F49B0EB22FF1F4700CFA70A /* LevelCollectionViewController.swift */,
 				8F49B0ED22FF291E00CFA70A /* CardCollectionViewCell.swift */,
 				8FAD2F0522FE2179002B311F /* ModalCardViewController.swift */,
@@ -245,6 +248,7 @@
 				8FAD2F0A22FE27AA002B311F /* SwiftyDraw.swift in Sources */,
 				8F4A98D522FB2301003E0A68 /* NewCardViewController.swift in Sources */,
 				8F49B0EE22FF291E00CFA70A /* CardCollectionViewCell.swift in Sources */,
+				8FF64E3823327FF700F21768 /* OnboardingViewController.swift in Sources */,
 				8F3CC1E322F9FBB700040A22 /* DayView.swift in Sources */,
 				8FAD2F0D22FE2B11002B311F /* ToolsViewController.swift in Sources */,
 				8F4A98DB22FC0BC1003E0A68 /* FancyButton.swift in Sources */,

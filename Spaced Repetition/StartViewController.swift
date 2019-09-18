@@ -62,6 +62,16 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         updateCalendarView()
     }
     
+    var hasCheckedOnboarding = false
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !hasCheckedOnboarding && DaysCompletedManager.getCompletedDays().count == 0 {
+            hasCheckedOnboarding = true
+            performSegue(withIdentifier: "showOnboarding", sender: self)
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         if oldTableViewSeparatorInset != tableView.separatorInset {
             cardsHeaderLeadingLayoutConstraint.constant = tableView.separatorInset.left - 3.0 // subtract three for optical aligmnent
