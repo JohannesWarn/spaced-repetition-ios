@@ -427,7 +427,13 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         
         let oldCenter = textView.center
         textView.frame.size = textView.sizeThatFits(cardSizeMinusMargin)
+        normaliseSize(forView: textView)
         textView.center = oldCenter
+    }
+    
+    func normaliseSize(forView view: UIView) {
+        view.frame.size.width = ceil(view.frame.size.width / 2.0) * 2.0
+        view.frame.size.height = ceil(view.frame.size.height / 2.0) * 2.0
     }
     
     func stopWriting() {
