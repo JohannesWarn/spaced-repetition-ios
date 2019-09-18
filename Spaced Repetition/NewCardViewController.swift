@@ -102,6 +102,70 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         topRightButton.isEnabled = canSaveDraft || canSaveCard
     }
     
+    override func encodeRestorableState(with coder: NSCoder) {
+        var size = cardView.frontViewContentView.bounds.size
+        size.width *= UIScreen.main.scale
+        size.height *= UIScreen.main.scale
+        
+        if hasEditedFront {
+            UIGraphicsBeginImageContext(size)
+            cardView.frontViewContentView.drawHierarchy(in: CGRect(origin: CGPoint.zero, size: size), afterScreenUpdates: false)
+            let frontImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            if let pngData = frontImage?.pngData() {
+                coder.encode(pngData, forKey: "frontImage")
+            }
+        }
+        
+        if hasEditedBack {
+            UIGraphicsBeginImageContext(size)
+            cardView.backViewContentView.drawHierarchy(in: CGRect(origin: CGPoint.zero, size: size), afterScreenUpdates: false)
+            let backImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            if let pngData = backImage?.pngData() {
+                coder.encode(pngData, forKey: "backImage")
+            }
+        }
+        
+        if let existingCard = existingCard {
+            coder.encode(existingCard.name, forKey: "existingCard.name")
+            coder.encode(existingCard.level, forKey: "existingCard.level")
+        }
+        
+        super.encodeRestorableState(with: coder)
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
+        if let pngData = coder.decodeObject(forKey: "frontImage") as? Data {
+            let frontImage = UIImage(data: pngData)
+            existingFrontView?.removeFromSuperview()
+            existingFrontView = UIImageView(image: frontImage)
+            existingFrontView!.frame = cardView.frontViewContentView.bounds
+            cardView.frontViewContentView.insertSubview(existingFrontView!, at: 0)
+        }
+        if let pngData = coder.decodeObject(forKey: "backImage") as? Data {
+            let backImage = UIImage(data: pngData)
+            existingBackView?.removeFromSuperview()
+            existingBackView = UIImageView(image: backImage)
+            existingBackView!.frame = cardView.backViewContentView.bounds
+            cardView.backViewContentView.insertSubview(existingBackView!, at: 0)
+        }
+        if
+            let name = coder.decodeObject(forKey: "existingCard.name") as? String
+        {
+            let level = coder.decodeInteger(forKey: "existingCard.level")
+            let frontImageURL = ImageManager.imageURL(name: name, level: level, suffix: "front")
+            let backImageURL = ImageManager.imageURL(name: name, level: level, suffix: "back")
+            self.existingCard = CardSides(name: name, level: level, frontImage: nil, backImage: nil, frontImageURL: frontImageURL, backImageURL: backImageURL)
+        }
+        
+        topRightButton.setTitle(preferredRightButtonTitle, for: .normal)
+        topRightButton.isEnabled = canSaveDraft || canSaveCard
+    }
+    
     func setupCardView() {
         cardView = CardView(frame: cardViewPlaceholder.frame)
         view.addSubview(cardView)
