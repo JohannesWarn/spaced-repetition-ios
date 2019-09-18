@@ -244,6 +244,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
     
     var viewOriginalTransform: CGAffineTransform?
     @objc func resizeView(_ gestureRecognizer: UIPinchGestureRecognizer) {
+        guard !isWriting else { return }
         guard let view = gestureRecognizer.view else { return }
         
         if gestureRecognizer.state == .began {
@@ -261,6 +262,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
     }
     
     @objc func rotateView(_ gestureRecognizer: UIRotationGestureRecognizer) {
+        guard !isWriting else { return }
         guard let view = gestureRecognizer.view else { return }
         
         if gestureRecognizer.state == .began {
@@ -380,6 +382,16 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         UIView.setAnimationsEnabled(true)
         
         textView.spellCheckingType = .yes
+        
+        for view in dragableViews {
+            if view != textView {
+                view.isUserInteractionEnabled = false
+            }
+        }
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .allowUserInteraction, animations: {
+            self.viewOriginalTransform = textView.transform
+            textView.transform = .identity
+        })
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -406,6 +418,16 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         
         if textView.text == "" {
             textView.removeFromSuperview()
+        }
+        
+        for view in dragableViews {
+            view.isUserInteractionEnabled = true
+        }
+        if let viewOriginalTransform = self.viewOriginalTransform {
+            UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .allowUserInteraction, animations: {
+                textView.transform = viewOriginalTransform
+                self.viewOriginalTransform = nil
+            })
         }
     }
     
