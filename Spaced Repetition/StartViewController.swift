@@ -66,7 +66,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !hasCheckedOnboarding && DaysCompletedManager.getCompletedDays().count == 0 {
+        if !hasCheckedOnboarding && (DaysCompletedManager.getCompletedDays().count == 0 && !ImageManager.containsAnyCards()) {
             hasCheckedOnboarding = true
             performSegue(withIdentifier: "showOnboarding", sender: self)
         }

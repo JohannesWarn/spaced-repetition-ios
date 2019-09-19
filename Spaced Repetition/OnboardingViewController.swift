@@ -10,13 +10,12 @@ import UIKit
 
 class OnboardingViewController: UIViewController {
 
+    @IBOutlet var contentView: UIView!
     @IBOutlet var closeButton: FancyButton!
     var hasOpenedIntroduction = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.alpha = 0.0
         
         NotificationCenter.default.addObserver(
             self, selector: #selector(applicationDidBecomeActive),
@@ -27,18 +26,6 @@ class OnboardingViewController: UIViewController {
     @objc func applicationDidBecomeActive() {
         if hasOpenedIntroduction {
             closeButton.setTitle("Done", for: .normal)
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if animated {
-            UIView.animate(withDuration: 0.7, delay: 0.6, options: [.allowUserInteraction, .curveEaseInOut], animations: {
-                self.view.alpha = 1.0
-            }, completion: nil)
-        } else {
-            self.view.alpha = 1.0
         }
     }
 
@@ -55,6 +42,8 @@ class OnboardingViewController: UIViewController {
     @IBAction func close(_ sender: Any) {
         UIView.animate(withDuration: 0.4, delay: 0.0, options: [.allowUserInteraction, .curveEaseIn], animations: {
             self.view.alpha = 0.0
+            self.contentView.alpha = 0.0
+            self.contentView.transform = CGAffineTransform(translationX: 0.0, y: 100.0)
         }, completion: { _ in
             self.dismiss(animated: false, completion: nil)
         })

@@ -42,14 +42,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" alpha="0.96999999999999997" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sia-gg-WDe">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8nK-PT-ljP">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4R-Ot-X0I">
                                 <rect key="frame" x="21.5" y="80" width="277.5" height="468"/>
                                 <subviews>
@@ -151,15 +143,11 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="0.98422942546583847" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="iYN-7m-1Eb" firstAttribute="trailing" secondItem="Sia-gg-WDe" secondAttribute="trailing" id="042-SC-PTy"/>
-                            <constraint firstItem="iYN-7m-1Eb" firstAttribute="bottom" secondItem="Sia-gg-WDe" secondAttribute="bottom" id="GK7-A0-bbo"/>
-                            <constraint firstItem="Sia-gg-WDe" firstAttribute="top" secondItem="7Zn-3w-IQw" secondAttribute="top" id="Yx5-fM-eNU"/>
                             <constraint firstItem="D4R-Ot-X0I" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iYN-7m-1Eb" secondAttribute="top" constant="60" id="bCG-Ra-o8m"/>
                             <constraint firstItem="D4R-Ot-X0I" firstAttribute="centerX" secondItem="7Zn-3w-IQw" secondAttribute="centerX" id="bs6-hB-fUg"/>
                             <constraint firstItem="iYN-7m-1Eb" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="D4R-Ot-X0I" secondAttribute="bottom" constant="20" id="nhH-Pg-ewD"/>
-                            <constraint firstItem="Sia-gg-WDe" firstAttribute="leading" secondItem="iYN-7m-1Eb" secondAttribute="leading" id="nyI-Ow-aCk"/>
                             <constraint firstItem="iYN-7m-1Eb" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D4R-Ot-X0I" secondAttribute="trailing" constant="20" id="q77-Ga-U9S"/>
                             <constraint firstItem="D4R-Ot-X0I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iYN-7m-1Eb" secondAttribute="leading" constant="20" id="uhy-CH-PFi"/>
                             <constraint firstItem="D4R-Ot-X0I" firstAttribute="centerY" secondItem="7Zn-3w-IQw" secondAttribute="centerY" multiplier="0.9" priority="750" id="vvc-og-TUZ"/>
@@ -167,6 +155,10 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                         <viewLayoutGuide key="safeArea" id="iYN-7m-1Eb"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="closeButton" destination="2mS-Ju-9Sz" id="L0e-4D-7M7"/>
+                        <outlet property="contentView" destination="D4R-Ot-X0I" id="zaT-te-ySf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="duT-HR-lRr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
