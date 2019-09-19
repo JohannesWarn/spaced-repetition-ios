@@ -666,6 +666,9 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         guard let currentDrawingView = cardView.isShowingFront ? frontDrawingView : backDrawingView else {
             return
         }
+        if isWriting {
+            stopWriting()
+        }
         
         isDrawing = true
         
