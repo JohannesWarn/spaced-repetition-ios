@@ -182,9 +182,11 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         
         frontDrawingView = SwiftyDrawView(frame: cardView.frontViewContentView.bounds)
         frontDrawingView.isEnabled = false
+        frontDrawingView.isUserInteractionEnabled = false
         cardView.frontViewContentView.addSubview(frontDrawingView)
         backDrawingView = SwiftyDrawView(frame: cardView.backViewContentView.bounds)
         backDrawingView.isEnabled = false
+        backDrawingView.isUserInteractionEnabled = false
         cardView.backViewContentView.addSubview(backDrawingView)
         
         addTextTapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedCard))
@@ -609,10 +611,6 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         
         let center = CGPoint(x: currentView.bounds.size.width * 0.5, y: currentView.bounds.size.height * 0.5)
         
-        let firstTextView = currentView.subviews.first { (subview) -> Bool in
-            subview.isKind(of: UITextView.self)
-        }
-        
         let imageView = UIImageView()
         imageView.image = image
         imageView.backgroundColor = .clear
@@ -633,8 +631,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
             width: round(imageView.frame.size.width),
             height: round(imageView.frame.size.height)
         )
-        if let firstTextView = firstTextView {
-            currentView.insertSubview(imageView, belowSubview: firstTextView)
+        if let currentDrawingView = cardView.isShowingFront ? frontDrawingView : backDrawingView {
+            currentView.insertSubview(imageView, belowSubview: currentDrawingView)
         } else {
             currentView.addSubview(imageView)
         }
@@ -687,6 +685,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         currentDrawingView.brush.width = slidersViewController.widthSlider.widthValue
         
         currentDrawingView.isEnabled = true
+        currentDrawingView.isUserInteractionEnabled = true
         addTextTapGesture.isEnabled = false
         for view in dragableViews {
             view.isUserInteractionEnabled = false
@@ -715,6 +714,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         isDrawing = false
         
         currentDrawingView.isEnabled = false
+        currentDrawingView.isUserInteractionEnabled = false
         addTextTapGesture.isEnabled = true
         for view in dragableViews {
             view.isUserInteractionEnabled = true
