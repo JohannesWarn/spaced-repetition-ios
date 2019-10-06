@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="78j-zD-kH2">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="78j-zD-kH2">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +21,7 @@
             <objects>
                 <navigationController storyboardIdentifier="MainNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="78j-zD-kH2" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="grg-mQ-tBy">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -43,10 +41,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4R-Ot-X0I">
-                                <rect key="frame" x="21.5" y="80" width="277.5" height="468"/>
+                                <rect key="frame" x="21.5" y="60" width="277.5" height="488"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXR-bD-2q7" customClass="FancyButton" customModule="Spaced_Repetition" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="281.5" width="277.5" height="64"/>
+                                        <rect key="frame" x="0.0" y="301.5" width="277.5" height="64"/>
                                         <color key="backgroundColor" red="0.60784313729999995" green="0.0" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="aeq-AA-HpQ"/>
@@ -71,13 +69,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Opens in Safari" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3HN-ql-OeV">
-                                        <rect key="frame" x="0.0" y="353.5" width="277.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="373.5" width="277.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mS-Ju-9Sz" customClass="FancyButton" customModule="Spaced_Repetition" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="404" width="277.5" height="64"/>
+                                        <rect key="frame" x="0.0" y="424" width="277.5" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="7ys-BW-8ha"/>
                                         </constraints>
@@ -271,7 +269,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="snR-ka-QTG">
-                                    <rect key="frame" x="0.0" y="292" width="320" height="2000"/>
+                                    <rect key="frame" x="0.0" y="320" width="320" height="2011"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8v-bC-SKT">
@@ -293,25 +291,25 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Testing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxJ-qY-uIy">
-                                            <rect key="frame" x="20" y="322.5" width="280" height="21"/>
+                                            <rect key="frame" x="20" y="322.5" width="280" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kajsa Jonsson" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPq-Kw-Lu5">
-                                            <rect key="frame" x="20" y="345.5" width="280" height="30"/>
+                                            <rect key="frame" x="20" y="345" width="280" height="30"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teo Björling" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nD1-W7-KE9">
-                                            <rect key="frame" x="20" y="377.5" width="280" height="30"/>
+                                            <rect key="frame" x="20" y="377" width="280" height="30"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special thanks to Kajsa Jonsson for whom I made this app, and to Nicky Case for introducing me to spaced repetition." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBT-sv-QA4">
-                                            <rect key="frame" x="25" y="447.5" width="270" height="81.5"/>
+                                            <rect key="frame" x="25" y="447" width="270" height="81.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="270" id="gG0-Ap-lHd"/>
                                             </constraints>
@@ -320,7 +318,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKv-bb-wvG">
-                                            <rect key="frame" x="0.0" y="569" width="320" height="42"/>
+                                            <rect key="frame" x="0.0" y="568.5" width="320" height="42"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hV1-kh-w9r">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
@@ -335,7 +333,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://ncase.me/remember/" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7Y-nI-bsQ">
-                                                    <rect key="frame" x="20" y="24" width="280" height="14"/>
+                                                    <rect key="frame" x="20" y="24" width="280" height="13.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -355,7 +353,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oby-VI-HzJ">
-                                            <rect key="frame" x="0.0" y="631" width="320" height="42"/>
+                                            <rect key="frame" x="0.0" y="630.5" width="320" height="42"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0d-4d-QIf">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
@@ -370,7 +368,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="carlolof@johanneswarn.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhQ-sA-J4K">
-                                                    <rect key="frame" x="20" y="24" width="280" height="14"/>
+                                                    <rect key="frame" x="20" y="24" width="280" height="13.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -390,7 +388,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kkp-gL-ljP">
-                                            <rect key="frame" x="0.0" y="895.5" width="320" height="42"/>
+                                            <rect key="frame" x="0.0" y="895" width="320" height="42"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="871-c1-0IL">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
@@ -405,7 +403,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://images.nasa.gov/details-PIA17563.html" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saJ-Xj-oV9">
-                                                    <rect key="frame" x="20" y="24" width="280" height="14"/>
+                                                    <rect key="frame" x="20" y="24" width="280" height="13.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -425,7 +423,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6SU-mi-hIc">
-                                            <rect key="frame" x="20" y="713" width="280" height="142.5"/>
+                                            <rect key="frame" x="20" y="712.5" width="280" height="142.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" priority="750" constant="440" id="4Oh-gs-4co"/>
                                             </constraints>
@@ -434,8 +432,14 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version 0.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiP-fm-Ung">
+                                            <rect key="frame" x="20" y="1027" width="280" height="13.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8T5-16-p5w">
-                                            <rect key="frame" x="0.0" y="997.5" width="320" height="1"/>
+                                            <rect key="frame" x="0.0" y="1070.5" width="320" height="1"/>
                                             <color key="backgroundColor" red="0.99607843139999996" green="0.2274509804" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="K9E-tL-Bj6"/>
@@ -445,8 +449,10 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="KBT-sv-QA4" firstAttribute="centerX" secondItem="snR-ka-QTG" secondAttribute="centerX" id="18E-6L-7yF"/>
+                                        <constraint firstAttribute="trailing" secondItem="TiP-fm-Ung" secondAttribute="trailing" constant="20" id="2x6-Nv-t2A"/>
                                         <constraint firstItem="xKv-bb-wvG" firstAttribute="top" secondItem="KBT-sv-QA4" secondAttribute="bottom" constant="40" id="6hN-dr-myP"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6SU-mi-hIc" secondAttribute="trailing" constant="20" symbolic="YES" id="7Fz-AJ-TdQ"/>
+                                        <constraint firstItem="8T5-16-p5w" firstAttribute="top" secondItem="TiP-fm-Ung" secondAttribute="bottom" constant="30" id="7Rv-pH-bMH"/>
                                         <constraint firstItem="Q94-0U-fP4" firstAttribute="top" secondItem="YlA-zx-lHi" secondAttribute="bottom" constant="2" id="7mh-AY-7Di"/>
                                         <constraint firstItem="KBT-sv-QA4" firstAttribute="top" secondItem="nD1-W7-KE9" secondAttribute="bottom" constant="40" id="9ls-UO-edq"/>
                                         <constraint firstItem="Oby-VI-HzJ" firstAttribute="leading" secondItem="snR-ka-QTG" secondAttribute="leading" id="E9N-tb-vEE"/>
@@ -455,6 +461,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                         <constraint firstItem="6SU-mi-hIc" firstAttribute="top" secondItem="Oby-VI-HzJ" secondAttribute="bottom" constant="40" id="Gqb-i6-Rx8"/>
                                         <constraint firstItem="8T5-16-p5w" firstAttribute="leading" secondItem="snR-ka-QTG" secondAttribute="leading" id="H9p-Vs-86I"/>
                                         <constraint firstItem="Q94-0U-fP4" firstAttribute="leading" secondItem="snR-ka-QTG" secondAttribute="leading" constant="20" symbolic="YES" id="Hc0-TD-iTz"/>
+                                        <constraint firstItem="TiP-fm-Ung" firstAttribute="top" secondItem="Kkp-gL-ljP" secondAttribute="bottom" constant="90" id="HgV-Bh-hng"/>
                                         <constraint firstItem="Kkp-gL-ljP" firstAttribute="leading" secondItem="snR-ka-QTG" secondAttribute="leading" id="KxU-Ge-0vt"/>
                                         <constraint firstAttribute="trailing" secondItem="Oby-VI-HzJ" secondAttribute="trailing" id="Lyx-ji-CXV"/>
                                         <constraint firstItem="Oby-VI-HzJ" firstAttribute="top" secondItem="xKv-bb-wvG" secondAttribute="bottom" constant="20" id="MJD-Xy-JJd"/>
@@ -475,8 +482,8 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                         <constraint firstAttribute="trailing" secondItem="YlA-zx-lHi" secondAttribute="trailing" constant="20" symbolic="YES" id="leT-9J-er0"/>
                                         <constraint firstItem="cPq-Kw-Lu5" firstAttribute="top" secondItem="kxJ-qY-uIy" secondAttribute="bottom" constant="2" id="nDe-KR-tKH"/>
                                         <constraint firstAttribute="trailing" secondItem="cPq-Kw-Lu5" secondAttribute="trailing" constant="20" symbolic="YES" id="oC4-fs-Mif"/>
+                                        <constraint firstItem="TiP-fm-Ung" firstAttribute="leading" secondItem="snR-ka-QTG" secondAttribute="leading" constant="20" id="oIU-bE-5In"/>
                                         <constraint firstAttribute="trailing" secondItem="j8v-bC-SKT" secondAttribute="trailing" constant="20" symbolic="YES" id="pes-BA-gdx"/>
-                                        <constraint firstItem="8T5-16-p5w" firstAttribute="top" secondItem="Kkp-gL-ljP" secondAttribute="bottom" constant="60" id="qQc-E9-gtE"/>
                                         <constraint firstItem="j8v-bC-SKT" firstAttribute="leading" secondItem="snR-ka-QTG" secondAttribute="leading" constant="20" symbolic="YES" id="v0H-BP-Agv"/>
                                         <constraint firstItem="nD1-W7-KE9" firstAttribute="top" secondItem="cPq-Kw-Lu5" secondAttribute="bottom" constant="2" id="w0c-Yd-DrU"/>
                                         <constraint firstAttribute="trailing" secondItem="nD1-W7-KE9" secondAttribute="trailing" constant="20" symbolic="YES" id="wZZ-lm-9sL"/>
@@ -488,7 +495,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                         <rect key="frame" x="0.0" y="248" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xoe-Ha-kBQ" id="wDE-4Q-0Vo">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="293.5" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Level 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Duq-g4-cDQ">
@@ -499,7 +506,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="20 cards" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pyZ-bi-Jmk">
-                                                    <rect key="frame" x="217.5" y="12" width="67.5" height="20.5"/>
+                                                    <rect key="frame" x="218" y="12" width="67.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -547,7 +554,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-jM-4WQ">
-                                        <rect key="frame" x="22" y="60.5" width="276" height="19"/>
+                                        <rect key="frame" x="22" y="60.5" width="276" height="19.5"/>
                                         <fontDescription key="fontDescription" name="SFCompactRounded-Medium" family="SF Compact Rounded" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -609,6 +616,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                         <outlet property="tableView" destination="Ktq-co-TN2" id="TS4-AK-cAf"/>
                         <outlet property="testButton" destination="ZkI-YB-k1e" id="Gsa-fO-g4f"/>
                         <outlet property="testDetailLabel" destination="TCV-jM-4WQ" id="C1d-C8-QVT"/>
+                        <outlet property="versionLabel" destination="TiP-fm-Ung" id="naK-XL-ldK"/>
                         <segue destination="FYK-If-QwJ" kind="presentation" identifier="testNowWithoutAnimation" animates="NO" modalPresentationStyle="fullScreen" id="M9S-Py-QzZ"/>
                         <segue destination="w63-Nx-S6n" kind="presentation" identifier="showOnboarding" animates="NO" modalPresentationStyle="overFullScreen" id="7cF-ad-bgG"/>
                     </connections>
@@ -675,11 +683,11 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                 <rect key="frame" x="0.0" y="113.5" width="320" height="97"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qR9-wy-M7f" id="KpD-5Z-gen">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="96.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TqD-8I-Lmo">
-                                            <rect key="frame" x="16" y="4" width="163.5" height="78.5"/>
+                                            <rect key="frame" x="16" y="4" width="163.5" height="79"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="7:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4D-8c-M3Z">
                                                     <rect key="frame" x="0.0" y="0.0" width="118.5" height="72"/>
@@ -694,7 +702,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Banner, Badge, Sound" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JH4-RS-f60">
-                                                    <rect key="frame" x="0.0" y="60.5" width="163.5" height="18"/>
+                                                    <rect key="frame" x="0.0" y="60.5" width="163.5" height="18.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -762,7 +770,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
             <objects>
                 <tableViewController id="hcH-Jw-7OA" customClass="EditReminderViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="hK1-2x-FMF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="tPn-AS-vdD">
@@ -771,9 +779,6 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                             <subviews>
                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="uq4-jK-RMu">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="215"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="587221523.38387406">
-                                        <!--2019-08-11 13:05:23 +0000-->
-                                    </date>
                                     <connections>
                                         <action selector="updateReminder" destination="hcH-Jw-7OA" eventType="valueChanged" id="wlO-oi-Pvt"/>
                                     </connections>
@@ -791,14 +796,14 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                             <tableViewSection id="GaN-Qg-AGn">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="7RN-ad-JYq" style="IBUITableViewCellStyleDefault" id="2Na-PV-ifz">
-                                        <rect key="frame" x="0.0" y="215" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="233" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Na-PV-ifz" id="1ZU-i0-dKv">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Badge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7RN-ad-JYq">
-                                                    <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="288" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -808,14 +813,14 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="jbD-pB-Koz" style="IBUITableViewCellStyleDefault" id="Wl4-ip-aOt">
-                                        <rect key="frame" x="0.0" y="259" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="277" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wl4-ip-aOt" id="egY-f3-fk8">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Sound" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jbD-pB-Koz">
-                                                    <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="288" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -829,10 +834,10 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                             <tableViewSection id="NBK-rJ-09A">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="yUK-YV-pSW">
-                                        <rect key="frame" x="0.0" y="339" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="357" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yUK-YV-pSW" id="GY1-gN-eNd">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI3-my-g6l">
@@ -885,7 +890,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
             <objects>
                 <navigationController id="zeJ-Sx-ER6" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tEh-U4-Sxk">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1015,7 +1020,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dV-Xu-PzI">
-                                <rect key="frame" x="0.0" y="20" width="56" height="42"/>
+                                <rect key="frame" x="0.0" y="0.0" width="56" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="1Xz-hf-kTv"/>
                                     <constraint firstAttribute="width" constant="56" id="7bo-bO-hnL"/>
@@ -1211,7 +1216,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                 </constraints>
                             </view>
                             <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="j7e-kO-W8N" customClass="ColorSlider" customModule="Spaced_Repetition" customModuleProvider="target">
-                                <rect key="frame" x="11" y="26" width="176" height="31"/>
+                                <rect key="frame" x="11" y="6" width="176" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="750" constant="270" id="tvU-Ng-gWt"/>
                                 </constraints>
@@ -1220,7 +1225,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAj-H3-gj4">
-                                <rect key="frame" x="0.0" y="20" width="92" height="42"/>
+                                <rect key="frame" x="0.0" y="0.0" width="92" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="egK-ef-IDS"/>
                                 </constraints>
@@ -1232,7 +1237,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wo-N0-xtw">
-                                <rect key="frame" x="193" y="20" width="127" height="42"/>
+                                <rect key="frame" x="193" y="0.0" width="127" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="LVa-lz-vYz"/>
                                 </constraints>
@@ -1244,7 +1249,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Front" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZt-vX-6N0">
-                                <rect key="frame" x="132" y="28.5" width="53" height="26"/>
+                                <rect key="frame" x="132" y="8.5" width="53" height="26"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1419,7 +1424,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
         <image name="text tool" width="38" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gfR-Oi-7CB"/>
+        <segue reference="GGc-Pu-sB1"/>
         <segue reference="M9S-Py-QzZ"/>
         <segue reference="JK5-Rh-RAJ"/>
     </inferredMetricsTieBreakers>

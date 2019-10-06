@@ -24,6 +24,8 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet var creditsTopLayoutConstraint: NSLayoutConstraint!
     @IBOutlet var creditsHeightStopBlock: UIView!
     
+    @IBOutlet var versionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +51,10 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         testButton.addTarget(self, action:#selector(forwardTestButtonTouchUpOutsideEvent), for:.touchUpOutside)
         testButton.addTarget(self, action:#selector(forwardTestButtonTouchCancelEvent), for:.touchCancel)
         testButton.addTarget(self, action:#selector(forwardTestButtonValueChangedEvent), for:.valueChanged)
+        
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            versionLabel.text = "version \(appVersion)"
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
