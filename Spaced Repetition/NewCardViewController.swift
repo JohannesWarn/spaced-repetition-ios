@@ -372,7 +372,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         self.present(alert, animated: true, completion: nil)
     }
     
-    func saveCard(_ cardView: CardView, toDrafts isDraft: Bool = false) -> (success: Bool, error: Error?) {
+    func imagesForCardView(_ cardView: CardView) -> (front: UIImage?, back: UIImage?) {
         var size = cardView.frontViewContentView.bounds.size
         size.width *= UIScreen.main.scale
         size.height *= UIScreen.main.scale
@@ -387,11 +387,17 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         let backImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
+        return (frontImage, backImage)
+    }
+    
+    func saveCard(_ cardView: CardView, toDrafts isDraft: Bool = false) -> (success: Bool, error: Error?) {
+        let images = imagesForCardView(cardView)
+        
         do {
             let imageURLs = existingCard ?? ImageManager.imagesURLsForNewCard(isDraft: isDraft)
             if let frontImageURL = imageURLs.frontImageURL, let backImageURL = imageURLs.backImageURL {
-                try frontImage?.pngData()?.write(to: frontImageURL)
-                try backImage?.pngData()?.write(to: backImageURL)
+                try images.front?.pngData()?.write(to: frontImageURL)
+                try images.back?.pngData()?.write(to: backImageURL)
                 
                 if let existingCard = existingCard, existingCard.level == 0 {
                     ImageManager.move(card: existingCard, toLevel: 1)
@@ -560,6 +566,19 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
+        let otherSideAction: UIAlertAction?
+        if (cardView.isShowingFront && hasEditedBack) || (!cardView.isShowingFront && hasEditedFront) {
+            let title = cardView.isShowingFront ? "Back Side" : "Front Side"
+            otherSideAction = UIAlertAction(title: title, style: .default, handler: { (_) in
+                let images = self.imagesForCardView(self.cardView)
+                if let image = self.cardView.isShowingFront ? images.back : images.front {
+                    self.addImage(image, scale: 1)
+                }
+            })
+        } else {
+            otherSideAction = nil
+        }
+        
         let pasteAction: UIAlertAction?
         if let pasteBoardImage = UIPasteboard.general.image {
             pasteAction = UIAlertAction(title: "Paste", style: .default) { (_) in
@@ -579,22 +598,20 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
             cameraAction = nil
         }
         
-        if pasteAction != nil || cameraAction != nil {
-            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            alertController.popoverPresentationController?.sourceView = toolsViewController.imageButton
-            alertController.popoverPresentationController?.sourceRect = toolsViewController.imageButton.bounds
-            if let pasteAction = pasteAction { alertController.addAction(pasteAction) }
-            if let cameraAction = cameraAction { alertController.addAction(cameraAction) }
-            alertController.addAction(UIAlertAction(title: "Library", style: .default, handler: { (_) in
-                imagePicker.sourceType = .photoLibrary
-                self.present(imagePicker, animated: true, completion: nil)
-            }))
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            present(alertController, animated: true, completion: nil)
-        } else {
+        let libraryAction = UIAlertAction(title: "Library", style: .default, handler: { (_) in
             imagePicker.sourceType = .photoLibrary
-            present(imagePicker, animated: true, completion: nil)
-        }
+            self.present(imagePicker, animated: true, completion: nil)
+        })
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.popoverPresentationController?.sourceView = toolsViewController.imageButton
+        alertController.popoverPresentationController?.sourceRect = toolsViewController.imageButton.bounds
+        if let pasteAction = pasteAction { alertController.addAction(pasteAction) }
+        if let otherSideAction = otherSideAction { alertController.addAction(otherSideAction) }
+        if let cameraAction = cameraAction { alertController.addAction(cameraAction) }
+        alertController.addAction(libraryAction)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -606,7 +623,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
     }
 
     
-    @objc func addImage(_ image: UIImage, toView view: UIView? = nil) {
+    @objc func addImage(_ image: UIImage, toView view: UIView? = nil, scale: CGFloat = 0.8) {
         let currentView: UIView = view ?? (cardView.isShowingFront ? cardView.frontViewContentView : cardView.backViewContentView)
         
         let center = CGPoint(x: currentView.bounds.size.width * 0.5, y: currentView.bounds.size.height * 0.5)
@@ -616,8 +633,8 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         imageView.backgroundColor = .clear
         
         imageView.bounds.size = image.size
-        let xScale = (currentView.bounds.size.width * 0.8) / imageView.bounds.size.width
-        let yScale = (currentView.bounds.size.height * 0.8) / imageView.bounds.size.height
+        let xScale = (currentView.bounds.size.width * scale) / imageView.bounds.size.width
+        let yScale = (currentView.bounds.size.height * scale) / imageView.bounds.size.height
         let minScale = min(xScale, yScale)
         if minScale < 1.0 {
             imageView.bounds.size.width *= minScale
