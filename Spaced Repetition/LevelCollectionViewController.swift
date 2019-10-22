@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LevelCollectionViewController: UICollectionViewController {
+class LevelCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var cards: [CardSides]?
     var level: Int? {
@@ -215,29 +215,64 @@ class LevelCollectionViewController: UICollectionViewController {
         "When you have moved a card through all 7 levels they are marked as finished. Finished cards are not shown in the test. If you want to review them again you can move them to another level."
     ]
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footer", for: indexPath)
-        
+        let reuseIdentifier = (kind == UICollectionView.elementKindSectionHeader) ? "header" : "footer"
+        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdentifier, for: indexPath)
         let label = view.subviews.first { $0.isKind(of: UILabel.self) } as? UILabel
+        
         let levelText: String
-        if level == 0 {
-            levelText = levelFooterTexts[0]
-        } else if level == 1 {
-            levelText = levelFooterTexts[1]
-        } else if level == 2 {
-            if cards?.count ?? 0 > 0 {
-                levelText = levelFooterTexts[2] + "\nIt might seem as if cards you got wrong stayed at level 2. That is only because the test repeats all level 1 card until you get them right."
+        
+        if (kind == UICollectionView.elementKindSectionHeader) {
+            if let level = level, let cardsCount = cards?.count, cardsCount > 0, let dayForNextReview = DaysCompletedManager.nextDayToRepeatLevel(level) {
+                let dateComponents = Calendar.current.dateComponents([.era, .year, .month, .day], from: Date())
+                let today = Calendar.current.date(from: dateComponents)!
+                                
+                let reviewDateString: String
+                if today == dayForNextReview {
+                    reviewDateString = "today"
+                } else {
+                    let numberOfDays = Calendar.current.dateComponents([.day], from: today, to: dayForNextReview).day!
+                    if numberOfDays == 1 {
+                        reviewDateString = "tomorrow"
+                    } else {
+                        reviewDateString = "in \(numberOfDays) days"
+                    }
+                }
+                
+                let isPlural = cardsCount > 1
+                levelText = "\(cardsCount) card\(isPlural ? "s" : ""), next review \(reviewDateString)"
+            } else {
+                // keep a space so that the attributes ranges is not out of bounds (which would otherwise cause a crash)
+                levelText = " "
+            }
+        } else {
+            if level == 0 {
+                levelText = levelFooterTexts[0]
+            } else if level == 1 {
+                levelText = levelFooterTexts[1]
+            } else if level == 2 {
+                if cards?.count ?? 0 > 0 {
+                    levelText = levelFooterTexts[2] + "\nIt might seem as if cards you got wrong stayed at level 2. That is only because the test repeats all level 1 card until you get them right."
+                } else {
+                    levelText = levelFooterTexts[2]
+                }
+            } else if level == 8 {
+                levelText = levelFooterTexts[3]
             } else {
                 levelText = levelFooterTexts[2]
             }
-        } else if level == 8 {
-            levelText = levelFooterTexts[3]
-        } else {
-            levelText = levelFooterTexts[2]
         }
         
         label?.attributedText = NSAttributedString(string: levelText, attributes: label?.attributedText?.attributes(at: 0, effectiveRange: nil))
         
         return view
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if let level = level, let cardsCount = cards?.count, cardsCount > 0, DaysCompletedManager.nextDayToRepeatLevel(level) != nil {
+            return CGSize(width: collectionView.bounds.width, height: 50.0)
+        } else {
+            return CGSize(width: collectionView.bounds.width, height: .leastNonzeroMagnitude)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

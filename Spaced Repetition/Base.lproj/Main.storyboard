@@ -269,7 +269,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="snR-ka-QTG">
-                                    <rect key="frame" x="0.0" y="320" width="320" height="2011"/>
+                                    <rect key="frame" x="0.0" y="319.5" width="320" height="2011"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8v-bC-SKT">
@@ -492,10 +492,10 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="level cell" textLabel="Duq-g4-cDQ" detailTextLabel="pyZ-bi-Jmk" style="IBUITableViewCellStyleValue1" id="xoe-Ha-kBQ">
-                                        <rect key="frame" x="0.0" y="248" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="248" width="320" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xoe-Ha-kBQ" id="wDE-4Q-0Vo">
-                                            <rect key="frame" x="0.0" y="0.0" width="293.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="293.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Level 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Duq-g4-cDQ">
@@ -911,13 +911,13 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mab-qx-6JS">
                             <size key="itemSize" width="117" height="164"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="50" height="185"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCell" id="7Fb-Xv-c1q" customClass="CardCollectionViewCell" customModule="Spaced_Repetition" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="117" height="164"/>
+                                <rect key="frame" x="0.0" y="50" width="117" height="164"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="117" height="164"/>
@@ -928,8 +928,36 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="zri-Wd-oR6">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lR5-3s-YbM">
+                                    <rect key="frame" x="58.5" y="22" width="203" height="18"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="CVi-Au-545"/>
+                                    </constraints>
+                                    <attributedString key="attributedText">
+                                        <fragment content="0 cards, next review in 0 days">
+                                            <attributes>
+                                                <color key="NSColor" white="0.33178862577639751" alpha="1" colorSpace="calibratedWhite"/>
+                                                <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" paragraphSpacing="18" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="lR5-3s-YbM" firstAttribute="top" secondItem="zri-Wd-oR6" secondAttribute="top" constant="22" id="3T9-Gv-8G7"/>
+                                <constraint firstItem="lR5-3s-YbM" firstAttribute="centerX" secondItem="zri-Wd-oR6" secondAttribute="centerX" id="ajq-Oz-FwH"/>
+                                <constraint firstItem="lR5-3s-YbM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zri-Wd-oR6" secondAttribute="leading" constant="20" symbolic="YES" id="qYR-ht-oP1"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lR5-3s-YbM" secondAttribute="trailing" constant="20" symbolic="YES" id="qgh-xt-Ere"/>
+                            </constraints>
+                        </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footer" id="b6F-lM-wfj">
-                            <rect key="frame" x="0.0" y="164" width="320" height="185"/>
+                            <rect key="frame" x="0.0" y="214" width="320" height="185"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MbW-ra-c1Z">
@@ -1199,17 +1227,17 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
             <objects>
                 <viewController storyboardIdentifier="NewCardController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3xV-EJ-Nw7" customClass="NewCardViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zWa-39-I2g">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bpq-PF-Sh1">
-                                <rect key="frame" x="0.0" y="486" width="320" height="82"/>
+                                <rect key="frame" x="0.0" y="476" width="320" height="72"/>
                                 <connections>
                                     <segue destination="Mj6-jX-8Jh" kind="embed" identifier="embedInfoNavigation" id="Two-Ta-dkv"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i2n-8X-sqS">
-                                <rect key="frame" x="22.5" y="70" width="275" height="408"/>
+                                <rect key="frame" x="22.5" y="60" width="275" height="408"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="i2n-8X-sqS" secondAttribute="height" multiplier="27:40" id="Dv4-9u-W4F"/>
@@ -1297,11 +1325,11 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
             <objects>
                 <viewController id="5Qg-UF-ZFn" customClass="ToolsViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uvM-KQ-fiZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="yDI-SZ-1Dn">
-                                <rect key="frame" x="25" y="10" width="270" height="62"/>
+                                <rect key="frame" x="25" y="5" width="270" height="62"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFB-oa-GCQ">
                                         <rect key="frame" x="0.0" y="0.0" width="51" height="62"/>
@@ -1355,11 +1383,11 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
             <objects>
                 <viewController id="TeJ-Zv-6hz" customClass="SlidersViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bnz-xJ-CnH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kur-0r-1td">
-                                <rect key="frame" x="25" y="3" width="270" height="68"/>
+                                <rect key="frame" x="25" y="-2" width="270" height="68"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YB6-8R-PlW" customClass="WidthSlider" customModule="Spaced_Repetition" customModuleProvider="target">
                                         <rect key="frame" x="-2" y="38" width="274" height="31"/>
@@ -1424,7 +1452,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
         <image name="text tool" width="38" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GGc-Pu-sB1"/>
+        <segue reference="gfR-Oi-7CB"/>
         <segue reference="M9S-Py-QzZ"/>
         <segue reference="JK5-Rh-RAJ"/>
     </inferredMetricsTieBreakers>

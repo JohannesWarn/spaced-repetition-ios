@@ -47,6 +47,34 @@ class DaysCompletedManager: NSObject {
         return(levelsToRepeatToday)
     }
     
+    class func nextDayToRepeatLevel(_ level: Int) -> Date? {
+        guard 1 <= level && level <= 7 else { return nil }
+        
+        let dateComponents = Calendar.current.dateComponents([.era, .year, .month, .day], from: Date())
+        let today = Calendar.current.date(from: dateComponents)!
+        
+        let numberOfDaysCompleted = DaysCompletedManager.getCompletedDays().count
+        let completionStateForToday = DaysCompletedManager.completionState(forDay: today)
+        let numberOfDaysCompletedUntilToday = numberOfDaysCompleted - (completionStateForToday == .completed ? 1 : 0)
+        
+        if completionStateForToday != .completed {
+            if levelsToRepeatAtDay[numberOfDaysCompletedUntilToday % 64].contains(level) {
+                return today
+            }
+        }
+        
+        var date = today
+        var i = 0
+        while true {
+            i += 1
+            date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
+            
+            if levelsToRepeatAtDay[(numberOfDaysCompletedUntilToday + i) % 64].contains(level) {
+                return date
+            }
+        }
+    }
+    
     class func completionStateForToday() -> DayCompletionState {
         let dateComponents = Calendar.current.dateComponents([.era, .year, .month, .day], from: Date())
         let today = Calendar.current.date(from: dateComponents)!
