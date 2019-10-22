@@ -26,6 +26,8 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet var versionLabel: UILabel!
     
+    var numberOfCardsAtLevelCache: [Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,6 +61,8 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        updateCardsAtLevelCache()
         
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: animated)
@@ -106,6 +110,13 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             // setting the tableFooterView updates the height
             tableView.tableFooterView = tableFooterView
+        }
+    }
+    
+    func updateCardsAtLevelCache() {
+        numberOfCardsAtLevelCache = []
+        for i in 0...8 {
+            numberOfCardsAtLevelCache.append(ImageManager.numberOfCards(atLevel: i))
         }
     }
     
@@ -306,7 +317,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cellContentView?.intervalLabel.text = nil
         }
         
-        let numberOfCardsAtLevel = ImageManager.numberOfCards(atLevel: level)
+        let numberOfCardsAtLevel = numberOfCardsAtLevelCache[level]
         if numberOfCardsAtLevel == 1 {
             cellContentView?.cardsLabel.text = "\(numberOfCardsAtLevel) card"
         } else {
