@@ -333,6 +333,22 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         leftConstraint?.isActive = true
         cellContentView?.leftConstraint = leftConstraint
         
+        // setup the left constraint again async on the main queue to fix an issue were the imageview had not yet been added to it's super view
+        DispatchQueue.main.async {
+            if let leftConstraint = cellContentView?.leftConstraint {
+                cell.contentView.removeConstraint(leftConstraint)
+            }
+            
+            let leftConstraint: NSLayoutConstraint?
+            if let imageView = cell.imageView, imageView.image != nil, imageView.superview != nil {
+                leftConstraint = cellContentView?.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: tableView.separatorInset.left)
+            } else {
+                leftConstraint = cellContentView?.leftAnchor.constraint(equalTo: cell.contentView.leftAnchor, constant: tableView.separatorInset.left)
+            }
+            leftConstraint?.isActive = true
+            cellContentView?.leftConstraint = leftConstraint
+        }
+        
         return cell
     }
     
