@@ -14,23 +14,29 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
 
     var addTextTapGesture: UITapGestureRecognizer!
     
+    var orginalFrontSubviewCount = 1
+    var orginalBackSubviewCount = 1
     var hasEditedFront: Bool {
         get {
             let hasDrawn = frontDrawingView.canUndo
-            let hasAddedTextOrImage = cardView.frontViewContentView.subviews.count > 1
+            let hasAddedTextOrImage = cardView.frontViewContentView.subviews.count > orginalFrontSubviewCount
             return hasDrawn || hasAddedTextOrImage
         }
     }
     var hasEditedBack: Bool {
         get {
             let hasDrawn = backDrawingView.canUndo
-            let hasAddedTextOrImage = cardView.backViewContentView.subviews.count > 1
+            let hasAddedTextOrImage = cardView.backViewContentView.subviews.count > orginalBackSubviewCount
             return hasDrawn || hasAddedTextOrImage
         }
     }
     var canSaveCard: Bool {
         get {
-            return (hasEditedFront && hasEditedBack) || isEditingExistingCard
+            if isEditingExistingCard {
+                return (hasEditedFront || hasEditedBack)
+            } else {
+                return (hasEditedFront && hasEditedBack)
+            }
         }
     }
     var canSaveDraft: Bool {
@@ -51,7 +57,11 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
     var preferredLeftButtonTitle: String {
         get {
             if isEditingExistingCard {
-                return "Cancel"
+                if hasEditedFront || hasEditedBack {
+                    return "Cancel"
+                } else {
+                    return "Done"
+                }
             } else {
                 if hasEditedFront || hasEditedBack {
                     return "Cancel"
@@ -192,7 +202,11 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         addTextTapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedCard))
         cardView.addGestureRecognizer(addTextTapGesture)
         
+        orginalFrontSubviewCount = cardView.frontViewContentView.subviews.count
+        orginalBackSubviewCount = cardView.backViewContentView.subviews.count
+        
         titleLabel.text = "Front"
+        topLeftButton.setTitle(preferredLeftButtonTitle, for: .normal)
     }
 
     override func viewDidLayoutSubviews() {
