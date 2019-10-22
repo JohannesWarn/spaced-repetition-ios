@@ -274,25 +274,59 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "level cell", for: indexPath)
         let level = self.level(forIndexPath: indexPath)
         
+        var cellContentView = cell.contentView.subviews.first { return $0.isKind(of: LevelCell.self) } as? LevelCell
+        if cellContentView == nil {
+            let newCellContentView = UINib(nibName: "LevelCell", bundle: nil).instantiate(withOwner: self, options: nil).first as! LevelCell
+            newCellContentView.translatesAutoresizingMaskIntoConstraints = false
+            cell.contentView.addSubview(newCellContentView)
+            NSLayoutConstraint.activate([
+                newCellContentView.rightAnchor.constraint(equalTo: cell.contentView.rightAnchor),
+                newCellContentView.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
+                newCellContentView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
+            ])
+            cellContentView = newCellContentView
+        }
+        
+        // remove the left constraint before potentially removing the image view
+        if let leftConstraint = cellContentView?.leftConstraint {
+            cell.contentView.removeConstraint(leftConstraint)
+        }
+        
         if level == 0 {
             cell.imageView?.image = nil
-            cell.textLabel?.text = "Drafts"
+            cellContentView?.levelLabel.text = "Drafts"
+            cellContentView?.intervalLabel.text = nil
         } else if level <= 7 {
             cell.imageView?.image = UIImage.imageWithCircle(radius: 4.0, color: dayColors[level - 1])
-            cell.textLabel?.text = "Level \(level)"
+            cellContentView?.levelLabel.text = "Level \(level)"
+            cellContentView?.intervalLabel.text = ["Everyday", "Every 2 days", "Every 4 days", "Every 8 days", "Every 16 days", "Every 32 days", "Every 64 days"][level - 1]
         } else {
             cell.imageView?.image = nil
-            cell.textLabel?.text = "Finished Cards"
+            cellContentView?.levelLabel.text = "Finished Cards"
+            cellContentView?.intervalLabel.text = nil
         }
         
         let numberOfCardsAtLevel = ImageManager.numberOfCards(atLevel: level)
         if numberOfCardsAtLevel == 1 {
-            cell.detailTextLabel?.text = "\(numberOfCardsAtLevel) card"
+            cellContentView?.cardsLabel.text = "\(numberOfCardsAtLevel) card"
         } else {
-            cell.detailTextLabel?.text = "\(numberOfCardsAtLevel) cards"
+            cellContentView?.cardsLabel.text = "\(numberOfCardsAtLevel) cards"
         }
         
+        let leftConstraint: NSLayoutConstraint?
+        if let imageView = cell.imageView, imageView.image != nil, imageView.superview != nil {
+            leftConstraint = cellContentView?.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: tableView.separatorInset.left)
+        } else {
+            leftConstraint = cellContentView?.leftAnchor.constraint(equalTo: cell.contentView.leftAnchor, constant: tableView.separatorInset.left)
+        }
+        leftConstraint?.isActive = true
+        cellContentView?.leftConstraint = leftConstraint
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50.0
     }
     
     @objc func forwardTestButtonTouchDownEvent() { forwardTestButtonEvent(.touchDown) }

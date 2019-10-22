@@ -12,6 +12,8 @@
 		8F321DED22FDC5D800643584 /* DayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F321DEC22FDC5D800643584 /* DayView.xib */; };
 		8F321DEF22FDE21B00643584 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F321DEE22FDE21B00643584 /* CardView.swift */; };
 		8F321DF122FDF6EC00643584 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F321DF022FDF6EC00643584 /* Utilities.swift */; };
+		8F3C2743235F366E000E3DF3 /* LevelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F3C2742235F366E000E3DF3 /* LevelCell.xib */; };
+		8F3C2745235F37A8000E3DF3 /* LevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3C2744235F37A8000E3DF3 /* LevelCell.swift */; };
 		8F3CC1CF22F9F69400040A22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3CC1CE22F9F69400040A22 /* AppDelegate.swift */; };
 		8F3CC1D422F9F69400040A22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F3CC1D222F9F69400040A22 /* Main.storyboard */; };
 		8F3CC1D922F9F69700040A22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F3CC1D722F9F69700040A22 /* LaunchScreen.storyboard */; };
@@ -47,6 +49,8 @@
 		8F321DEC22FDC5D800643584 /* DayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayView.xib; sourceTree = "<group>"; };
 		8F321DEE22FDE21B00643584 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		8F321DF022FDF6EC00643584 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		8F3C2742235F366E000E3DF3 /* LevelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LevelCell.xib; sourceTree = "<group>"; };
+		8F3C2744235F37A8000E3DF3 /* LevelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCell.swift; sourceTree = "<group>"; };
 		8F3CC1CB22F9F69400040A22 /* Spaced Repetition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spaced Repetition.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F3CC1CE22F9F69400040A22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F3CC1D322F9F69400040A22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				8F3CC1E422FA07E200040A22 /* StartViewController.swift */,
 				8FF64E3723327FF700F21768 /* OnboardingViewController.swift */,
 				8F49B0EB22FF1F4700CFA70A /* LevelCollectionViewController.swift */,
+				8F3C2742235F366E000E3DF3 /* LevelCell.xib */,
+				8F3C2744235F37A8000E3DF3 /* LevelCell.swift */,
 				8F49B0ED22FF291E00CFA70A /* CardCollectionViewCell.swift */,
 				8FAD2F0522FE2179002B311F /* ModalCardViewController.swift */,
 				8F4A98D222FB22ED003E0A68 /* TestViewController.swift */,
@@ -225,6 +231,7 @@
 				8F4A98E022FC1DD3003E0A68 /* SF-Compact-Rounded-Bold.otf in Resources */,
 				8F4A98E122FC1DD3003E0A68 /* SF-Compact-Rounded-Medium.otf in Resources */,
 				8F4A98D922FC0AC9003E0A68 /* Assets.xcassets in Resources */,
+				8F3C2743235F366E000E3DF3 /* LevelCell.xib in Resources */,
 				8F3CC1D422F9F69400040A22 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F3C2745235F37A8000E3DF3 /* LevelCell.swift in Sources */,
 				8F49B0EC22FF1F4800CFA70A /* LevelCollectionViewController.swift in Sources */,
 				8F3CC1CF22F9F69400040A22 /* AppDelegate.swift in Sources */,
 				8FDA8A622302196000F59F7D /* NotificationsManager.swift in Sources */,
