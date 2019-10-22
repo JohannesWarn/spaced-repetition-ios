@@ -48,10 +48,14 @@ class LevelCollectionViewController: UICollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         reload()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         navigationController?.setToolbarHidden(true, animated: true)
     }
 
@@ -89,8 +93,11 @@ class LevelCollectionViewController: UICollectionViewController {
     func reload() {
         guard let level = level else { return }
         
+        let oldCount = cards?.count
         cards = ImageManager.deckOfImages(forLevel: level).sortedByCardName()
-        collectionView.reloadData()
+        if cards?.count != oldCount {
+            collectionView.reloadData()
+        }
     }
     
     func updateToolbarEnabled() {
