@@ -535,7 +535,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                         </constraints>
                                         <fontDescription key="fontDescription" name="SFCompactRounded-Medium" family="SF Compact Rounded" pointSize="32"/>
                                         <inset key="titleEdgeInsets" minX="0.0" minY="-17" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Test Now">
+                                        <state key="normal" title="Today’s Test">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
