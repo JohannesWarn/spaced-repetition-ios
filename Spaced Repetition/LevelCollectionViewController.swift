@@ -59,6 +59,20 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
         navigationController?.setToolbarHidden(true, animated: true)
     }
 
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let level = level {
+            coder.encode(level, forKey: "level")
+        }
+        
+        super.encodeRestorableState(with: coder)
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
+        
+        self.level = coder.decodeInteger(forKey: "level")
+    }
+    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         navigationItem.rightBarButtonItem?.title = editing ? "Done" : "Select"

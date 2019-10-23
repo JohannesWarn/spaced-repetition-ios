@@ -889,7 +889,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
         <!--Level 1-->
         <scene sceneID="EiN-Kz-3Be">
             <objects>
-                <collectionViewController id="Msc-Xr-9ya" customClass="LevelCollectionViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="LevelViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Msc-Xr-9ya" customClass="LevelCollectionViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="7lC-L6-xOX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
