@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -900,7 +901,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCell" id="7Fb-Xv-c1q" customClass="CardCollectionViewCell" customModule="Spaced_Repetition" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DraftCell" id="7Fb-Xv-c1q" customClass="CardCollectionViewCell" customModule="Spaced_Repetition" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="117" height="164"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -908,7 +909,18 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                     <autoresizingMask key="autoresizingMask"/>
                                 </view>
                                 <connections>
-                                    <segue destination="3xV-EJ-Nw7" kind="presentation" id="gfR-Oi-7CB"/>
+                                    <segue destination="3xV-EJ-Nw7" kind="presentation" modalPresentationStyle="fullScreen" id="gfR-Oi-7CB"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCell" id="hCP-E6-Wfm" customClass="CardCollectionViewCell" customModule="Spaced_Repetition" customModuleProvider="target">
+                                <rect key="frame" x="203" y="50" width="117" height="164"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="117" height="164"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                                <connections>
+                                    <segue destination="eJU-U9-hyp" kind="show" id="Vpf-Ik-VEf"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -1362,6 +1374,41 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
             </objects>
             <point key="canvasLocation" x="874" y="2400"/>
         </scene>
+        <!--Preview Quick Switch Controller-->
+        <scene sceneID="j4H-1k-u6A">
+            <objects>
+                <collectionViewController id="m3M-Fc-fB1" customClass="PreviewQuickSwitchController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="nQk-cL-UgD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="gzB-no-JwT">
+                            <size key="itemSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCell" id="Qo0-Kh-pjz" customClass="CardCollectionViewCell" customModule="Spaced_Repetition" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="12" width="42" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="AIP-mj-8yw">
+                                    <rect key="frame" x="0.0" y="0.0" width="42" height="58"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="42" height="58"/>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="m3M-Fc-fB1" id="nJ0-DT-L0S"/>
+                            <outlet property="delegate" destination="m3M-Fc-fB1" id="Ufb-d2-cis"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FjZ-Vw-zvB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1876.875" y="2223.5915492957747"/>
+        </scene>
         <!--Sliders View Controller-->
         <scene sceneID="BVg-jC-TSS">
             <objects>
@@ -1400,6 +1447,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FZ6-b0-JCM"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Qzh-eU-ZMt"/>
                     <connections>
                         <outlet property="colorSlider" destination="ICX-PG-7sB" id="sgU-Gw-vdq"/>
                         <outlet property="widthSlider" destination="YB6-8R-PlW" id="Kdw-LT-rKN"/>
@@ -1424,6 +1472,58 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
             </objects>
             <point key="canvasLocation" x="873" y="2183"/>
         </scene>
+        <!--Card Preview View Controller-->
+        <scene sceneID="uOb-UK-SeN">
+            <objects>
+                <viewController storyboardIdentifier="CardPreviewController" id="eJU-U9-hyp" customClass="CardPreviewViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="heN-Uq-iSr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xnA-5R-iE9">
+                                <rect key="frame" x="0.0" y="486" width="320" height="82"/>
+                                <connections>
+                                    <segue destination="m3M-Fc-fB1" kind="embed" identifier="embedInfoNavigation" id="Xjy-OB-APg"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMU-Na-r5W">
+                                <rect key="frame" x="22.5" y="70" width="275" height="408"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fMU-Na-r5W" secondAttribute="height" multiplier="27:40" id="ak6-ix-ZvB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fMU-Na-r5W" firstAttribute="centerX" secondItem="heN-Uq-iSr" secondAttribute="centerX" id="Kaq-BC-qNY"/>
+                            <constraint firstItem="xnA-5R-iE9" firstAttribute="trailing" secondItem="9SQ-Cb-PFn" secondAttribute="trailing" id="WQp-tr-2Ot"/>
+                            <constraint firstItem="xnA-5R-iE9" firstAttribute="bottom" secondItem="9SQ-Cb-PFn" secondAttribute="bottom" id="des-kS-FLo"/>
+                            <constraint firstItem="xnA-5R-iE9" firstAttribute="leading" secondItem="9SQ-Cb-PFn" secondAttribute="leading" id="eQi-du-XTk"/>
+                            <constraint firstItem="fMU-Na-r5W" firstAttribute="centerY" secondItem="heN-Uq-iSr" secondAttribute="centerY" constant="-10" id="nYI-45-WCM"/>
+                            <constraint firstItem="fMU-Na-r5W" firstAttribute="height" relation="lessThanOrEqual" secondItem="heN-Uq-iSr" secondAttribute="height" multiplier="0.75" id="nka-ca-SVs"/>
+                            <constraint firstItem="fMU-Na-r5W" firstAttribute="width" secondItem="heN-Uq-iSr" secondAttribute="width" multiplier="0.86" priority="750" id="uZz-3w-syi"/>
+                            <constraint firstItem="xnA-5R-iE9" firstAttribute="top" secondItem="fMU-Na-r5W" secondAttribute="bottom" constant="8" symbolic="YES" id="wgy-fj-jH9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9SQ-Cb-PFn"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1jf-SL-Pid">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="lhc-nV-WOJ">
+                            <connections>
+                                <segue destination="3xV-EJ-Nw7" kind="presentation" animates="NO" modalPresentationStyle="fullScreen" id="fIX-3h-I6h"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="cardViewPlaceholder" destination="fMU-Na-r5W" id="eUI-Ps-67J"/>
+                        <outlet property="infoContainerView" destination="xnA-5R-iE9" id="zTZ-lM-D0O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mET-zZ-ZHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1875" y="1701"/>
+        </scene>
     </scenes>
     <resources>
         <image name="all done" width="568" height="568"/>
@@ -1436,7 +1536,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
         <image name="text tool" width="38" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GGc-Pu-sB1"/>
+        <segue reference="fIX-3h-I6h"/>
         <segue reference="M9S-Py-QzZ"/>
         <segue reference="JK5-Rh-RAJ"/>
     </inferredMetricsTieBreakers>

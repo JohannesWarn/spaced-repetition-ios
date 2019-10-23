@@ -82,10 +82,14 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        
-        if let newCardController = segue.destination as? NewCardViewController {
-            if let indexPath = collectionView.indexPathsForSelectedItems?.first {
+
+        if let indexPath = collectionView.indexPathsForSelectedItems?.first {
+            if let newCardController = segue.destination as? NewCardViewController {
                 newCardController.existingCard = cards?[indexPath.row]
+            } else if let cardPreviewController = segue.destination as? CardPreviewViewController {
+                cardPreviewController.currentCard = cards?[indexPath.row]
+                cardPreviewController.cardDeck = cards
+                cardPreviewController.currentIndex = indexPath.row
             }
         }
     }
@@ -193,7 +197,8 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
+        let reuseIdentifier = (level == 0) ? "DraftCell" : "CardCell"
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CardCollectionViewCell
         
         cell.shouldShowCheckMark = isEditing
         cell.imageView.image = cards?[indexPath.row].frontImage

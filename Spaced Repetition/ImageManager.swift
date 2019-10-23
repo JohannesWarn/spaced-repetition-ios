@@ -11,8 +11,8 @@ import UIKit
 struct CardSides {
     let name: String
     let level: Int
-    let frontImage: UIImage?
-    let backImage: UIImage?
+    var frontImage: UIImage?
+    var backImage: UIImage?
     let frontImageURL: URL?
     let backImageURL: URL?
     
@@ -24,6 +24,15 @@ struct CardSides {
             }
         }
         return nil
+    }
+    
+    mutating func updateImages() {
+        if let frontImageURL = frontImageURL {
+            frontImage = UIImage.init(data: try! Data(contentsOf: frontImageURL))!
+        }
+        if let backImageURL = backImageURL {
+            backImage = UIImage.init(data: try! Data(contentsOf: backImageURL))!
+        }
     }
 }
 

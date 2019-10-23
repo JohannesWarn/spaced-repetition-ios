@@ -19,6 +19,8 @@
 		8F3CC1D922F9F69700040A22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F3CC1D722F9F69700040A22 /* LaunchScreen.storyboard */; };
 		8F3CC1E322F9FBB700040A22 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3CC1E222F9FBB700040A22 /* DayView.swift */; };
 		8F3CC1E522FA07E200040A22 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3CC1E422FA07E200040A22 /* StartViewController.swift */; };
+		8F464F6223605FE000A5FE21 /* CardPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F464F6123605FE000A5FE21 /* CardPreviewViewController.swift */; };
+		8F464F6423607BEF00A5FE21 /* PreviewQuickSwitchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F464F6323607BEF00A5FE21 /* PreviewQuickSwitchController.swift */; };
 		8F49B0EC22FF1F4800CFA70A /* LevelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F49B0EB22FF1F4700CFA70A /* LevelCollectionViewController.swift */; };
 		8F49B0EE22FF291E00CFA70A /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F49B0ED22FF291E00CFA70A /* CardCollectionViewCell.swift */; };
 		8F49B0F022FF5D1D00CFA70A /* DaysCompletedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F49B0EF22FF5D1D00CFA70A /* DaysCompletedManager.swift */; };
@@ -58,6 +60,8 @@
 		8F3CC1DA22F9F69700040A22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F3CC1E222F9FBB700040A22 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		8F3CC1E422FA07E200040A22 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		8F464F6123605FE000A5FE21 /* CardPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPreviewViewController.swift; sourceTree = "<group>"; };
+		8F464F6323607BEF00A5FE21 /* PreviewQuickSwitchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewQuickSwitchController.swift; sourceTree = "<group>"; };
 		8F49B0EB22FF1F4700CFA70A /* LevelCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewController.swift; sourceTree = "<group>"; };
 		8F49B0ED22FF291E00CFA70A /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F49B0EF22FF5D1D00CFA70A /* DaysCompletedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCompletedManager.swift; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 				8FAD2F0522FE2179002B311F /* ModalCardViewController.swift */,
 				8F4A98D222FB22ED003E0A68 /* TestViewController.swift */,
 				8F4A98D422FB2301003E0A68 /* NewCardViewController.swift */,
+				8F464F6123605FE000A5FE21 /* CardPreviewViewController.swift */,
+				8F464F6323607BEF00A5FE21 /* PreviewQuickSwitchController.swift */,
 				8F26DEEC23004C430081D0E7 /* Reminders */,
 				8F11C75C22FEE59F0075F89A /* ImageManager.swift */,
 				8F49B0EF22FF5D1D00CFA70A /* DaysCompletedManager.swift */,
@@ -243,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F464F6223605FE000A5FE21 /* CardPreviewViewController.swift in Sources */,
 				8F3C2745235F37A8000E3DF3 /* LevelCell.swift in Sources */,
 				8F49B0EC22FF1F4800CFA70A /* LevelCollectionViewController.swift in Sources */,
 				8F3CC1CF22F9F69400040A22 /* AppDelegate.swift in Sources */,
@@ -256,6 +263,7 @@
 				8FAD2F0A22FE27AA002B311F /* SwiftyDraw.swift in Sources */,
 				8F4A98D522FB2301003E0A68 /* NewCardViewController.swift in Sources */,
 				8F49B0EE22FF291E00CFA70A /* CardCollectionViewCell.swift in Sources */,
+				8F464F6423607BEF00A5FE21 /* PreviewQuickSwitchController.swift in Sources */,
 				8FF64E3823327FF700F21768 /* OnboardingViewController.swift in Sources */,
 				8F3CC1E322F9FBB700040A22 /* DayView.swift in Sources */,
 				8FAD2F0D22FE2B11002B311F /* ToolsViewController.swift in Sources */,

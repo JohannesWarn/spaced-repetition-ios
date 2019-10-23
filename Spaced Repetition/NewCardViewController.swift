@@ -285,7 +285,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
                 
                 if savedCard {
                     if isEditingExistingCard {
-                        dismiss(animated: true, completion: nil)
+                        dismiss(animated: self.shouldAnimateClose, completion: nil)
                     } else {
                         animateOutCard(cardView, direction: 1)
                         setupCardView()
