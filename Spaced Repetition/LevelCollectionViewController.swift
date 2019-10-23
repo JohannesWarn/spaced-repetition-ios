@@ -93,11 +93,8 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
     func reload() {
         guard let level = level else { return }
         
-        let oldCount = cards?.count
         cards = ImageManager.deckOfImages(forLevel: level).sortedByCardName()
-        if cards?.count != oldCount {
-            collectionView.reloadData()
-        }
+        collectionView.reloadData()
     }
     
     func updateToolbarEnabled() {
