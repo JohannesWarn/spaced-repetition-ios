@@ -8,27 +8,60 @@
 
 import UIKit
 
-class OnboardingViewController: UIViewController {
+class OnboardingViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet var contentView: UIView!
-    @IBOutlet var closeButton: FancyButton!
-    var hasOpenedIntroduction = false
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var fadeView: GradientView!
+    @IBOutlet var callToActionButton: FancyButton!
+    
+    @IBOutlet var topSpacerConstraint: NSLayoutConstraint!
+    @IBOutlet var sectionSpacerConstraints: [NSLayoutConstraint]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(applicationDidBecomeActive),
-            name: UIApplication.didBecomeActiveNotification, object: nil
-        )
+        if #available(iOS 11.0, *) {
+        } else {
+            tableView.contentInset.top = 20.0
+            tableView.scrollIndicatorInsets.top = 20.0
+            tableView.contentOffset.y = -20.0
+        }
+        
+        // iPhone 11 Pro
+        if tableView.frame.height > 800 && tableView.frame.height < 840 {
+            for constraint in sectionSpacerConstraints {
+                constraint.constant = 32.0
+            }
+        }
+        
+        // if the entire onboarding can be shown then scroll away the skip button
+        if tableView.frame.height > callToActionButton.frame.maxY - 46.0 {
+            tableView.contentOffset.y = 46.0
+        }
+        
+        let newHeight = callToActionButton.frame.origin.y + callToActionButton.frame.size.height + 22.0
+        tableView.tableFooterView?.frame.size.height = newHeight
+        tableView.tableFooterView = tableView.tableFooterView
     }
     
-    @objc func applicationDidBecomeActive() {
-        if hasOpenedIntroduction {
-            closeButton.setTitle("Done", for: .normal)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if ImageManager.containsAnyCards() || ImageManager.containsDrafts() {
+            view.isHidden = true
+            close(self)
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let newHeight = callToActionButton.frame.origin.y + callToActionButton.frame.size.height + 22.0
+        if newHeight > tableView.tableFooterView?.frame.size.height ?? 0 {
+            tableView.tableFooterView?.frame.size.height = newHeight
+            tableView.tableFooterView = tableView.tableFooterView
+        }
+    }
+    
     @IBAction func openIntroduction(_ sender: Any) {
         let url = URL(string: "https://ncase.me/remember/")!
         if #available(iOS 10.0, *) {
@@ -36,16 +69,22 @@ class OnboardingViewController: UIViewController {
         } else {
             UIApplication.shared.openURL(url)
         }
-        hasOpenedIntroduction = true
     }
     
     @IBAction func close(_ sender: Any) {
-        UIView.animate(withDuration: 0.4, delay: 0.0, options: [.allowUserInteraction, .curveEaseIn], animations: {
-            self.view.alpha = 0.0
-            self.contentView.alpha = 0.0
-            self.contentView.transform = CGAffineTransform(translationX: 0.0, y: 100.0)
-        }, completion: { _ in
-            self.dismiss(animated: false, completion: nil)
-        })
+        self.dismiss(animated: false, completion: nil)
+        // call view will appear since over full screen for the modal supresses it
+        if let startViewController = (presentingViewController as? UINavigationController)?.viewControllers.first as? StartViewController {
+            startViewController.viewWillAppear(false)
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let distanceToButton = callToActionButton.frame.minY - (scrollView.contentOffset.y + scrollView.frame.height)
+        if distanceToButton < 0 {
+            fadeView.alpha = 0.0
+        } else {
+            fadeView.alpha = 1.0
+        }
     }
 }
