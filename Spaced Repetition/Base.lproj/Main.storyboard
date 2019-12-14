@@ -1067,14 +1067,14 @@ levels are reviewed less frequently.</string>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lR5-3s-YbM">
-                                    <rect key="frame" x="282.5" y="22" width="203" height="18"/>
+                                    <rect key="frame" x="282.5" y="12" width="203" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="CVi-Au-545"/>
                                     </constraints>
                                     <attributedString key="attributedText">
                                         <fragment content="0 cards, next review in 0 days">
                                             <attributes>
-                                                <color key="NSColor" white="0.33178862577639751" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" paragraphSpacing="18" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
@@ -1084,7 +1084,7 @@ levels are reviewed less frequently.</string>
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="lR5-3s-YbM" firstAttribute="top" secondItem="zri-Wd-oR6" secondAttribute="top" constant="22" id="3T9-Gv-8G7"/>
+                                <constraint firstItem="lR5-3s-YbM" firstAttribute="top" secondItem="zri-Wd-oR6" secondAttribute="top" constant="12" id="3T9-Gv-8G7"/>
                                 <constraint firstItem="lR5-3s-YbM" firstAttribute="centerX" secondItem="zri-Wd-oR6" secondAttribute="centerX" id="ajq-Oz-FwH"/>
                                 <constraint firstItem="lR5-3s-YbM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zri-Wd-oR6" secondAttribute="leading" constant="20" symbolic="YES" id="qYR-ht-oP1"/>
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lR5-3s-YbM" secondAttribute="trailing" constant="20" symbolic="YES" id="qgh-xt-Ere"/>
@@ -1677,7 +1677,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
         <image name="text tool" width="38" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GGc-Pu-sB1"/>
+        <segue reference="gfR-Oi-7CB"/>
         <segue reference="M9S-Py-QzZ"/>
         <segue reference="JK5-Rh-RAJ"/>
     </inferredMetricsTieBreakers>

@@ -238,7 +238,7 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
         let levelText: String
         
         if (kind == UICollectionView.elementKindSectionHeader) {
-            if let level = level, let cardsCount = cards?.count, cardsCount > 0, let dayForNextReview = DaysCompletedManager.nextDayToRepeatLevel(level) {
+            if let level = level, let cardsCount = cards?.count, let dayForNextReview = DaysCompletedManager.nextDayToRepeatLevel(level) {
                 let dateComponents = Calendar.current.dateComponents([.era, .year, .month, .day], from: Date())
                 let today = Calendar.current.date(from: dateComponents)!
                                 
@@ -284,8 +284,8 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if let level = level, let cardsCount = cards?.count, cardsCount > 0, DaysCompletedManager.nextDayToRepeatLevel(level) != nil {
-            return CGSize(width: collectionView.bounds.width, height: 50.0)
+        if let level = level, DaysCompletedManager.nextDayToRepeatLevel(level) != nil {
+            return CGSize(width: collectionView.bounds.width, height: 29.0)
         } else {
             return CGSize(width: collectionView.bounds.width, height: .leastNonzeroMagnitude)
         }
