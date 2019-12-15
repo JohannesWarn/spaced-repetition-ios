@@ -167,7 +167,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             case .missed:
                 dayView.circleImageView.image = UIImage(named: "error circle")
             default:
-                dayView.circleImageView.image = UIImage(named: "empty circle")
+                dayView.circleImageView.image = nil
             }
             
             for dotLayer in dayView.dotLayers {

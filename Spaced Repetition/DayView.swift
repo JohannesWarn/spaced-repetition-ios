@@ -12,6 +12,7 @@ class DayView: UIView {
     
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var circleImageView: UIImageView!
+    var circleLayer: CAShapeLayer!
     
     var dotLayers: [CAShapeLayer] = []
     
@@ -22,6 +23,18 @@ class DayView: UIView {
             layer.addSublayer(dotLayer)
             dotLayers.append(dotLayer)
         }
+
+        circleLayer = CAShapeLayer()
+        circleLayer.frame = circleImageView.bounds
+        circleLayer.path = CGPath(ellipseIn: circleImageView.bounds.insetBy(dx: 1, dy: 1), transform: nil)
+        circleLayer.lineWidth = 2.0
+        circleLayer.strokeColor = UIColor.appForegroundColor.cgColor
+        circleLayer.fillColor = nil
+        circleImageView.layer.addSublayer(circleLayer)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        circleLayer.strokeColor = UIColor.appForegroundColor.cgColor
     }
 
     override func layoutSubviews() {
