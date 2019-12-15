@@ -538,7 +538,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-jM-4WQ">
-                                        <rect key="frame" x="22" y="60.5" width="276" height="19.5"/>
+                                        <rect key="frame" x="22" y="60.5" width="276" height="19"/>
                                         <fontDescription key="fontDescription" name="SFCompactRounded-Medium" family="SF Compact Rounded" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -754,7 +754,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
             <objects>
                 <tableViewController id="hcH-Jw-7OA" customClass="EditReminderViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="hK1-2x-FMF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="tPn-AS-vdD">
@@ -892,7 +892,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="7lC-L6-xOX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mab-qx-6JS">
                             <size key="itemSize" width="117" height="164"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
@@ -916,20 +916,13 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lR5-3s-YbM">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 cards, next review in 0 days" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lR5-3s-YbM">
                                     <rect key="frame" x="58.5" y="22" width="203" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="CVi-Au-545"/>
                                     </constraints>
-                                    <attributedString key="attributedText">
-                                        <fragment content="0 cards, next review in 0 days">
-                                            <attributes>
-                                                <color key="NSColor" white="0.33178862577639751" alpha="1" colorSpace="calibratedWhite"/>
-                                                <font key="NSFont" metaFont="system" size="15"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" paragraphSpacing="18" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -944,22 +937,16 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                             <rect key="frame" x="0.0" y="214" width="320" height="185"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MbW-ra-c1Z">
-                                    <rect key="frame" x="20" y="0.0" width="280" height="175.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MbW-ra-c1Z">
+                                    <rect key="frame" x="20" y="0.0" width="280" height="161.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="uKb-EI-CEQ"/>
                                     </constraints>
-                                    <attributedString key="attributedText">
-                                        <fragment>
-                                            <string key="content">When you review a card, and get it right, it moves up one level. When you review a card, and get it wrong, it is moved back to level 1.
+                                    <string key="text">When you review a card, and get it right, it moves up one level. When you review a card, and get it wrong, it is moved back to level 1.
+
 It might seem as if cards you got wrong stayed at level 2. That is only because the test repeats all level 1 card until you get them right.</string>
-                                            <attributes>
-                                                <color key="NSColor" white="0.33178862577639751" alpha="1" colorSpace="calibratedWhite"/>
-                                                <font key="NSFont" metaFont="system" size="15"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" paragraphSpacing="18" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -1078,11 +1065,11 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
             <objects>
                 <viewController id="ccO-Ma-oX1" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0dZ-0M-def">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tap card to reveal answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BD0-Z4-VWk">
-                                <rect key="frame" x="66" y="31" width="188" height="20"/>
+                                <rect key="frame" x="64" y="31" width="192.5" height="20"/>
                                 <fontDescription key="fontDescription" name="SFCompactRounded-Medium" family="SF Compact Rounded" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1211,17 +1198,17 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
             <objects>
                 <viewController storyboardIdentifier="NewCardController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3xV-EJ-Nw7" customClass="NewCardViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zWa-39-I2g">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bpq-PF-Sh1">
-                                <rect key="frame" x="0.0" y="486" width="320" height="82"/>
+                                <rect key="frame" x="0.0" y="476" width="320" height="72"/>
                                 <connections>
                                     <segue destination="Mj6-jX-8Jh" kind="embed" identifier="embedInfoNavigation" id="Two-Ta-dkv"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i2n-8X-sqS">
-                                <rect key="frame" x="22.5" y="70" width="275" height="408"/>
+                                <rect key="frame" x="22.5" y="60" width="275" height="408"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="i2n-8X-sqS" secondAttribute="height" multiplier="27:40" id="Dv4-9u-W4F"/>
@@ -1309,11 +1296,11 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
             <objects>
                 <viewController id="5Qg-UF-ZFn" customClass="ToolsViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uvM-KQ-fiZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="yDI-SZ-1Dn">
-                                <rect key="frame" x="25" y="10" width="270" height="62"/>
+                                <rect key="frame" x="25" y="5" width="270" height="62"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFB-oa-GCQ">
                                         <rect key="frame" x="0.0" y="0.0" width="51" height="62"/>
@@ -1367,11 +1354,11 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
             <objects>
                 <viewController id="TeJ-Zv-6hz" customClass="SlidersViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bnz-xJ-CnH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kur-0r-1td">
-                                <rect key="frame" x="25" y="3" width="270" height="68"/>
+                                <rect key="frame" x="25" y="-2" width="270" height="68"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YB6-8R-PlW" customClass="WidthSlider" customModule="Spaced_Repetition" customModuleProvider="target">
                                         <rect key="frame" x="-2" y="38" width="274" height="31"/>
@@ -1436,7 +1423,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
         <image name="text tool" width="38" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GGc-Pu-sB1"/>
+        <segue reference="gfR-Oi-7CB"/>
         <segue reference="M9S-Py-QzZ"/>
         <segue reference="JK5-Rh-RAJ"/>
     </inferredMetricsTieBreakers>
