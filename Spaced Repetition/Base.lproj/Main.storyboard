@@ -616,7 +616,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="8Po-ik-5H5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="cv8-gJ-NZJ">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -655,7 +655,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstItem="wOj-TS-ZJD" firstAttribute="leading" secondItem="a89-G9-8PI" secondAttribute="leading" id="cU9-M4-H7V"/>
                                 <constraint firstAttribute="trailing" secondItem="wOj-TS-ZJD" secondAttribute="trailing" id="fOm-h5-MrX"/>
@@ -725,6 +725,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                         <constraint firstItem="u4D-8c-M3Z" firstAttribute="top" secondItem="KpD-5Z-gen" secondAttribute="top" constant="4" id="zHF-xX-LKo"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="disclosureIndicatorContainer" destination="ePX-V9-5HL" id="h2S-Y8-XOd"/>
                                     <outlet property="labelContainer" destination="TqD-8I-Lmo" id="94Z-4C-MQ7"/>
@@ -754,7 +755,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
             <objects>
                 <tableViewController id="hcH-Jw-7OA" customClass="EditReminderViewController" customModule="Spaced_Repetition" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="hK1-2x-FMF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="tPn-AS-vdD">
@@ -763,12 +764,13 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                             <subviews>
                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="uq4-jK-RMu">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="215"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <connections>
                                         <action selector="updateReminder" destination="hcH-Jw-7OA" eventType="valueChanged" id="wlO-oi-Pvt"/>
                                     </connections>
                                 </datePicker>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstItem="uq4-jK-RMu" firstAttribute="leading" secondItem="tPn-AS-vdD" secondAttribute="leading" id="4ZE-AU-LJ6"/>
                                 <constraint firstAttribute="trailing" secondItem="uq4-jK-RMu" secondAttribute="trailing" id="82X-lz-Ndr"/>
@@ -1065,7 +1067,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
             <objects>
                 <viewController id="ccO-Ma-oX1" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0dZ-0M-def">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tap card to reveal answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BD0-Z4-VWk">
@@ -1300,10 +1302,10 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="yDI-SZ-1Dn">
-                                <rect key="frame" x="25" y="5" width="270" height="62"/>
+                                <rect key="frame" x="25" y="-26" width="270" height="124"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFB-oa-GCQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="51" height="62"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="51" height="124"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="draw tool"/>
                                         <connections>
@@ -1311,17 +1313,17 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qf5-DM-Ts4">
-                                        <rect key="frame" x="73" y="0.0" width="51" height="62"/>
+                                        <rect key="frame" x="73" y="0.0" width="51" height="124"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="text tool"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohw-9F-vyW">
-                                        <rect key="frame" x="146" y="0.0" width="51" height="62"/>
+                                        <rect key="frame" x="146" y="0.0" width="51" height="124"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="image tool"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wab-cR-swG">
-                                        <rect key="frame" x="219" y="0.0" width="51" height="62"/>
+                                        <rect key="frame" x="219" y="0.0" width="51" height="124"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="flip tool"/>
                                     </button>

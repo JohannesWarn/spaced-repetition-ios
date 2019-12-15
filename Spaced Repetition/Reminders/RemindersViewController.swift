@@ -159,28 +159,15 @@ class RemindersViewController: UITableViewController {
             return reminderA.hour < reminderB.hour
         })
     }
-    
+
     @objc func toggleReminder(_ sender: UISwitch) {
-        if let cell = sender.superview as? ReminderCell {
-            cell.timeLabel.textColor = sender.isOn ? .black : UIColor(white: 0.5, alpha: 1.0)
-            cell.periodLabel.textColor = cell.timeLabel.textColor
-            cell.typeLabel.textColor = cell.timeLabel.textColor
-            
-            var cellIndex: Int? = nil
-            for i in 0...tableView.numberOfRows(inSection: 0) {
-                if cell == tableView.cellForRow(at: IndexPath(row: i, section: 0)) {
-                    cellIndex = i
-                    break
-                }
-            }
-            
-            if let cellIndex = cellIndex {
-                reminders[cellIndex].isOn = sender.isOn
-                scheduleNotifications()
-            }
+        if let cell = sender.superview as? ReminderCell,
+            let cellIndexPath = tableView.indexPath(for: cell) {
+            reminders[cellIndexPath.row].isOn = sender.isOn
+            configure(cell: cell, at: cellIndexPath)
+            scheduleNotifications()
+            self.showWarningHeaderIfNeeded()
         }
-        
-        self.showWarningHeaderIfNeeded()
     }
     
     func scheduleNotifications() {
@@ -200,9 +187,14 @@ class RemindersViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reminders.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath) as! ReminderCell
+        configure(cell: cell, at: indexPath)
+        return cell
+    }
+
+    func configure(cell: ReminderCell, at indexPath: IndexPath) {
         let reminder = reminders[indexPath.row]
         
         var dateComponents = DateComponents()
@@ -228,13 +220,21 @@ class RemindersViewController: UITableViewController {
         cell.typeLabel.text = typeStrings.joined(separator: ", ")
         
         cell.switchView.isOn = reminder.isOn
-        cell.timeLabel.textColor = reminder.isOn ? .black : UIColor(white: 0.5, alpha: 1.0)
-        cell.periodLabel.textColor = cell.timeLabel.textColor
-        cell.typeLabel.textColor = cell.timeLabel.textColor
+
+        let color = labelTextColor(forState: reminder.isOn)
+        cell.timeLabel.textColor = color
+        cell.periodLabel.textColor = color
+        cell.typeLabel.textColor = color
         
         cell.showsDisclosureIndicatorContainer = isEditing
-        
-        return cell
+    }
+
+    func labelTextColor(forState state: Bool) -> UIColor {
+        if #available(iOS 13.0, *) {
+            return state ? .label : .secondaryLabel
+        } else {
+            return state ? .black : UIColor(white: 0.5, alpha: 1.0)
+        }
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -251,25 +251,6 @@ class RemindersViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    
-    /*
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ReminderCell else { return }
-        
-        cell.switchView.setOn(!cell.switchView.isOn, animated: true)
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        var reminder = reminders[indexPath.row]
-        reminder.isOn = cell.switchView.isOn
-        reminders[indexPath.row] = reminder
-        
-        cell.timeLabel.textColor = reminder.isOn ? .black : UIColor(white: 0.5, alpha: 1.0)
-        cell.periodLabel.textColor = cell.timeLabel.textColor
-        cell.typeLabel.textColor = cell.timeLabel.textColor
-        
-        scheduleNotifications()
-    }
-     */
     
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return isEditing
