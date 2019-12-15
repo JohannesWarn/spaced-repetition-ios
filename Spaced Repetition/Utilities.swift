@@ -25,6 +25,22 @@ extension UIColor {
             blue: rgb & 0xFF
         )
     }
+
+    static var appForegroundColor: UIColor {
+        if #available(iOS 13.0, *) {
+            return .label
+        } else {
+            return .black
+        }
+    }
+
+    static var appBackgroundColor: UIColor {
+        if #available(iOS 13.0, *) {
+            return .systemBackground
+        } else {
+            return .white
+        }
+    }
 }
 
 extension UIImage {

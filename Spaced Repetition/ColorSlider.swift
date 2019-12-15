@@ -71,12 +71,12 @@ import UIKit
         if subview.bounds.size.width == subview.bounds.size.height {
             let blackBackground = CAShapeLayer()
             blackBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 4.0, y: 4.0), size: CGSize(width: 24.0, height: 24.0))).cgPath
-            blackBackground.fillColor = UIColor.black.cgColor
+            blackBackground.fillColor = UIColor.appForegroundColor.cgColor
             subview.layer.addSublayer(blackBackground)
             
             let whiteBackground = CAShapeLayer()
             whiteBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 6.0, y: 6.0), size: CGSize(width: 20.0, height: 20.0))).cgPath
-            whiteBackground.fillColor = UIColor.white.cgColor
+            whiteBackground.fillColor = UIColor.appBackgroundColor.cgColor
             subview.layer.addSublayer(whiteBackground)
             
             currentColorLayer = CAShapeLayer()
@@ -107,7 +107,7 @@ import UIKit
         
         layer.cornerRadius = 16
         layer.masksToBounds = true
-        layer.borderColor = UIColor.black.cgColor
+        layer.borderColor = UIColor.appForegroundColor.cgColor
         layer.borderWidth = 3.0
     }
     

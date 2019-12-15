@@ -1217,7 +1217,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                 </constraints>
                             </view>
                             <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="j7e-kO-W8N" customClass="ColorSlider" customModule="Spaced_Repetition" customModuleProvider="target">
-                                <rect key="frame" x="11" y="6" width="176" height="31"/>
+                                <rect key="frame" x="11" y="5.5" width="176" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="750" constant="270" id="tvU-Ng-gWt"/>
                                 </constraints>
@@ -1256,7 +1256,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="j7e-kO-W8N" firstAttribute="centerY" secondItem="mAj-H3-gj4" secondAttribute="centerY" id="62p-KI-1vx"/>
                             <constraint firstItem="i2n-8X-sqS" firstAttribute="height" relation="lessThanOrEqual" secondItem="zWa-39-I2g" secondAttribute="height" multiplier="0.75" id="6za-w6-HXN"/>
@@ -1302,29 +1302,29 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="yDI-SZ-1Dn">
-                                <rect key="frame" x="25" y="-26" width="270" height="124"/>
+                                <rect key="frame" x="25" y="5" width="270" height="62"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFB-oa-GCQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="51" height="124"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="51" height="62"/>
+                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <state key="normal" image="draw tool"/>
                                         <connections>
                                             <segue destination="TeJ-Zv-6hz" kind="show" animates="NO" id="H6h-JM-pGX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qf5-DM-Ts4">
-                                        <rect key="frame" x="73" y="0.0" width="51" height="124"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="73" y="0.0" width="51" height="62"/>
+                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <state key="normal" image="text tool"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohw-9F-vyW">
-                                        <rect key="frame" x="146" y="0.0" width="51" height="124"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="146" y="0.0" width="51" height="62"/>
+                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <state key="normal" image="image tool"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wab-cR-swG">
-                                        <rect key="frame" x="219" y="0.0" width="51" height="124"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="219" y="0.0" width="51" height="62"/>
+                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <state key="normal" image="flip tool"/>
                                     </button>
                                 </subviews>
@@ -1360,16 +1360,16 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kur-0r-1td">
-                                <rect key="frame" x="25" y="-2" width="270" height="68"/>
+                                <rect key="frame" x="25" y="-3" width="270" height="70"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YB6-8R-PlW" customClass="WidthSlider" customModule="Spaced_Repetition" customModuleProvider="target">
-                                        <rect key="frame" x="-2" y="38" width="274" height="31"/>
+                                        <rect key="frame" x="-2" y="39" width="274" height="32"/>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ICX-PG-7sB" customClass="ColorSlider" customModule="Spaced_Repetition" customModuleProvider="target">
-                                        <rect key="frame" x="-2" y="0.0" width="274" height="31"/>
+                                        <rect key="frame" x="-2" y="0.0" width="274" height="32"/>
                                     </slider>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="YB6-8R-PlW" firstAttribute="top" secondItem="ICX-PG-7sB" secondAttribute="bottom" constant="8" symbolic="YES" id="B5d-TD-ETn"/>
                                     <constraint firstAttribute="width" constant="270" id="DXA-dn-1l6"/>
@@ -1382,7 +1382,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Kur-0r-1td" firstAttribute="centerX" secondItem="bnz-xJ-CnH" secondAttribute="centerX" id="1ug-kN-p2p"/>
                             <constraint firstItem="Kur-0r-1td" firstAttribute="centerY" secondItem="bnz-xJ-CnH" secondAttribute="centerY" constant="-4" id="HUL-DO-ARQ"/>
