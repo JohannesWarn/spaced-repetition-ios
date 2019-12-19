@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "all done.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "all done darkmode.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

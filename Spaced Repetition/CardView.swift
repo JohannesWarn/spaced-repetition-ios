@@ -33,33 +33,38 @@ class CardView: UIView {
         frontView = UIView(frame: bounds)
         frontView.layer.transform = CATransform3DMakeRotation(0, 0, 1, 0)
         frontView.layer.borderWidth = 4.0
-        frontView.layer.borderColor = UIColor.black.cgColor
+        frontView.layer.borderColor = UIColor.appForegroundColor.cgColor
         frontView.layer.cornerRadius = 30.0
         frontView.layer.masksToBounds = true
         frontView.layer.transform.m34 = 0.001 // set the perspective
         frontView.layer.isDoubleSided = false
-        frontView.backgroundColor = UIColor.white
+        frontView.backgroundColor = UIColor.appBackgroundColor.staticColor
         addSubview(frontView)
         
         frontViewContentView = UIView(frame: bounds)
-        frontViewContentView.backgroundColor = UIColor.white
+        frontViewContentView.backgroundColor = UIColor.appBackgroundColor.staticColor
         frontView.addSubview(frontViewContentView)
         
         backView = UIView(frame: bounds)
         backView.isUserInteractionEnabled = false
         backView.layer.transform = CATransform3DMakeRotation(.pi, 0, 1, 0)
         backView.layer.borderWidth = 4.0
-        backView.layer.borderColor = UIColor.black.cgColor
+        backView.layer.borderColor = UIColor.appForegroundColor.cgColor
         backView.layer.cornerRadius = 30.0
         backView.layer.masksToBounds = true
         backView.layer.transform.m34 = 0.001 // set the perspective
         backView.layer.isDoubleSided = false
-        backView.backgroundColor = UIColor.white
+        backView.backgroundColor = UIColor.appBackgroundColor.staticColor
         addSubview(backView)
         
         backViewContentView = UIView(frame: bounds)
-        backViewContentView.backgroundColor = UIColor.white
+        backViewContentView.backgroundColor = UIColor.appBackgroundColor.staticColor
         backView.addSubview(backViewContentView)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        frontView.layer.borderColor = UIColor.appForegroundColor.cgColor
+        backView.layer.borderColor = UIColor.appForegroundColor.cgColor
     }
     
     override func layoutSubviews() {

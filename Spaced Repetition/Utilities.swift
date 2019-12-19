@@ -25,6 +25,74 @@ extension UIColor {
             blue: rgb & 0xFF
         )
     }
+
+    static var appForegroundColor: UIColor {
+        if #available(iOS 13.0, *) {
+            return .label
+        } else {
+            return .black
+        }
+    }
+
+    static var appBackgroundColor: UIColor {
+        if #available(iOS 13.0, *) {
+            return .systemBackground
+        } else {
+            return .white
+        }
+    }
+    
+    static var appSecondaryBackgroundColor: UIColor {
+        if #available(iOS 13.0, *) {
+            return .secondarySystemBackground
+        } else {
+            return .white
+        }
+    }
+    
+    // this is a horrible name :shrug:
+    static var appForegroundColorGrayInDarkMode: UIColor {
+        if #available(iOS 13.0, *) {
+            return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                if UITraitCollection.userInterfaceStyle == .dark {
+                    return .secondaryLabel
+                } else {
+                    return .label
+                }
+            }
+        } else {
+            return .black
+        }
+    }
+    
+    // this is a horrible name :shrug:
+    static var appBackgroundColorGrayInDarkMode: UIColor {
+        if #available(iOS 13.0, *) {
+            return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                if UITraitCollection.userInterfaceStyle == .dark {
+                    return .secondarySystemBackground
+                } else {
+                    return .systemBackground
+                }
+            }
+        } else {
+            return .white
+        }
+    }
+    
+    var alpha: CGFloat {
+        get {
+            let alphaPointer = UnsafeMutablePointer<CGFloat>.allocate(capacity: 1)
+            self.getWhite(nil, alpha: alphaPointer)
+            return alphaPointer.pointee
+        }
+    }
+    
+    var staticColor: UIColor {
+        get {
+            UIColor(cgColor: self.cgColor)
+        }
+    }
 }
 
 extension UIImage {

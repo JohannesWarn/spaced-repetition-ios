@@ -22,6 +22,7 @@ class ModalCardViewController: UIViewController {
         super.viewDidLoad()
         
         cardViewPlaceholder.backgroundColor = nil
+        view.backgroundColor = .appBackgroundColorGrayInDarkMode
     }
     
     @IBAction func close(_ sender: Any) {

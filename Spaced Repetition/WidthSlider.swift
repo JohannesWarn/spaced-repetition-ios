@@ -16,6 +16,9 @@ import UIKit
         }
     }
     
+    var blackBackground: CAShapeLayer?
+    var whiteBackground: CAShapeLayer?
+    
     override func awakeFromNib() {
         setup()
     }
@@ -30,16 +33,23 @@ import UIKit
         if subview.bounds.size.width == subview.bounds.size.height {
             let blackBackground = CAShapeLayer()
             blackBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 4.0, y: 4.0), size: CGSize(width: 24.0, height: 24.0))).cgPath
-            blackBackground.fillColor = UIColor.black.cgColor
+            blackBackground.fillColor = UIColor.appForegroundColor.cgColor
             subview.layer.addSublayer(blackBackground)
             
             let whiteBackground = CAShapeLayer()
             whiteBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 6.0, y: 6.0), size: CGSize(width: 20.0, height: 20.0))).cgPath
-            whiteBackground.fillColor = UIColor.white.cgColor
+            whiteBackground.fillColor = UIColor.appBackgroundColor.cgColor
             subview.layer.addSublayer(whiteBackground)
         }
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        blackBackground?.fillColor = UIColor.black.cgColor
+        whiteBackground?.fillColor = UIColor.white.cgColor
+        
+        layer.borderColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
+    }
+
     func setup() {
         setThumbImage(UIImage.clearImageWithSize(CGSize(width: 32.0, height: 32.0)), for: .normal)
         minimumTrackTintColor = .clear
@@ -47,7 +57,7 @@ import UIKit
         
         layer.cornerRadius = 16
         layer.masksToBounds = true
-        layer.borderColor = UIColor.black.cgColor
+        layer.borderColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
         layer.borderWidth = 3.0
     }
     
@@ -55,10 +65,10 @@ import UIKit
         let onePixel = 1.0 / UIScreen.main.scale
         let context = UIGraphicsGetCurrentContext()
         
-        context!.setFillColor(UIColor.white.cgColor)
+        context!.setFillColor(UIColor.appBackgroundColor.cgColor)
         context!.fill(CGRect(x: 0.0, y: 0.0, width: rect.size.width, height: rect.size.height))
         
-        context!.setFillColor(UIColor.black.cgColor)
+        context!.setFillColor(UIColor.appForegroundColor.cgColor)
         for x: CGFloat in stride(from: 0.0, to: rect.width, by: onePixel) {
             let progress = x / rect.width
             let size = CGFloat((progress + progress * progress) / 2)

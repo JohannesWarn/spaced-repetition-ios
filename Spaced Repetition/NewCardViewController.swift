@@ -445,7 +445,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         
         let textView = UITextView()
         textView.backgroundColor = .clear
-        textView.textColor = .black
+        textView.textColor = UIColor.appForegroundColor.staticColor
         textView.isScrollEnabled = false
         textView.font = UIFont(name: "SFCompactRounded-Bold", size: fontSize)
         textView.delegate = self
@@ -708,6 +708,15 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         
         if let colorSliderValue = UserDefaults.standard.object(forKey: "colorSliderValue") as? Float {
             slidersViewController.colorSlider.value = colorSliderValue
+            
+            // don't allow background color to be first drawing color
+            if !currentDrawingView.canUndo {
+                if slidersViewController.colorSlider.colorValue == .black && currentDrawingView.superview!.backgroundColor == .black {
+                    slidersViewController.colorSlider.value = 0.0
+                } else if slidersViewController.colorSlider.colorValue == .white && currentDrawingView.superview!.backgroundColor == .white {
+                    slidersViewController.colorSlider.value = 1.0
+                }
+            }
         }
         if let widthSliderValue = UserDefaults.standard.object(forKey: "widthSliderValue") as? Float {
             slidersViewController.widthSlider.value = widthSliderValue
