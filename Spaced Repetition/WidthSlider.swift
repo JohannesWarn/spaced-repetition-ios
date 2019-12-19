@@ -16,6 +16,9 @@ import UIKit
         }
     }
     
+    var blackBackground: CAShapeLayer?
+    var whiteBackground: CAShapeLayer?
+    
     override func awakeFromNib() {
         setup()
     }
@@ -39,6 +42,13 @@ import UIKit
             subview.layer.addSublayer(whiteBackground)
         }
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        blackBackground?.fillColor = UIColor.black.cgColor
+        whiteBackground?.fillColor = UIColor.white.cgColor
+        
+        layer.borderColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
+    }
 
     func setup() {
         setThumbImage(UIImage.clearImageWithSize(CGSize(width: 32.0, height: 32.0)), for: .normal)
@@ -47,7 +57,7 @@ import UIKit
         
         layer.cornerRadius = 16
         layer.masksToBounds = true
-        layer.borderColor = UIColor.appForegroundColor.cgColor
+        layer.borderColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
         layer.borderWidth = 3.0
     }
     

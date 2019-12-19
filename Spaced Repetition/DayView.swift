@@ -28,13 +28,13 @@ class DayView: UIView {
         circleLayer.frame = circleImageView.bounds
         circleLayer.path = CGPath(ellipseIn: circleImageView.bounds.insetBy(dx: 1, dy: 1), transform: nil)
         circleLayer.lineWidth = 2.0
-        circleLayer.strokeColor = UIColor.appForegroundColor.cgColor
+        circleLayer.strokeColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
         circleLayer.fillColor = nil
         circleImageView.layer.addSublayer(circleLayer)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        circleLayer.strokeColor = UIColor.appForegroundColor.cgColor
+        circleLayer.strokeColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
     }
 
     override func layoutSubviews() {

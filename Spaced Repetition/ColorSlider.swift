@@ -52,6 +52,8 @@ import UIKit
     }
     
     var currentColorLayer: CAShapeLayer?
+    var blackBackground: CAShapeLayer?
+    var whiteBackground: CAShapeLayer?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -69,21 +71,29 @@ import UIKit
         super.didAddSubview(subview)
         
         if subview.bounds.size.width == subview.bounds.size.height {
-            let blackBackground = CAShapeLayer()
-            blackBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 4.0, y: 4.0), size: CGSize(width: 24.0, height: 24.0))).cgPath
-            blackBackground.fillColor = UIColor.appForegroundColor.cgColor
-            subview.layer.addSublayer(blackBackground)
+            blackBackground = CAShapeLayer()
+            blackBackground!.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 4.0, y: 4.0), size: CGSize(width: 24.0, height: 24.0))).cgPath
+            blackBackground!.fillColor = UIColor.black.cgColor
+            subview.layer.addSublayer(blackBackground!)
             
-            let whiteBackground = CAShapeLayer()
-            whiteBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 6.0, y: 6.0), size: CGSize(width: 20.0, height: 20.0))).cgPath
-            whiteBackground.fillColor = UIColor.appBackgroundColor.cgColor
-            subview.layer.addSublayer(whiteBackground)
+            whiteBackground = CAShapeLayer()
+            whiteBackground!.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 6.0, y: 6.0), size: CGSize(width: 20.0, height: 20.0))).cgPath
+            whiteBackground!.fillColor = UIColor.white.cgColor
+            subview.layer.addSublayer(whiteBackground!)
             
             currentColorLayer = CAShapeLayer()
             currentColorLayer!.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 8.0, y: 8.0), size: CGSize(width: 16.0, height: 16.0))).cgPath
             currentColorLayer!.fillColor = colorValue.cgColor
             subview.layer.addSublayer(currentColorLayer!)
         }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        blackBackground?.fillColor = UIColor.black.cgColor
+        whiteBackground?.fillColor = UIColor.white.cgColor
+        currentColorLayer?.fillColor = colorValue.cgColor
+        
+        layer.borderColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
     }
     
     var oldSize: CGSize?
@@ -107,7 +117,7 @@ import UIKit
         
         layer.cornerRadius = 16
         layer.masksToBounds = true
-        layer.borderColor = UIColor.appForegroundColor.cgColor
+        layer.borderColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
         layer.borderWidth = 3.0
     }
     

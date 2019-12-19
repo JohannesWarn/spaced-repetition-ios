@@ -616,6 +616,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                         <outlet property="creditsHeightStopBlock" destination="8T5-16-p5w" id="n1P-dO-NMs"/>
                         <outlet property="creditsTopLayoutConstraint" destination="S9M-Hx-CH6" id="fnN-fU-wdY"/>
                         <outlet property="daysStackView" destination="Oy1-0x-gD0" id="qhj-vD-9vV"/>
+                        <outlet property="fadeView" destination="lo1-dC-Mdf" id="csY-nY-eD0"/>
                         <outlet property="tableView" destination="Ktq-co-TN2" id="TS4-AK-cAf"/>
                         <outlet property="testButton" destination="ZkI-YB-k1e" id="Gsa-fO-g4f"/>
                         <outlet property="testDetailLabel" destination="TCV-jM-4WQ" id="C1d-C8-QVT"/>
@@ -1024,7 +1025,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="all done" translatesAutoresizingMaskIntoConstraints="NO" id="vEu-wc-aau">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQH-rf-Eh4">
                                 <rect key="frame" x="0.0" y="486" width="320" height="82"/>
@@ -1051,7 +1052,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="S20-3v-1YM" firstAttribute="width" secondItem="FeV-Vo-Dw6" secondAttribute="width" multiplier="0.86" priority="750" id="1Ec-Ib-ZLR"/>
                             <constraint firstItem="2dV-Xu-PzI" firstAttribute="top" secondItem="QY8-r6-cpX" secondAttribute="top" id="AtW-6u-93h"/>
@@ -1388,7 +1389,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                         <rect key="frame" x="-2" y="0.0" width="274" height="31"/>
                                     </slider>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="YB6-8R-PlW" firstAttribute="top" secondItem="ICX-PG-7sB" secondAttribute="bottom" constant="8" symbolic="YES" id="B5d-TD-ETn"/>
                                     <constraint firstAttribute="width" constant="270" id="DXA-dn-1l6"/>
@@ -1401,7 +1402,6 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Kur-0r-1td" firstAttribute="centerX" secondItem="bnz-xJ-CnH" secondAttribute="centerX" id="1ug-kN-p2p"/>
                             <constraint firstItem="Kur-0r-1td" firstAttribute="centerY" secondItem="bnz-xJ-CnH" secondAttribute="centerY" constant="-4" id="HUL-DO-ARQ"/>
@@ -1444,7 +1444,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
         <image name="text tool" width="38" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gfR-Oi-7CB"/>
+        <segue reference="GGc-Pu-sB1"/>
         <segue reference="M9S-Py-QzZ"/>
         <segue reference="JK5-Rh-RAJ"/>
     </inferredMetricsTieBreakers>

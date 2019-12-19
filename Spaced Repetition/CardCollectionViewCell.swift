@@ -27,7 +27,7 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     func setup() {
         imageView.layer.borderWidth = 2.0
-        imageView.layer.borderColor = UIColor.black.cgColor
+        imageView.layer.borderColor = UIColor.appForegroundColor.cgColor
         imageView.layer.cornerRadius = 10.0
         imageView.layer.masksToBounds = true
         addSubview(imageView)
@@ -35,6 +35,10 @@ class CardCollectionViewCell: UICollectionViewCell {
         highlightOverlay.backgroundColor = UIColor.init(white: 0.0, alpha: 0.25)
         highlightOverlay.isHidden = true
         imageView.addSubview(highlightOverlay)
+    }
+        
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        imageView.layer.borderColor = UIColor.appForegroundColor.cgColor
     }
     
     override func layoutSubviews() {

@@ -26,6 +26,8 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet var versionLabel: UILabel!
     
+    @IBOutlet var fadeView: GradientView!
+    
     var numberOfCardsAtLevelCache: [Int] = []
     
     override func viewDidLoad() {
@@ -56,6 +58,34 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             versionLabel.text = "version \(appVersion)"
+        }
+        
+        if #available(iOS 13.0, *) {
+            let bottomColor = self.fadeView.bottomColor!
+            let middleColor = self.fadeView.middleColor!
+            let topColor = self.fadeView.topColor!
+            
+            fadeView.bottomColor = UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                if UITraitCollection.userInterfaceStyle == .dark {
+                    return UIColor.init(white: 0.0, alpha: bottomColor.alpha)
+                } else {
+                    return bottomColor
+                }
+            }
+            fadeView.middleColor = UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                if UITraitCollection.userInterfaceStyle == .dark {
+                    return UIColor.init(white: 0.0, alpha: middleColor.alpha)
+                } else {
+                    return middleColor
+                }
+            }
+            fadeView.topColor = UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                if UITraitCollection.userInterfaceStyle == .dark {
+                    return UIColor.init(white: 0.0, alpha: topColor.alpha)
+                } else {
+                    return topColor
+                }
+            }
         }
     }
     
