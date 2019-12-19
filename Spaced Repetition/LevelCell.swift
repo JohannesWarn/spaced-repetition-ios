@@ -12,8 +12,6 @@ class LevelCell: UIView {
 
     var leftConstraint: NSLayoutConstraint?
     
-    @IBOutlet var levelLabel: UILabel!
-    @IBOutlet var intervalLabel: UILabel!
     @IBOutlet var cardsLabel: UILabel!
 
 }

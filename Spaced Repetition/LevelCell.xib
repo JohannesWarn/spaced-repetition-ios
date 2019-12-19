@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,47 +14,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90t-ee-3CN">
-                    <rect key="frame" x="252.5" y="14.5" width="67.5" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 cards" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90t-ee-3CN">
+                    <rect key="frame" x="0.0" y="14.5" width="320" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yK9-8G-HqC">
-                    <rect key="frame" x="0.0" y="7.5" width="54" height="35.5"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZc-Ea-DZv">
-                            <rect key="frame" x="0.0" y="0.0" width="54" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everyday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzV-fo-Rn5">
-                            <rect key="frame" x="0.0" y="21" width="54" height="14.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="pZc-Ea-DZv" secondAttribute="trailing" id="BNB-AE-B56"/>
-                        <constraint firstAttribute="bottom" secondItem="ZzV-fo-Rn5" secondAttribute="bottom" id="Gum-jo-ElT"/>
-                        <constraint firstAttribute="trailing" secondItem="ZzV-fo-Rn5" secondAttribute="trailing" id="MqV-j3-WDs"/>
-                        <constraint firstItem="pZc-Ea-DZv" firstAttribute="leading" secondItem="yK9-8G-HqC" secondAttribute="leading" id="O3s-qg-d1G"/>
-                        <constraint firstItem="pZc-Ea-DZv" firstAttribute="top" secondItem="yK9-8G-HqC" secondAttribute="top" id="ZNR-l1-vrW"/>
-                        <constraint firstItem="ZzV-fo-Rn5" firstAttribute="leading" secondItem="yK9-8G-HqC" secondAttribute="leading" id="o0h-ak-4W3"/>
-                        <constraint firstItem="ZzV-fo-Rn5" firstAttribute="top" secondItem="pZc-Ea-DZv" secondAttribute="bottom" id="rSY-t7-tOb"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="90t-ee-3CN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yK9-8G-HqC" secondAttribute="trailing" id="EXb-2K-9zO"/>
+                <constraint firstItem="90t-ee-3CN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9S1-5H-JHh"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="90t-ee-3CN" secondAttribute="trailing" id="a8k-kt-PRF"/>
-                <constraint firstItem="yK9-8G-HqC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rE0-A2-cBQ"/>
                 <constraint firstItem="90t-ee-3CN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="s6B-tS-P2h"/>
-                <constraint firstItem="yK9-8G-HqC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="suX-5V-gBC"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -62,8 +33,6 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="cardsLabel" destination="90t-ee-3CN" id="Gwo-B6-eyh"/>
-                <outlet property="intervalLabel" destination="ZzV-fo-Rn5" id="24W-J0-jfj"/>
-                <outlet property="levelLabel" destination="pZc-Ea-DZv" id="wVr-Uy-Ann"/>
             </connections>
             <point key="canvasLocation" x="49.6875" y="-222.35915492957747"/>
         </view>

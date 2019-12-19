@@ -269,7 +269,7 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="snR-ka-QTG">
-                                    <rect key="frame" x="0.0" y="326" width="320" height="2011"/>
+                                    <rect key="frame" x="0.0" y="376" width="320" height="2011"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8v-bC-SKT">
@@ -510,15 +510,51 @@ If you are new to spaced repetition I recommend reading Nicky Case’s introduct
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="level cell" rowHeight="50" id="xoe-Ha-kBQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="level cell" textLabel="kxq-jV-u5r" rowHeight="50" style="IBUITableViewCellStyleDefault" id="xoe-Ha-kBQ">
                                         <rect key="frame" x="0.0" y="248" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xoe-Ha-kBQ" id="wDE-4Q-0Vo">
                                             <rect key="frame" x="0.0" y="0.0" width="294" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kxq-jV-u5r">
+                                                    <rect key="frame" x="15" y="0.0" width="271" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="Msc-Xr-9ya" kind="show" id="XSi-Ur-Ebg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="level cell subtitle" textLabel="lDH-bQ-VW8" detailTextLabel="spS-I1-xZL" rowHeight="50" style="IBUITableViewCellStyleSubtitle" id="rW6-mY-3oB">
+                                        <rect key="frame" x="0.0" y="298" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rW6-mY-3oB" id="1Kx-YY-05x">
+                                            <rect key="frame" x="0.0" y="0.0" width="294" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lDH-bQ-VW8">
+                                                    <rect key="frame" x="15" y="8" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="spS-I1-xZL">
+                                                    <rect key="frame" x="15" y="28.5" width="33" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Msc-Xr-9ya" kind="show" id="b3Q-5v-Kvp"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1408,6 +1444,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FZ6-b0-JCM"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Nih-xk-Ezx"/>
                     <connections>
                         <outlet property="colorSlider" destination="ICX-PG-7sB" id="sgU-Gw-vdq"/>
                         <outlet property="widthSlider" destination="YB6-8R-PlW" id="Kdw-LT-rKN"/>
@@ -1446,6 +1483,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
     <inferredMetricsTieBreakers>
         <segue reference="GGc-Pu-sB1"/>
         <segue reference="M9S-Py-QzZ"/>
+        <segue reference="b3Q-5v-Kvp"/>
         <segue reference="JK5-Rh-RAJ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.60784313725490191" green="0.0" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>

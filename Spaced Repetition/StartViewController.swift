@@ -312,16 +312,21 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "level cell", for: indexPath)
         let level = self.level(forIndexPath: indexPath)
+        let identifier = (level != 0 && level <= 7) ? "level cell subtitle" : "level cell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         
         var cellContentView = cell.contentView.subviews.first { return $0.isKind(of: LevelCell.self) } as? LevelCell
         if cellContentView == nil {
             let newCellContentView = UINib(nibName: "LevelCell", bundle: nil).instantiate(withOwner: self, options: nil).first as! LevelCell
             newCellContentView.translatesAutoresizingMaskIntoConstraints = false
             cell.contentView.addSubview(newCellContentView)
+
+            let detailLabelInset: CGFloat
+            if #available(iOS 13, *) { detailLabelInset = -8.0 }
+            else { detailLabelInset = 0.0 }
             NSLayoutConstraint.activate([
-                newCellContentView.rightAnchor.constraint(equalTo: cell.contentView.rightAnchor),
+                newCellContentView.rightAnchor.constraint(equalTo: cell.contentView.rightAnchor, constant: detailLabelInset),
                 newCellContentView.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
                 newCellContentView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
             ])
@@ -335,16 +340,16 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if level == 0 {
             cell.imageView?.image = nil
-            cellContentView?.levelLabel.text = "Drafts"
-            cellContentView?.intervalLabel.text = nil
+            cell.textLabel?.text = "Drafts"
+            cell.detailTextLabel?.text = nil
         } else if level <= 7 {
             cell.imageView?.image = UIImage.imageWithCircle(radius: 4.0, color: dayColors[level - 1])
-            cellContentView?.levelLabel.text = "Level \(level)"
-            cellContentView?.intervalLabel.text = ["Everyday", "Every 2 days", "Every 4 days", "Every 8 days", "Every 16 days", "Every 32 days", "Every 64 days"][level - 1]
+            cell.textLabel?.text = "Level \(level)"
+            cell.detailTextLabel?.text = ["Everyday", "Every 2 days", "Every 4 days", "Every 8 days", "Every 16 days", "Every 32 days", "Every 64 days"][level - 1]
         } else {
             cell.imageView?.image = nil
-            cellContentView?.levelLabel.text = "Finished Cards"
-            cellContentView?.intervalLabel.text = nil
+            cell.textLabel?.text = "Finished Cards"
+            cell.detailTextLabel?.text = nil
         }
         
         let numberOfCardsAtLevel = numberOfCardsAtLevelCache[level]
@@ -352,31 +357,6 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cellContentView?.cardsLabel.text = "\(numberOfCardsAtLevel) card"
         } else {
             cellContentView?.cardsLabel.text = "\(numberOfCardsAtLevel) cards"
-        }
-        
-        let leftConstraint: NSLayoutConstraint?
-        if let imageView = cell.imageView, imageView.image != nil, imageView.superview != nil {
-            leftConstraint = cellContentView?.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: tableView.separatorInset.left)
-        } else {
-            leftConstraint = cellContentView?.leftAnchor.constraint(equalTo: cell.contentView.leftAnchor, constant: tableView.separatorInset.left)
-        }
-        leftConstraint?.isActive = true
-        cellContentView?.leftConstraint = leftConstraint
-        
-        // setup the left constraint again async on the main queue to fix an issue were the imageview had not yet been added to it's super view
-        DispatchQueue.main.async {
-            if let leftConstraint = cellContentView?.leftConstraint {
-                cell.contentView.removeConstraint(leftConstraint)
-            }
-            
-            let leftConstraint: NSLayoutConstraint?
-            if let imageView = cell.imageView, imageView.image != nil, imageView.superview != nil {
-                leftConstraint = cellContentView?.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: tableView.separatorInset.left)
-            } else {
-                leftConstraint = cellContentView?.leftAnchor.constraint(equalTo: cell.contentView.leftAnchor, constant: tableView.separatorInset.left)
-            }
-            leftConstraint?.isActive = true
-            cellContentView?.leftConstraint = leftConstraint
         }
         
         return cell
