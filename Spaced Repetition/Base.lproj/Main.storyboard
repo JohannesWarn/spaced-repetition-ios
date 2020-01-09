@@ -844,17 +844,17 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 cards, next review in 0 days" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lR5-3s-YbM">
-                                    <rect key="frame" x="58.5" y="22" width="203" height="18"/>
+                                    <rect key="frame" x="58.5" y="12" width="203" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="CVi-Au-545"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="lR5-3s-YbM" firstAttribute="top" secondItem="zri-Wd-oR6" secondAttribute="top" constant="22" id="3T9-Gv-8G7"/>
+                                <constraint firstItem="lR5-3s-YbM" firstAttribute="top" secondItem="zri-Wd-oR6" secondAttribute="top" constant="12" id="3T9-Gv-8G7"/>
                                 <constraint firstItem="lR5-3s-YbM" firstAttribute="centerX" secondItem="zri-Wd-oR6" secondAttribute="centerX" id="ajq-Oz-FwH"/>
                                 <constraint firstItem="lR5-3s-YbM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zri-Wd-oR6" secondAttribute="leading" constant="20" symbolic="YES" id="qYR-ht-oP1"/>
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lR5-3s-YbM" secondAttribute="trailing" constant="20" symbolic="YES" id="qgh-xt-Ere"/>
@@ -1557,7 +1557,7 @@ levels are reviewed less frequently.</string>
         <image name="text tool" width="38" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GGc-Pu-sB1"/>
+        <segue reference="gfR-Oi-7CB"/>
         <segue reference="M9S-Py-QzZ"/>
         <segue reference="b3Q-5v-Kvp"/>
         <segue reference="JK5-Rh-RAJ"/>
