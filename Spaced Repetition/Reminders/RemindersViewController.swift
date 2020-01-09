@@ -63,19 +63,23 @@ class RemindersViewController: UITableViewController {
         isEditing = false
     }
     
+    // this method is called before setEditing, so we can use it to detect if setEditing iscalled in response to a swipe
+    var isShowingSwipeAction: Bool = false
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        isShowingSwipeAction = true
+        return nil
+    }
+    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        
-        let swipeActionView = tableView.subviews.first { subview in
-            return !(subview.isKind(of: UITableViewCell.self) || subview.isKind(of: UIImageView.self) || subview.bounds.width > 100)
-        }
-        let isShowingSwipeAction = swipeActionView != nil
         
         for cell in tableView.visibleCells {
             if let reminderCell = cell as? ReminderCell {
                 reminderCell.showsDisclosureIndicatorContainer = editing && !isShowingSwipeAction
             }
         }
+        
+        isShowingSwipeAction = false
     }
     
     func showWarningHeaderIfNeeded() {
