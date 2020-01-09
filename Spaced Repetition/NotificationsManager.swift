@@ -44,6 +44,11 @@ struct Reminder {
 }
 class NotificationsManager: Any {
     
+    class var hasActiveReminders: Bool {
+        let activeReminders = reminders.filter { $0.isOn }
+        return activeReminders.count > 0
+    }
+    
     class var reminders: [Reminder] {
         get {
             if let reminderDictionaries = UserDefaults.standard.array(forKey: "reminders") as? [[String: Any]] {

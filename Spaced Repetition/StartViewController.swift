@@ -107,6 +107,8 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             performSegue(withIdentifier: "showOnboarding", sender: self)
         }
         hasCheckedOnboarding = true
+        
+        navigationItem.leftBarButtonItem?.image = NotificationsManager.hasActiveReminders ? UIImage(named: "notifications enabled") : UIImage(named: "notifications")
     }
     
     override func viewDidLayoutSubviews() {
