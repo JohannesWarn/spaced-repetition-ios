@@ -89,6 +89,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    var hasCheckedOnboarding = false
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -100,16 +101,11 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.reloadData()
         
         updateCalendarView()
-    }
-    
-    var hasCheckedOnboarding = false
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        if !hasCheckedOnboarding && (DaysCompletedManager.getCompletedDays().count == 0 && !ImageManager.containsAnyCards()) {
-            hasCheckedOnboarding = true
+        if !hasCheckedOnboarding && (DaysCompletedManager.getCompletedDays().count == 0 && !(ImageManager.containsAnyCards() || ImageManager.containsDrafts())) {
             performSegue(withIdentifier: "showOnboarding", sender: self)
         }
+        hasCheckedOnboarding = true
     }
     
     override func viewDidLayoutSubviews() {
