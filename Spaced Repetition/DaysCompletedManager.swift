@@ -24,6 +24,7 @@ enum DayCompletionState {
     case nothing
     case completed
     case missed
+    case skipped
 }
 
 class DaysCompletedManager: NSObject {
@@ -35,13 +36,21 @@ class DaysCompletedManager: NSObject {
         return []
     }
     
+    class func getSkippedDays() -> [Date] {
+        if let skippedDays = UserDefaults.standard.array(forKey: "skippedDays") as? [Date] {
+            return skippedDays
+        }
+        return []
+    }
+    
     class func levelsForToday() -> [Int] {
         let dateComponents = Calendar.current.dateComponents([.era, .year, .month, .day], from: Date())
         let today = Calendar.current.date(from: dateComponents)!
         
         let numberOfDaysCompleted = DaysCompletedManager.getCompletedDays().count
+        let numberOfDaysSkipped = DaysCompletedManager.getSkippedDays().count
         let completionStateForToday = DaysCompletedManager.completionState(forDay: today)
-        let numberOfDaysCompletedUntilToday = numberOfDaysCompleted - (completionStateForToday == .completed ? 1 : 0)
+        let numberOfDaysCompletedUntilToday = (numberOfDaysCompleted + numberOfDaysSkipped) - (completionStateForToday == .completed ? 1 : 0)
         let levelsToRepeatToday = levelsToRepeatAtDay[numberOfDaysCompletedUntilToday % 64]
         
         return(levelsToRepeatToday)
@@ -54,8 +63,9 @@ class DaysCompletedManager: NSObject {
         let today = Calendar.current.date(from: dateComponents)!
         
         let numberOfDaysCompleted = DaysCompletedManager.getCompletedDays().count
+        let numberOfDaysSkipped = DaysCompletedManager.getSkippedDays().count
         let completionStateForToday = DaysCompletedManager.completionState(forDay: today)
-        let numberOfDaysCompletedUntilToday = numberOfDaysCompleted - (completionStateForToday == .completed ? 1 : 0)
+        let numberOfDaysCompletedUntilToday = (numberOfDaysCompleted + numberOfDaysSkipped) - (completionStateForToday == .completed ? 1 : 0)
         
         if completionStateForToday != .completed {
             if levelsToRepeatAtDay[numberOfDaysCompletedUntilToday % 64].contains(level) {
@@ -88,6 +98,12 @@ class DaysCompletedManager: NSObject {
                 return .completed
             }
         }
+        let skippedDays = getSkippedDays().reversed()
+        for skippedDay in skippedDays {
+            if Calendar.current.isDate(skippedDay, inSameDayAs: date) {
+                return .skipped
+            }
+        }
         if let firstDay = completedDays.last {
             if firstDay < date && !(Calendar.current.isDateInToday(date) || date > Date()) {
                 return.missed
@@ -97,10 +113,52 @@ class DaysCompletedManager: NSObject {
     }
     
     class func setCompletion(forDay date: Date) {
-        guard completionState(forDay: date) != .completed else { return }
+        let currentCompletionState = completionState(forDay: date)
+        guard currentCompletionState != .completed else { return }
+        guard currentCompletionState != .skipped else { return }
+        
         var completedDays = getCompletedDays()
         completedDays.append(date)
         UserDefaults.standard.set(completedDays, forKey: "completedDays")
+    }
+    
+    // autocomplete days were the test would have been finished without a single card
+    class func skipDaysWithoutTests() {
+        let dateComponents = Calendar.current.dateComponents([.era, .year, .month, .day], from: Date())
+        let today = Calendar.current.date(from: dateComponents)!
+        
+        let completedDays = DaysCompletedManager.getCompletedDays()
+        guard completedDays.count > 0 else { return }
+        
+        var day = completedDays.last!
+        day = Calendar.current.date(byAdding: .day, value: 1, to: day)!
+        
+        let numberOfDaysCompleted = completedDays.count
+        let numberOfDaysSkipped = DaysCompletedManager.getSkippedDays().count
+        var numberOfDaysCompletedUntilDay = numberOfDaysCompleted + numberOfDaysSkipped
+        
+        while day < today {
+            let levelsToRepeat = levelsToRepeatAtDay[numberOfDaysCompletedUntilDay % 64]
+            let cardsForDay = ImageManager.deckOfImages(forLevels: levelsToRepeat)
+            if cardsForDay.count == 0 {
+                setSkip(forDay: day)
+                numberOfDaysCompletedUntilDay += 1
+                day = Calendar.current.date(byAdding: .day, value: 1, to: day)!
+            } else {
+                break
+            }
+        }
+        
+    }
+    
+    class func setSkip(forDay date: Date) {
+        let currentCompletionState = completionState(forDay: date)
+        guard currentCompletionState != .completed else { return }
+        guard currentCompletionState != .skipped else { return }
+        
+        var skippedDays = getSkippedDays()
+        skippedDays.append(date)
+        UserDefaults.standard.set(skippedDays, forKey: "skippedDays")
     }
     
 }

@@ -93,6 +93,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        DaysCompletedManager.skipDaysWithoutTests()
         updateCardsAtLevelCache()
         
         if let indexPath = tableView.indexPathForSelectedRow {
@@ -156,8 +157,9 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let lastWeekday = Calendar.current.date(byAdding: .day, value: 6, to: firstWeekday)!
 
         let numberOfDaysCompleted = DaysCompletedManager.getCompletedDays().count
+        let numberOfDaysSkipped = DaysCompletedManager.getSkippedDays().count
         let completionStateForToday = DaysCompletedManager.completionState(forDay: today)
-        let numberOfDaysCompletedUntilToday = numberOfDaysCompleted - (completionStateForToday == .completed ? 1 : 0)
+        let numberOfDaysCompletedUntilToday = (numberOfDaysCompleted + numberOfDaysSkipped) - (completionStateForToday == .completed ? 1 : 0)
         let levelsToRepeatToday = levelsToRepeatAtDay[numberOfDaysCompletedUntilToday % 64]
         var levelStrings = levelsToRepeatToday.map { (level) -> String in
             return String(level)
@@ -192,6 +194,8 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 dayView.circleImageView.image = UIImage(named: "win circle")
             case .missed:
                 dayView.circleImageView.image = UIImage(named: "error circle")
+            case .skipped:
+                dayView.circleImageView.image = UIImage(named: "skip circle")
             default:
                 dayView.circleImageView.image = nil
             }
@@ -220,7 +224,8 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             day = Calendar.current.date(byAdding: .day, value: -1, to: day)!
             i -= 1
             
-            if DaysCompletedManager.completionState(forDay: day) == .completed {
+            let completionState = DaysCompletedManager.completionState(forDay: day)
+            if completionState == .completed || completionState == .skipped {
                 numberOfDaysCompletedUntilDay -= 1
                 
                 let levelsToRepeat = levelsToRepeatAtDay[numberOfDaysCompletedUntilDay % 64]
