@@ -129,12 +129,16 @@ class DaysCompletedManager: NSObject {
         
         let completedDays = DaysCompletedManager.getCompletedDays()
         guard completedDays.count > 0 else { return }
+        let skippedDays = DaysCompletedManager.getSkippedDays()
         
         var day = completedDays.last!
+        if let lastSkippedDay = skippedDays.last, day < lastSkippedDay {
+            day = lastSkippedDay
+        }
         day = Calendar.current.date(byAdding: .day, value: 1, to: day)!
         
         let numberOfDaysCompleted = completedDays.count
-        let numberOfDaysSkipped = DaysCompletedManager.getSkippedDays().count
+        let numberOfDaysSkipped = skippedDays.count
         var numberOfDaysCompletedUntilDay = numberOfDaysCompleted + numberOfDaysSkipped
         
         while day < today {
