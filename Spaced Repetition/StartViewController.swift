@@ -43,8 +43,6 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         creditsHeightStopBlock.isHidden = true
         
-        updateCalendarView()
-        
         testButton.addTarget(self, action:#selector(forwardTestButtonTouchDownEvent), for:.touchDown)
         testButton.addTarget(self, action:#selector(forwardTestButtonTouchDownRepeatEvent), for:.touchDownRepeat)
         testButton.addTarget(self, action:#selector(forwardTestButtonTouchDragInsideEvent), for:.touchDragInside)
@@ -95,16 +93,21 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     var hasCheckedOnboarding = false
+    var isFirstWillAppear = true
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         DaysCompletedManager.skipDaysWithoutTests()
-        updateCardsAtLevelCache()
         
-        if let indexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: indexPath, animated: animated)
+        if !isFirstWillAppear {
+            updateCardsAtLevelCache()
+            if let indexPath = tableView.indexPathForSelectedRow {
+                tableView.deselectRow(at: indexPath, animated: animated)
+            }
+            tableView.reloadData()
+        } else {
+            isFirstWillAppear = false
         }
-        tableView.reloadData()
         
         updateCalendarView()
         
@@ -116,7 +119,13 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         navigationItem.leftBarButtonItem?.image = NotificationsManager.hasActiveReminders ? UIImage(named: "notifications enabled") : UIImage(named: "notifications")
     }
     
+    var isFirstDidBecomeActive = true
     @objc func applicationDidBecomeActive() {
+        guard !isFirstDidBecomeActive else {
+            isFirstDidBecomeActive = false
+            return
+        }
+        
         DispatchQueue.main.async {
             DaysCompletedManager.skipDaysWithoutTests()
             self.updateCardsAtLevelCache()
