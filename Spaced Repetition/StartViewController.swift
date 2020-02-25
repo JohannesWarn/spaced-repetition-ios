@@ -87,6 +87,11 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
             }
         }
+        
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(applicationDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification, object: nil
+        )
     }
     
     var hasCheckedOnboarding = false
@@ -109,6 +114,16 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         hasCheckedOnboarding = true
         
         navigationItem.leftBarButtonItem?.image = NotificationsManager.hasActiveReminders ? UIImage(named: "notifications enabled") : UIImage(named: "notifications")
+    }
+    
+    @objc func applicationDidBecomeActive() {
+        DispatchQueue.main.async {
+            DaysCompletedManager.skipDaysWithoutTests()
+            self.updateCardsAtLevelCache()
+            self.tableView.reloadData()
+            self.updateCalendarView()
+            self.navigationItem.leftBarButtonItem?.image = NotificationsManager.hasActiveReminders ? UIImage(named: "notifications enabled") : UIImage(named: "notifications")
+        }
     }
     
     override func viewDidLayoutSubviews() {
