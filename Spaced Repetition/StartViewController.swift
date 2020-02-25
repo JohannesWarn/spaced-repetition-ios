@@ -370,6 +370,10 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.detailTextLabel?.text = nil
         }
         
+        if numberOfCardsAtLevelCache.count == 0 {
+            updateCardsAtLevelCache()
+        }
+        
         let numberOfCardsAtLevel = numberOfCardsAtLevelCache[level]
         if numberOfCardsAtLevel == 1 {
             cellContentView?.cardsLabel.text = "\(numberOfCardsAtLevel) card"
