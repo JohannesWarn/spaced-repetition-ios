@@ -124,9 +124,7 @@ extension UIActivityViewController {
     func addSaveToCameraRollErrorCompletion() {
         self.completionWithItemsHandler = { activity, _, _, _ in
             if activity == UIActivity.ActivityType.saveToCameraRoll {
-                if PHPhotoLibrary.authorizationStatus() == .authorized {
-                    self.isEditing = false
-                } else {
+                if PHPhotoLibrary.authorizationStatus() != .authorized {
                     let alertController = UIAlertController(title: "Unable to Save Photos", message: "You need to allow Spaced Repetion acces to your photos to use Save Images.", preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { (_) in
                         UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
@@ -134,8 +132,6 @@ extension UIActivityViewController {
                     alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                     self.present(alertController, animated: true)
                 }
-            } else {
-                self.isEditing = false
             }
         }
     }
