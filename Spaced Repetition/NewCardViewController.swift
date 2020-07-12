@@ -295,6 +295,10 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
                         hasSavedCard = true
                         topLeftButton.setTitle(preferredLeftButtonTitle, for: .normal)
                         topLeftButton.layoutIfNeeded()
+                        
+                        topRightButton.setTitle(preferredRightButtonTitle, for: .normal)
+                        topRightButton.isEnabled = canSaveDraft || canSaveCard
+                        topRightButton.layoutIfNeeded()
                         UIView.setAnimationsEnabled(true)
                     }
                 } else {
@@ -421,6 +425,9 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         catch let error {
             return (false, error)
         }
+        
+        NotificationsManager.scheduleNotifications()
+        
         return (true, nil)
     }
     

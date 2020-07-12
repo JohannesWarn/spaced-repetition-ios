@@ -105,6 +105,7 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
                     ImageManager.move(card: newCard, toLevel: level)
                 }
             }
+            NotificationsManager.scheduleNotifications()
         } catch let error {
             let alertController = UIAlertController(title: "Error Duplicating Cards", message: error.localizedDescription, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Contact the Developer", style: .default, handler: { (_) in
@@ -209,6 +210,7 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
             for card in currentlySelectedCards {
                 ImageManager.move(card: card, toLevel: level)
             }
+            NotificationsManager.scheduleNotifications()
             isEditing = false
             reload()
         }

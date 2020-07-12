@@ -81,6 +81,14 @@ class ImageManager: NSObject {
         return deckOfImages(forLevel: level).count
     }
     
+    class func numberOfCards(atLevels levels: [Int]) -> Int {
+        var totalNumberOfCards = 0
+        for level in levels {
+            totalNumberOfCards += deckOfImages(forLevel: level).count
+        }
+        return totalNumberOfCards
+    }
+    
     class func move(card: CardSides, toLevel level: Int) {
         guard card.level != level else { return }
         
@@ -106,6 +114,8 @@ class ImageManager: NSObject {
         }
         try! FileManager.default.removeItem(at: card.frontImageURL!)
         try! FileManager.default.removeItem(at: card.backImageURL!)
+        
+        NotificationsManager.scheduleNotifications()
     }
     
     class func imageURL(name: String, level: Int, suffix: String) -> URL {

@@ -156,6 +156,7 @@ class TestViewController: ModalCardViewController {
         
         if let currentCard = currentCard {
             ImageManager.move(card: currentCard, toLevel: currentCard.level + 1)
+            NotificationsManager.scheduleNotifications()
         }
         
         if cardDeck.count == 0 {
@@ -189,6 +190,7 @@ class TestViewController: ModalCardViewController {
         
         if let currentCard = currentCard {
             ImageManager.move(card: currentCard, toLevel: 1)
+            NotificationsManager.scheduleNotifications()
         }
         
         if cardDeck.count == 0 {

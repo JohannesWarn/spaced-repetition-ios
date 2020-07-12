@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        NotificationsManager.scheduleNotifications()
+        
         DispatchQueue.global(qos: .background).async {
             let cardDeckForToday = ImageManager.deckOfImages(forLevels: DaysCompletedManager.levelsForToday())
             if DaysCompletedManager.completionStateForToday() == .completed || cardDeckForToday.count == 0 {
