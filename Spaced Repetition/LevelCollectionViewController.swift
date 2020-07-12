@@ -90,6 +90,35 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
+    func duplicateSelectedItems() {
+        guard let level = self.level else { return }
+        
+        do {
+            for card in selectedCards() {
+                let newCard = ImageManager.imagesURLsForNewCard()
+                if let frontImageURL = newCard.frontImageURL, let backImageURL = newCard.backImageURL {
+                    try card.frontImage?.pngData()?.write(to: frontImageURL)
+                    try card.backImage?.pngData()?.write(to: backImageURL)
+                    
+                    ImageManager.move(card: newCard, toLevel: level)
+                }
+            }
+        } catch let error {
+            let alertController = UIAlertController(title: "Error Duplicating Cards", message: error.localizedDescription, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Contact the Developer", style: .default, handler: { (_) in
+                let url = URL(string: "mailto:carlolof@johanneswarn.com?subject=Spaced%20Repetition&body=\(error.localizedDescription)")!
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
+            }))
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertController, animated: true)
+        }
+        
+        self.reload()
+    }
     func reload() {
         guard let level = level else { return }
         
@@ -125,7 +154,14 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
         
-        let activityViewController = UIActivityViewController(activityItems: images, applicationActivities: nil)
+        var applicationActivities: [UIActivity] = []
+        
+        if #available(iOS 13.0, *) {
+            let duplicateCardActivity = DuplicateCardActivity(levelCollectionViewController: self)
+            applicationActivities.append(duplicateCardActivity)
+        }
+        
+        let activityViewController = UIActivityViewController(activityItems: images, applicationActivities: applicationActivities)
         activityViewController.popoverPresentationController?.barButtonItem = sender
         activityViewController.addSaveToCameraRollErrorCompletion()
         present(activityViewController, animated: true, completion: nil)
@@ -284,6 +320,32 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         updateToolbarEnabled()
+    }
+    
+}
+
+@available(iOS 13.0, *)
+class DuplicateCardActivity: UIActivity {
+    var levelCollectionViewController: LevelCollectionViewController
+    
+    init(levelCollectionViewController: LevelCollectionViewController) {
+        self.levelCollectionViewController = levelCollectionViewController
+        super.init()
+    }
+    
+    override func perform() {
+        levelCollectionViewController.duplicateSelectedItems()
+        activityDidFinish(true)
+    }
+    
+    override var activityTitle: String? {
+        get { "Duplicate" }
+    }
+    override var activityImage: UIImage? {
+        get { return UIImage(systemName: "plus.square.on.square") }
+    }
+    override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
+        return true
     }
     
 }
