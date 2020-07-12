@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="78j-zD-kH2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="78j-zD-kH2">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -462,7 +462,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-jM-4WQ">
-                                        <rect key="frame" x="22" y="60.5" width="276" height="19.5"/>
+                                        <rect key="frame" x="22" y="60.5" width="276" height="19"/>
                                         <fontDescription key="fontDescription" name="SFCompactRounded-Medium" family="SF Compact Rounded" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -945,6 +945,13 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                                     <constraint firstAttribute="width" secondItem="S20-3v-1YM" secondAttribute="height" multiplier="27:40" id="hNJ-4U-J9l"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LgV-gw-qaQ" customClass="CircularProgressView" customModule="Spaced_Repetition" customModuleProvider="target">
+                                <rect key="frame" x="264" y="0.0" width="56" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="BDY-gV-nqa"/>
+                                    <constraint firstAttribute="height" constant="42" id="RGx-kU-svn"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dV-Xu-PzI">
                                 <rect key="frame" x="0.0" y="0.0" width="56" height="42"/>
                                 <constraints>
@@ -961,6 +968,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                         <constraints>
                             <constraint firstItem="S20-3v-1YM" firstAttribute="width" secondItem="FeV-Vo-Dw6" secondAttribute="width" multiplier="0.86" priority="750" id="1Ec-Ib-ZLR"/>
                             <constraint firstItem="2dV-Xu-PzI" firstAttribute="top" secondItem="QY8-r6-cpX" secondAttribute="top" id="AtW-6u-93h"/>
+                            <constraint firstItem="LgV-gw-qaQ" firstAttribute="trailing" secondItem="QY8-r6-cpX" secondAttribute="trailing" id="MaL-Cm-WkI"/>
                             <constraint firstItem="oQH-rf-Eh4" firstAttribute="trailing" secondItem="QY8-r6-cpX" secondAttribute="trailing" id="O4V-Me-O9E"/>
                             <constraint firstItem="vEu-wc-aau" firstAttribute="leading" secondItem="QY8-r6-cpX" secondAttribute="leading" id="Sgg-sP-gnr"/>
                             <constraint firstItem="S20-3v-1YM" firstAttribute="centerX" secondItem="FeV-Vo-Dw6" secondAttribute="centerX" id="ck7-4o-D94"/>
@@ -970,6 +978,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                             <constraint firstItem="2dV-Xu-PzI" firstAttribute="leading" secondItem="QY8-r6-cpX" secondAttribute="leading" id="hCL-8G-VFO"/>
                             <constraint firstItem="oQH-rf-Eh4" firstAttribute="top" secondItem="S20-3v-1YM" secondAttribute="bottom" constant="8" symbolic="YES" id="oeB-OX-Gdz"/>
                             <constraint firstAttribute="trailing" secondItem="vEu-wc-aau" secondAttribute="trailing" id="qkD-0w-aLQ"/>
+                            <constraint firstItem="LgV-gw-qaQ" firstAttribute="top" secondItem="QY8-r6-cpX" secondAttribute="top" id="rJ7-fU-bo1"/>
                             <constraint firstItem="S20-3v-1YM" firstAttribute="centerY" secondItem="FeV-Vo-Dw6" secondAttribute="centerY" constant="-10" id="rXh-m8-oXn"/>
                             <constraint firstItem="oQH-rf-Eh4" firstAttribute="bottom" secondItem="QY8-r6-cpX" secondAttribute="bottom" id="sqP-Ys-1Ev"/>
                             <constraint firstAttribute="bottom" secondItem="vEu-wc-aau" secondAttribute="bottom" id="vV1-Au-MZM"/>
@@ -981,11 +990,12 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                         <outlet property="cardViewPlaceholder" destination="S20-3v-1YM" id="hYQ-hZ-9Te"/>
                         <outlet property="closeButton" destination="2dV-Xu-PzI" id="pPC-eq-Drp"/>
                         <outlet property="infoContainerView" destination="oQH-rf-Eh4" id="a8V-Ib-n9X"/>
+                        <outlet property="progressView" destination="LgV-gw-qaQ" id="NLo-fd-rjA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hcy-0U-1LH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-199" y="1701"/>
+            <point key="canvasLocation" x="-200.625" y="1700.7042253521126"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="fBi-SI-odH">
@@ -996,7 +1006,7 @@ It might seem as if cards you got wrong stayed at level 2. That is only because 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tap card to reveal answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BD0-Z4-VWk">
-                                <rect key="frame" x="66" y="31" width="188" height="20"/>
+                                <rect key="frame" x="64" y="31" width="192.5" height="20"/>
                                 <fontDescription key="fontDescription" name="SFCompactRounded-Medium" family="SF Compact Rounded" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

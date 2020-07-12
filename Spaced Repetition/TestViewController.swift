@@ -19,6 +19,7 @@ class TestViewController: ModalCardViewController {
     var cardDeck: [CardSides]!
     var currentCard: CardSides?
     
+    @IBOutlet weak var progressView: CircularProgressView!
     @IBOutlet weak var allDoneImageView: UIImageView!
     
     override func viewDidLoad() {
@@ -43,6 +44,10 @@ class TestViewController: ModalCardViewController {
             DaysCompletedManager.setCompletion(forDay: today)
             NotificationsManager.scheduleNotifications()
             UIApplication.shared.applicationIconBadgeNumber = 0
+        } else {
+            progressView.cardsCompleted = 0
+            progressView.totalCards = cardDeck.count
+            progressView.updateProgress()
         }
         
         setupCardView()
@@ -152,8 +157,11 @@ class TestViewController: ModalCardViewController {
     
     @objc func moveCardForward() {
         guard let cardToAnimate = self.cardView else { return }
-        animateOutCard(cardToAnimate, direction: 1)
+        progressView.cardsCompleted? += 1
+        progressView.updateProgress()
         
+        animateOutCard(cardToAnimate, direction: 1)
+                
         if let currentCard = currentCard {
             ImageManager.move(card: currentCard, toLevel: currentCard.level + 1)
             NotificationsManager.scheduleNotifications()

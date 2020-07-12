@@ -33,6 +33,14 @@ extension UIColor {
             return .black
         }
     }
+    
+    static var appSecondaryForegroundColor: UIColor {
+        if #available(iOS 13.0, *) {
+            return .secondaryLabel
+        } else {
+            return .gray
+        }
+    }
 
     static var appBackgroundColor: UIColor {
         if #available(iOS 13.0, *) {
