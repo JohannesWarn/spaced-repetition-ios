@@ -61,7 +61,8 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        navigationItem.rightBarButtonItem?.title = editing ? "Done" : "Select"
+        navigationItem.rightBarButtonItem?.title = editing ? "Cancel" : "Select"
+        navigationItem.leftBarButtonItem = editing ? UIBarButtonItem(title: "Select All", style: .plain, target: self, action: #selector(toggleSelectAll)) : nil
         navigationController?.setToolbarHidden(!editing, animated: true)
         collectionView.allowsSelection = false
         collectionView.allowsSelection = true
@@ -119,6 +120,20 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
         
         self.reload()
     }
+    
+    @objc func toggleSelectAll() {
+        if (collectionView.indexPathsForSelectedItems?.count ?? 0) < collectionView.numberOfItems(inSection: 0) {
+            for row in 0 ..< collectionView.numberOfItems(inSection: 0) {
+                collectionView.selectItem(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: [])
+            }
+        } else {
+            for row in 0 ..< collectionView.numberOfItems(inSection: 0) {
+                collectionView.deselectItem(at: IndexPath(row: row, section: 0), animated: false)
+            }
+        }
+        updateToolbarEnabled()
+    }
+    
     func reload() {
         guard let level = level else { return }
         
@@ -127,10 +142,13 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func updateToolbarEnabled() {
-        let hasSelection = collectionView.indexPathsForSelectedItems?.count ?? 0 > 0
-        for toolbarItem in toolbarItems ?? [] {
+        let hasSelection = (collectionView.indexPathsForSelectedItems?.count ?? 0) > 0
+        let selectedAll = (collectionView.indexPathsForSelectedItems?.count ?? 0) == collectionView.numberOfItems(inSection: 0)
+        for toolbarItem in (toolbarItems ?? []) {
             toolbarItem.isEnabled = hasSelection
         }
+        
+        navigationItem.leftBarButtonItem?.title = selectedAll ? "Deselect All" : "Select All"
     }
     
     func selectedCards() -> [CardSides] {
