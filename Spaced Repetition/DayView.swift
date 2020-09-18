@@ -34,7 +34,12 @@ class DayView: UIView {
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        
         circleLayer.strokeColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
+
+        CATransaction.commit()
     }
 
     override func layoutSubviews() {

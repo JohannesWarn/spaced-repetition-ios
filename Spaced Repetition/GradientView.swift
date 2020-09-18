@@ -46,6 +46,15 @@ import UIKit
         }
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        
+        updateGradient()
+
+        CATransaction.commit()
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         gradientLayer?.frame = layer.bounds
