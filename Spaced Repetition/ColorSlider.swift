@@ -51,9 +51,10 @@ import UIKit
         }
     }
     
-    var currentColorLayer: CAShapeLayer?
-    var blackBackground: CAShapeLayer?
-    var whiteBackground: CAShapeLayer?
+    let thumbLayer = CALayer()
+    var currentColorLayer = CAShapeLayer()
+    var blackBackground = CAShapeLayer()
+    var whiteBackground = CAShapeLayer()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -72,26 +73,24 @@ import UIKit
         
         if subview.bounds.size.width == subview.bounds.size.height {
             blackBackground = CAShapeLayer()
-            blackBackground!.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 4.0, y: 4.0), size: CGSize(width: 24.0, height: 24.0))).cgPath
-            blackBackground!.fillColor = UIColor.black.cgColor
-            subview.layer.addSublayer(blackBackground!)
+            blackBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 4.0, y: 4.0), size: CGSize(width: 24.0, height: 24.0))).cgPath
+            blackBackground.fillColor = UIColor.black.cgColor
+            subview.layer.addSublayer(blackBackground)
             
             whiteBackground = CAShapeLayer()
-            whiteBackground!.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 6.0, y: 6.0), size: CGSize(width: 20.0, height: 20.0))).cgPath
-            whiteBackground!.fillColor = UIColor.white.cgColor
-            subview.layer.addSublayer(whiteBackground!)
+            whiteBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 6.0, y: 6.0), size: CGSize(width: 20.0, height: 20.0))).cgPath
+            whiteBackground.fillColor = UIColor.white.cgColor
+            subview.layer.addSublayer(whiteBackground)
             
             currentColorLayer = CAShapeLayer()
-            currentColorLayer!.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 8.0, y: 8.0), size: CGSize(width: 16.0, height: 16.0))).cgPath
-            currentColorLayer!.fillColor = colorValue.cgColor
-            subview.layer.addSublayer(currentColorLayer!)
+            currentColorLayer.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 8.0, y: 8.0), size: CGSize(width: 16.0, height: 16.0))).cgPath
+            currentColorLayer.fillColor = colorValue.cgColor
+            subview.layer.addSublayer(currentColorLayer)
         }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        blackBackground?.fillColor = UIColor.black.cgColor
-        whiteBackground?.fillColor = UIColor.white.cgColor
-        currentColorLayer?.fillColor = colorValue.cgColor
+        updateThumb()
         
         layer.borderColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
     }
@@ -106,12 +105,39 @@ import UIKit
         oldSize = bounds.size
     }
     
+    func updateThumb() {
+        blackBackground.fillColor = UIColor.black.cgColor
+        whiteBackground.fillColor = UIColor.white.cgColor
+        currentColorLayer.fillColor = colorValue.cgColor
+        
+        let thumbImage = UIImage.imageWithLayer(layer: thumbLayer)
+        
+        setThumbImage(thumbImage, for: .normal)
+    }
+    
     func setup() {
+        thumbLayer.bounds = CGRect(origin: .zero, size: CGSize(width: 32.0, height: 32.0))
+        
+        blackBackground = CAShapeLayer()
+        blackBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 4.0, y: 4.0), size: CGSize(width: 24.0, height: 24.0))).cgPath
+        thumbLayer.addSublayer(blackBackground)
+        
+        whiteBackground = CAShapeLayer()
+        whiteBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 6.0, y: 6.0), size: CGSize(width: 20.0, height: 20.0))).cgPath
+        thumbLayer.addSublayer(whiteBackground)
+        
+        currentColorLayer = CAShapeLayer()
+        currentColorLayer.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 8.0, y: 8.0), size: CGSize(width: 16.0, height: 16.0))).cgPath
+        thumbLayer.addSublayer(currentColorLayer)
+        
+        DispatchQueue.main.async {
+            self.updateThumb()
+        }
+        
         addTarget(self, action: #selector(updateColorIndicator), for: .valueChanged)
         addTarget(self, action: #selector(editingDidEnd), for: .touchUpInside)
         addTarget(self, action: #selector(editingDidEnd), for: .touchUpOutside)
-        
-        setThumbImage(UIImage.clearImageWithSize(CGSize(width: 32.0, height: 32.0)), for: .normal)
+                
         minimumTrackTintColor = .clear
         maximumTrackTintColor = .clear
         
@@ -125,7 +151,7 @@ import UIKit
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         
-        currentColorLayer?.fillColor = colorValue.cgColor
+        updateThumb()
         
         CATransaction.commit()
     }

@@ -16,8 +16,9 @@ import UIKit
         }
     }
     
-    var blackBackground: CAShapeLayer?
-    var whiteBackground: CAShapeLayer?
+    let thumbLayer = CALayer()
+    var blackBackground = CAShapeLayer()
+    var whiteBackground = CAShapeLayer()
     
     override func awakeFromNib() {
         setup()
@@ -27,31 +28,22 @@ import UIKit
         setup()
     }
     
-    override func didAddSubview(_ subview: UIView) {
-        super.didAddSubview(subview)
-        
-        if subview.bounds.size.width == subview.bounds.size.height {
-            let blackBackground = CAShapeLayer()
-            blackBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 4.0, y: 4.0), size: CGSize(width: 24.0, height: 24.0))).cgPath
-            blackBackground.fillColor = UIColor.appForegroundColor.cgColor
-            subview.layer.addSublayer(blackBackground)
-            
-            let whiteBackground = CAShapeLayer()
-            whiteBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 6.0, y: 6.0), size: CGSize(width: 20.0, height: 20.0))).cgPath
-            whiteBackground.fillColor = UIColor.appBackgroundColor.cgColor
-            subview.layer.addSublayer(whiteBackground)
-        }
-    }
-    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        blackBackground?.fillColor = UIColor.black.cgColor
-        whiteBackground?.fillColor = UIColor.white.cgColor
-        
         layer.borderColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
+        updateThumb()
     }
 
     func setup() {
-        setThumbImage(UIImage.clearImageWithSize(CGSize(width: 32.0, height: 32.0)), for: .normal)
+        thumbLayer.bounds = CGRect(origin: .zero, size: CGSize(width: 32.0, height: 32.0))
+        
+        blackBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 4.0, y: 4.0), size: CGSize(width: 24.0, height: 24.0))).cgPath
+        thumbLayer.addSublayer(blackBackground)
+        
+        whiteBackground.path = UIBezierPath.init(ovalIn: CGRect(origin: CGPoint(x: 6.0, y: 6.0), size: CGSize(width: 20.0, height: 20.0))).cgPath
+        thumbLayer.addSublayer(whiteBackground)
+        
+        updateThumb()
+        
         minimumTrackTintColor = .clear
         maximumTrackTintColor = .clear
         
@@ -59,6 +51,14 @@ import UIKit
         layer.masksToBounds = true
         layer.borderColor = UIColor.appForegroundColorGrayInDarkMode.cgColor
         layer.borderWidth = 3.0
+    }
+    
+    func updateThumb() {
+        blackBackground.fillColor = UIColor.appForegroundColor.cgColor
+        whiteBackground.fillColor = UIColor.appBackgroundColor.cgColor
+
+        let thumbImage = UIImage.imageWithLayer(layer: thumbLayer)
+        setThumbImage(thumbImage, for: .normal)
     }
     
     override func draw(_ rect: CGRect) {
