@@ -88,12 +88,16 @@ class TestViewController: ModalCardViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        cardView.frame = cardViewPlaceholder.frame
-        for subview in cardView.frontViewContentView.subviews {
-            subview.frame = cardView.frontViewContentView.bounds
-        }
-        for subview in cardView.backViewContentView.subviews {
-            subview.frame = cardView.backViewContentView.bounds
+        // If the back of the card is shown it's possible that it is being animated.
+        // We only need to change the frame of the card when it is added, and then the front is shown.
+        if cardView.isShowingFront {
+            cardView.frame = cardViewPlaceholder.frame
+            for subview in cardView.frontViewContentView.subviews {
+                subview.frame = cardView.frontViewContentView.bounds
+            }
+            for subview in cardView.backViewContentView.subviews {
+                subview.frame = cardView.backViewContentView.bounds
+            }
         }
     }
     
