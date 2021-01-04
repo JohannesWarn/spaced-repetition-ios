@@ -98,6 +98,7 @@
 		8F26DEEC23004C430081D0E7 /* Reminders */ = {
 			isa = PBXGroup;
 			children = (
+				8FDA8A612302196000F59F7D /* NotificationsManager.swift */,
 				8F26DEEA23004C000081D0E7 /* RemindersViewController.swift */,
 				8FDA8A5B23005A8D00F59F7D /* EditReminderViewController.swift */,
 			);
@@ -124,41 +125,96 @@
 			isa = PBXGroup;
 			children = (
 				8F3CC1CE22F9F69400040A22 /* AppDelegate.swift */,
-				8F3CC1E422FA07E200040A22 /* StartViewController.swift */,
-				8FF64E3723327FF700F21768 /* OnboardingViewController.swift */,
-				8F49B0EB22FF1F4700CFA70A /* LevelCollectionViewController.swift */,
-				8F3C2742235F366E000E3DF3 /* LevelCell.xib */,
-				8F3C2744235F37A8000E3DF3 /* LevelCell.swift */,
-				8F49B0ED22FF291E00CFA70A /* CardCollectionViewCell.swift */,
-				8FAD2F0522FE2179002B311F /* ModalCardViewController.swift */,
-				8F4A98D222FB22ED003E0A68 /* TestViewController.swift */,
-				8F4A98D422FB2301003E0A68 /* NewCardViewController.swift */,
-				8F26DEEC23004C430081D0E7 /* Reminders */,
-				8F11C75C22FEE59F0075F89A /* ImageManager.swift */,
-				8F49B0EF22FF5D1D00CFA70A /* DaysCompletedManager.swift */,
-				8FDA8A612302196000F59F7D /* NotificationsManager.swift */,
 				8F3CC1D222F9F69400040A22 /* Main.storyboard */,
+				8F8A75CE25A361B600957640 /* Model */,
+				8F8A75C425A35F7A00957640 /* Onboarding */,
+				8F8A75C625A35F8800957640 /* Start */,
+				8F8A75C825A3607E00957640 /* Level */,
+				8FAD2F0522FE2179002B311F /* ModalCardViewController.swift */,
 				8F321DEE22FDE21B00643584 /* CardView.swift */,
-				8F4A98DA22FC0BC1003E0A68 /* FancyButton.swift */,
-				8FDA70EA22FDAD3900B57B7A /* GradientView.swift */,
-				8FEA4B5024BB515E007F1F14 /* CircularProgressView.swift */,
+				8F8A75CB25A3616800957640 /* New Card */,
+				8F8A75CD25A3617400957640 /* Daily Test */,
+				8F26DEEC23004C430081D0E7 /* Reminders */,
+				8F321DF022FDF6EC00643584 /* Utilities.swift */,
+				8F3CC1D722F9F69700040A22 /* LaunchScreen.storyboard */,
+				8FDA8A5F2301F18700F59F7D /* TestLaunchScreen.storyboard */,
+				8F4A98D822FC0AC8003E0A68 /* Assets.xcassets */,
+				8F3CC1DA22F9F69700040A22 /* Info.plist */,
+				8F8A75C725A3606300957640 /* Fonts */,
+			);
+			path = "Spaced Repetition";
+			sourceTree = "<group>";
+		};
+		8F8A75C425A35F7A00957640 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				8FF64E3723327FF700F21768 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		8F8A75C625A35F8800957640 /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				8F3CC1E422FA07E200040A22 /* StartViewController.swift */,
 				8F321DEC22FDC5D800643584 /* DayView.xib */,
 				8F3CC1E222F9FBB700040A22 /* DayView.swift */,
-				8F4A98D622FB85B4003E0A68 /* ButtonsViewController.swift */,
+				8F3C2742235F366E000E3DF3 /* LevelCell.xib */,
+				8F3C2744235F37A8000E3DF3 /* LevelCell.swift */,
+				8F4A98DA22FC0BC1003E0A68 /* FancyButton.swift */,
+				8FDA70EA22FDAD3900B57B7A /* GradientView.swift */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		8F8A75C725A3606300957640 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8F4A98DE22FC1D63003E0A68 /* SF-Compact-Rounded-Bold.otf */,
+				8F4A98DF22FC1D63003E0A68 /* SF-Compact-Rounded-Medium.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		8F8A75C825A3607E00957640 /* Level */ = {
+			isa = PBXGroup;
+			children = (
+				8F49B0EB22FF1F4700CFA70A /* LevelCollectionViewController.swift */,
+				8F49B0ED22FF291E00CFA70A /* CardCollectionViewCell.swift */,
+			);
+			path = Level;
+			sourceTree = "<group>";
+		};
+		8F8A75CB25A3616800957640 /* New Card */ = {
+			isa = PBXGroup;
+			children = (
+				8F4A98D422FB2301003E0A68 /* NewCardViewController.swift */,
 				8FAD2F0C22FE2B11002B311F /* ToolsViewController.swift */,
 				8FAD2F1422FE51FB002B311F /* SlidersViewController.swift */,
 				8FAD2F0E22FE382C002B311F /* ColorSlider.swift */,
 				8FAD2F0F22FE382D002B311F /* WidthSlider.swift */,
-				8F321DF022FDF6EC00643584 /* Utilities.swift */,
-				8F3CC1D722F9F69700040A22 /* LaunchScreen.storyboard */,
-				8FDA8A5F2301F18700F59F7D /* TestLaunchScreen.storyboard */,
 				8FAD2F0722FE27A9002B311F /* SwiftyDraw */,
-				8F4A98D822FC0AC8003E0A68 /* Assets.xcassets */,
-				8F3CC1DA22F9F69700040A22 /* Info.plist */,
-				8F4A98DE22FC1D63003E0A68 /* SF-Compact-Rounded-Bold.otf */,
-				8F4A98DF22FC1D63003E0A68 /* SF-Compact-Rounded-Medium.otf */,
 			);
-			path = "Spaced Repetition";
+			path = "New Card";
+			sourceTree = "<group>";
+		};
+		8F8A75CD25A3617400957640 /* Daily Test */ = {
+			isa = PBXGroup;
+			children = (
+				8F4A98D222FB22ED003E0A68 /* TestViewController.swift */,
+				8FEA4B5024BB515E007F1F14 /* CircularProgressView.swift */,
+				8F4A98D622FB85B4003E0A68 /* ButtonsViewController.swift */,
+			);
+			path = "Daily Test";
+			sourceTree = "<group>";
+		};
+		8F8A75CE25A361B600957640 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8F11C75C22FEE59F0075F89A /* ImageManager.swift */,
+				8F49B0EF22FF5D1D00CFA70A /* DaysCompletedManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8FAD2F0722FE27A9002B311F /* SwiftyDraw */ = {
