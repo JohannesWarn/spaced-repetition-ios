@@ -14,6 +14,13 @@ class CardCollectionViewCell: UICollectionViewCell {
     var highlightOverlay = UIView()
     var shouldShowCheckMark = false
     var selectedImageView = UIImageView(image: UIImage(named: "selected"))
+    var card: CardSides? {
+        didSet {
+            if card?.frontImageURL != oldValue?.frontImageURL {
+                imageView.image = card?.frontImage
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

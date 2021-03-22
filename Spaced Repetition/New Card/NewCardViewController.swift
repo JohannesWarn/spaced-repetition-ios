@@ -169,7 +169,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
             let level = coder.decodeInteger(forKey: "existingCard.level")
             let frontImageURL = ImageManager.imageURL(name: name, level: level, suffix: "front")
             let backImageURL = ImageManager.imageURL(name: name, level: level, suffix: "back")
-            self.existingCard = CardSides(name: name, level: level, frontImage: nil, backImage: nil, frontImageURL: frontImageURL, backImageURL: backImageURL)
+            self.existingCard = CardSides(name: name, level: level, frontImageURL: frontImageURL, backImageURL: backImageURL)
         }
         
         topRightButton.setTitle(preferredRightButtonTitle, for: .normal)

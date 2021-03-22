@@ -11,10 +11,27 @@ import UIKit
 struct CardSides {
     let name: String
     let level: Int
-    let frontImage: UIImage?
-    let backImage: UIImage?
     let frontImageURL: URL?
     let backImageURL: URL?
+    
+    var frontImage: UIImage? {
+        get {
+            if let url = frontImageURL {
+                return UIImage.init(contentsOfFile: url.path)
+            } else {
+                return nil
+            }
+        }
+    }
+    var backImage: UIImage? {
+        get {
+            if let url = backImageURL {
+                return UIImage.init(contentsOfFile: url.path)
+            } else {
+                return nil
+            }
+        }
+    }
     
     var nameInt: Int? {
         if let range = name.range(of: #"\b\d+\b"#, options: .regularExpression) {
@@ -54,8 +71,6 @@ class ImageManager: NSObject {
         return CardSides(
             name: name,
             level: level,
-            frontImage: nil,
-            backImage: nil,
             frontImageURL: imageURL(name: name, level: level, suffix: "front"),
             backImageURL: imageURL(name: name, level: level, suffix: "back")
         )
@@ -94,26 +109,26 @@ class ImageManager: NSObject {
         
         let newCard = CardSides(
             name: card.name, level: level,
-            frontImage: card.frontImage,
-            backImage: card.backImage,
             frontImageURL: self.imageURL(name: card.name, level: level, suffix: "front"),
             backImageURL: self.imageURL(name: card.name, level: level, suffix: "back")
         )
         
-        guard card.frontImageURL != nil && card.backImageURL != nil && newCard.frontImageURL != nil && newCard.backImageURL != nil else {
-            return
+        if let frontImageURL = card.frontImageURL, let newFrontImageURL = newCard.frontImageURL {
+            try? FileManager.default.moveItem(at: frontImageURL, to: newFrontImageURL)
         }
-        try! FileManager.default.moveItem(at: card.frontImageURL!, to: newCard.frontImageURL!)
-        try! FileManager.default.moveItem(at: card.backImageURL!, to: newCard.backImageURL!)
+        if let backImageURL = card.backImageURL, let newBackImageURL = newCard.backImageURL {
+            try? FileManager.default.moveItem(at: backImageURL, to: newBackImageURL)
+        }
     }
     
     
     class func delete(card: CardSides) {
-        guard card.frontImageURL != nil && card.backImageURL != nil else {
-            return
+        if let frontImageURL = card.frontImageURL {
+            try? FileManager.default.removeItem(at: frontImageURL)
         }
-        try! FileManager.default.removeItem(at: card.frontImageURL!)
-        try! FileManager.default.removeItem(at: card.backImageURL!)
+        if let backImageURL = card.backImageURL {
+            try? FileManager.default.removeItem(at: backImageURL)
+        }
         
         NotificationsManager.scheduleNotifications()
     }
@@ -144,17 +159,13 @@ class ImageManager: NSObject {
         for fileURL in files {
             if fileURL.absoluteString.hasSuffix("front.png") {
                 let name = fileURL.pathComponents.last!.replacingOccurrences(of: "-front.png", with: "")
-                let frontImage = UIImage.init(data: try! Data(contentsOf: fileURL))!
                 let backFileName = fileURL.pathComponents.last!.replacingOccurrences(of: "front", with: "back")
                 let backFileURL = directory.appendingPathComponent(backFileName)
-                let backImage = UIImage.init(data: try! Data(contentsOf: backFileURL))!
 
                 cards.append(
                     CardSides(
                         name: name,
                         level: level,
-                        frontImage: frontImage,
-                        backImage: backImage,
                         frontImageURL: fileURL,
                         backImageURL: backFileURL
                     )

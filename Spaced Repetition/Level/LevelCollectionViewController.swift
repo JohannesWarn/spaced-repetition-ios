@@ -98,12 +98,16 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
         do {
             for card in selectedCards() {
                 let newCard = ImageManager.imagesURLsForNewCard()
-                if let frontImageURL = newCard.frontImageURL, let backImageURL = newCard.backImageURL {
-                    try card.frontImage?.pngData()?.write(to: frontImageURL)
-                    try card.backImage?.pngData()?.write(to: backImageURL)
-                    
-                    ImageManager.move(card: newCard, toLevel: level)
+                
+                guard let frontImageURL = card.frontImageURL, let backImageURL = card.backImageURL,
+                      let newFrontImageURL = newCard.frontImageURL, let newBackImageURL = newCard.backImageURL
+                else {
+                    continue
                 }
+                
+                try FileManager.default.copyItem(at: frontImageURL, to: newFrontImageURL)
+                try FileManager.default.copyItem(at: backImageURL, to: newBackImageURL)
+                ImageManager.move(card: newCard, toLevel: level)
             }
             NotificationsManager.scheduleNotifications()
         } catch let error {
@@ -269,7 +273,7 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
         
         cell.shouldShowCheckMark = isEditing
-        cell.imageView.image = cards?[indexPath.row].frontImage
+        cell.card = cards?[indexPath.row]
         
         return cell
     }
