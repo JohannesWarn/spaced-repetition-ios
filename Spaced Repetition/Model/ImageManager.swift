@@ -129,8 +129,6 @@ class ImageManager: NSObject {
         if let backImageURL = card.backImageURL {
             try? FileManager.default.removeItem(at: backImageURL)
         }
-        
-        NotificationsManager.scheduleNotifications()
     }
     
     class func imageURL(name: String, level: Int, suffix: String) -> URL {

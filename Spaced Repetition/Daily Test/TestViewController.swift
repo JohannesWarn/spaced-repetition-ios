@@ -168,7 +168,6 @@ class TestViewController: ModalCardViewController {
                 
         if let currentCard = currentCard {
             ImageManager.move(card: currentCard, toLevel: currentCard.level + 1)
-            NotificationsManager.scheduleNotifications()
         }
         
         if cardDeck.count == 0 {
@@ -190,7 +189,6 @@ class TestViewController: ModalCardViewController {
                 let dateComponents = Calendar.current.dateComponents([.era, .year, .month, .day], from: Date())
                 let today = Calendar.current.date(from: dateComponents)!
                 DaysCompletedManager.setCompletion(forDay: today)
-                NotificationsManager.scheduleNotifications()
                 UIApplication.shared.applicationIconBadgeNumber = 0
             }, completion: nil)
         }
@@ -202,7 +200,6 @@ class TestViewController: ModalCardViewController {
         
         if let currentCard = currentCard {
             ImageManager.move(card: currentCard, toLevel: 1)
-            NotificationsManager.scheduleNotifications()
         }
         
         if cardDeck.count == 0 {

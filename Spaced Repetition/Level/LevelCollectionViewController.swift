@@ -252,6 +252,7 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
             for card in currentlySelectedCards {
                 ImageManager.delete(card: card)
             }
+            NotificationsManager.scheduleNotifications()
             self.isEditing = false
             self.reload()
         }))
