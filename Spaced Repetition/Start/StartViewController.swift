@@ -249,6 +249,9 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         while day > firstWeekday {
             day = Calendar.current.date(byAdding: .day, value: -1, to: day)!
             i -= 1
+            if i < 0 {
+                break
+            }
             
             let completionState = DaysCompletedManager.completionState(forDay: day)
             if completionState == .completed || completionState == .skipped {
@@ -268,6 +271,9 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             day = Calendar.current.date(byAdding: .day, value: 1, to: day)!
             i += 1
             numberOfDaysCompletedUntilDay += 1
+            if i >= dayViews.count {
+                break
+            }
 
             let levelsToRepeat = levelsToRepeatAtDay[numberOfDaysCompletedUntilDay % 64]
             for (index, dotLayer) in dayViews[i].dotLayers.enumerated() {
