@@ -152,7 +152,7 @@ class RemindersViewController: UITableViewController {
     }
     
     @IBAction func openNotificationsSettings(_ sender: Any) {
-        UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
+        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
     }
     
     func sortReminders() {

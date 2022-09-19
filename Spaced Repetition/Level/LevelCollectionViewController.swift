@@ -194,7 +194,7 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
                 } else {
                     let alertController = UIAlertController(title: "Unable to Save Photos", message: "You need to allow Spaced Repetion acces to your photos to use Save Images.", preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { (_) in
-                        UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
+                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                     }))
                     alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                     self.present(alertController, animated: true)
