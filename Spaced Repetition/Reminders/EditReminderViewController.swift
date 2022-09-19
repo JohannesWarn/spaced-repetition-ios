@@ -48,7 +48,7 @@ class EditReminderViewController: UITableViewController {
     }
     
     @IBAction func updateReminder() {
-        var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: timePicker.date)
+        let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: timePicker.date)
         reminder.hour = dateComponents.hour!
         reminder.minute = dateComponents.minute!
         
