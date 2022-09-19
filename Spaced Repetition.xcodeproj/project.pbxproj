@@ -36,6 +36,7 @@
 		8FAD2F1022FE382D002B311F /* ColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD2F0E22FE382C002B311F /* ColorSlider.swift */; };
 		8FAD2F1122FE382D002B311F /* WidthSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD2F0F22FE382D002B311F /* WidthSlider.swift */; };
 		8FAD2F1522FE51FB002B311F /* SlidersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD2F1422FE51FB002B311F /* SlidersViewController.swift */; };
+		8FB0211B28D8BDDB00526FF1 /* COJTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB0211A28D8BDDB00526FF1 /* COJTextView.swift */; };
 		8FDA70EB22FDAD3900B57B7A /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDA70EA22FDAD3900B57B7A /* GradientView.swift */; };
 		8FDA8A5C23005A8D00F59F7D /* EditReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDA8A5B23005A8D00F59F7D /* EditReminderViewController.swift */; };
 		8FDA8A602301F18700F59F7D /* TestLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FDA8A5F2301F18700F59F7D /* TestLaunchScreen.storyboard */; };
@@ -76,6 +77,7 @@
 		8FAD2F0E22FE382C002B311F /* ColorSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSlider.swift; sourceTree = "<group>"; };
 		8FAD2F0F22FE382D002B311F /* WidthSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidthSlider.swift; sourceTree = "<group>"; };
 		8FAD2F1422FE51FB002B311F /* SlidersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidersViewController.swift; sourceTree = "<group>"; };
+		8FB0211A28D8BDDB00526FF1 /* COJTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COJTextView.swift; sourceTree = "<group>"; };
 		8FDA70EA22FDAD3900B57B7A /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		8FDA8A5B23005A8D00F59F7D /* EditReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReminderViewController.swift; sourceTree = "<group>"; };
 		8FDA8A5F2301F18700F59F7D /* TestLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestLaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				8FAD2F1422FE51FB002B311F /* SlidersViewController.swift */,
 				8FAD2F0E22FE382C002B311F /* ColorSlider.swift */,
 				8FAD2F0F22FE382D002B311F /* WidthSlider.swift */,
+				8FB0211A28D8BDDB00526FF1 /* COJTextView.swift */,
 				8FAD2F0722FE27A9002B311F /* SwiftyDraw */,
 			);
 			path = "New Card";
@@ -306,6 +309,7 @@
 				8FEA4B5124BB515E007F1F14 /* CircularProgressView.swift in Sources */,
 				8F49B0EC22FF1F4800CFA70A /* LevelCollectionViewController.swift in Sources */,
 				8F3CC1CF22F9F69400040A22 /* AppDelegate.swift in Sources */,
+				8FB0211B28D8BDDB00526FF1 /* COJTextView.swift in Sources */,
 				8FDA8A622302196000F59F7D /* NotificationsManager.swift in Sources */,
 				8FAD2F1022FE382D002B311F /* ColorSlider.swift in Sources */,
 				8FAD2F0622FE2179002B311F /* ModalCardViewController.swift in Sources */,

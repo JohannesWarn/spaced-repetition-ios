@@ -440,7 +440,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         
         var center = CGPoint(x: currentView.bounds.size.width * 0.5, y: currentView.bounds.size.height * 0.35)
         var didHit = false
-        while currentView.hitTest(center, with: nil)?.isKind(of: UITextView.self) ?? false {
+        while currentView.hitTest(center, with: nil)?.isKind(of: COJTextView.self) ?? false {
             center.y += 10
             didHit = true
         }
@@ -450,7 +450,7 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         
         let fontSize = ceil(cardView.frame.width / 10.0)
         
-        let textView = UITextView()
+        let textView = COJTextView()
         textView.backgroundColor = .clear
         textView.textColor = UIColor.appForegroundColor.staticColor
         textView.isScrollEnabled = false
@@ -478,10 +478,13 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
         dragableViews.append(textView)
     }
     
-    var currentTextView: UITextView?
+    var currentTextView: COJTextView?
     func textViewDidBeginEditing(_ textView: UITextView) {
+        let textView = textView as! COJTextView
+        
         isWriting = true
         currentTextView = textView
+        textView.minimumInteractionSize = CGSize(width: 300.0, height: 240.0)
         
         textColorSlider.value = textColorSlider.value(forColorValue: textView.textColor!)
         textColorSlider.isHidden = false
@@ -510,8 +513,11 @@ class NewCardViewController: ModalCardViewController, UITextViewDelegate, UIImag
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        let textView = textView as! COJTextView
+        
         isWriting = false
         currentTextView = nil
+        textView.minimumInteractionSize = CGSize(width: 84.0, height: 84.0)
         
         textColorSlider.isHidden = true
         titleLabel.isHidden = false
