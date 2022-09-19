@@ -72,13 +72,14 @@ class NotificationsManager: Any {
         
         guard activeReminders.count > 0 else { return }
         
+        let options: UNAuthorizationOptions
         if #available(iOS 12.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound, .providesAppNotificationSettings]) { (success, error) in
-                print("request authorization: \(success ? "success" : "failure"), error: \(error?.localizedDescription ?? "none")")
-            }
+            options = [.alert, .badge, .sound, .providesAppNotificationSettings]
         } else {
-            let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+            options = [.alert, .badge, .sound]
+        }
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { (success, error) in
+            print("request authorization: \(success ? "success" : "failure"), error: \(error?.localizedDescription ?? "none")")
         }
         
         // Find the first day that will have a test
