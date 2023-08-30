@@ -46,6 +46,10 @@ class LevelCollectionViewController: UICollectionViewController, UICollectionVie
             
             flowLayout.sectionInset = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
         }
+        
+        if #available(iOS 14.0, *) {
+            collectionView.allowsMultipleSelectionDuringEditing = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
